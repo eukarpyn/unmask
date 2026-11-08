@@ -1,0 +1,1090 @@
+[
+  {
+    "id": "L1-001",
+    "source_id": "E-001",
+    "level": "LEVEL ONE",
+    "text_en": "What do you think is the hardest part of what I do for a living?",
+    "text_pt": "O que você acha que é a parte mais difícil do meu trabalho?",
+    "wildcard": false
+  },
+  {
+    "id": "L1-002",
+    "source_id": "E-002",
+    "level": "LEVEL ONE",
+    "text_en": "What reality show do you think I'm most likely to binge watch? Explain.",
+    "text_pt": "Em qual reality show você acha que eu provavelmente ficaria horas maratonando? Explique.",
+    "wildcard": false
+  },
+  {
+    "id": "L1-003",
+    "source_id": "E-003",
+    "level": "LEVEL ONE",
+    "text_en": "What's the first thing you noticed about me?",
+    "text_pt": "Qual foi a primeira coisa que você reparou em mim?",
+    "wildcard": false
+  },
+  {
+    "id": "L1-004",
+    "source_id": "E-004",
+    "level": "LEVEL ONE",
+    "text_en": "If Myspace was still a thing what would my profile song be?",
+    "text_pt": "Se o Myspace ainda existisse, qual seria a música do meu perfil?",
+    "wildcard": false
+  },
+  {
+    "id": "L1-005",
+    "source_id": "E-005",
+    "level": "LEVEL ONE",
+    "text_en": "If you were to buy me a present, knowing nothing about me other than what I look like, what would it be?",
+    "text_pt": "Se você fosse me dar um presente sem saber nada sobre mim além da minha aparência, o que escolheria?",
+    "wildcard": false
+  },
+  {
+    "id": "L1-006",
+    "source_id": "E-006",
+    "level": "LEVEL ONE",
+    "text_en": "On a scale of 1-10, how messy do you think my car is? 1 being the cleanest 10 complete disaster, explain.",
+    "text_pt": "De 1 a 10, quão bagunçado você acha que é meu carro? 1 é impecável e 10 é um desastre completo. Explique.",
+    "wildcard": false
+  },
+  {
+    "id": "L1-007",
+    "source_id": "E-007",
+    "level": "LEVEL ONE",
+    "text_en": "Do you think plants thrive or die in my care? Explain.",
+    "text_pt": "Você acha que as plantas sobrevivem ou morrem sob meus cuidados? Explique.",
+    "wildcard": false
+  },
+  {
+    "id": "L1-008",
+    "source_id": "E-008",
+    "level": "LEVEL ONE",
+    "text_en": "Do I look kind? Explain.",
+    "text_pt": "Eu pareço uma pessoa gentil? Explique.",
+    "wildcard": false
+  },
+  {
+    "id": "L1-009",
+    "source_id": "E-009",
+    "level": "LEVEL ONE",
+    "text_en": "Do I seem like more of a creative or analytical type? Explain.",
+    "text_pt": "Eu pareço ser mais criativo ou analítico? Explique.",
+    "wildcard": false
+  },
+  {
+    "id": "L1-010",
+    "source_id": "E-010",
+    "level": "LEVEL ONE",
+    "text_en": "Do I seem like someone who would get a name tattooed on myself? Why or why not?",
+    "text_pt": "Eu pareço alguém que tatuaria o nome de outra pessoa? Por que sim ou por que não?",
+    "wildcard": false
+  },
+  {
+    "id": "L1-011",
+    "source_id": "E-011",
+    "level": "LEVEL ONE",
+    "text_en": "Finish the sentence: Just by looking at you I'd think _____________.",
+    "text_pt": "Complete a frase: Só de olhar para você, eu diria que ____________.",
+    "wildcard": false
+  },
+  {
+    "id": "L1-012",
+    "source_id": "E-012",
+    "level": "LEVEL ONE",
+    "text_en": "What do my shoes tell you about me?",
+    "text_pt": "O que meus sapatos dizem sobre mim?",
+    "wildcard": false
+  },
+  {
+    "id": "L1-013",
+    "source_id": "E-013",
+    "level": "LEVEL ONE",
+    "text_en": "Do you think I've ever been fired from a job? If so, what for?",
+    "text_pt": "Você acha que eu já fui demitido de algum emprego? Se sim, por quê?",
+    "wildcard": false
+  },
+  {
+    "id": "L1-014",
+    "source_id": "E-014",
+    "level": "LEVEL ONE",
+    "text_en": "What was your first impression of me?",
+    "text_pt": "Qual foi sua primeira impressão de mim?",
+    "wildcard": false
+  },
+  {
+    "id": "L1-015",
+    "source_id": "E-015",
+    "level": "LEVEL ONE",
+    "text_en": "What was your first impression of me on Bumble vs IRL?",
+    "text_pt": "Qual foi sua primeira impressão de mim no Bumble e depois pessoalmente?",
+    "wildcard": false
+  },
+  {
+    "id": "L1-016",
+    "source_id": "E-016",
+    "level": "LEVEL ONE",
+    "text_en": "How would you describe what you think my type is in three words?",
+    "text_pt": "Em três palavras, como você descreveria o tipo de pessoa por quem acha que eu me interesso?",
+    "wildcard": false
+  },
+  {
+    "id": "L1-017",
+    "source_id": "E-017",
+    "level": "LEVEL ONE",
+    "text_en": "What did you think about my first message?",
+    "text_pt": "O que você achou da minha primeira mensagem?",
+    "wildcard": false
+  },
+  {
+    "id": "L1-018",
+    "source_id": "E-018",
+    "level": "LEVEL ONE",
+    "text_en": "Between the two of us, who seems like the better texter? Explain.",
+    "text_pt": "Entre nós dois, quem parece ser melhor de conversa por mensagem? Explique.",
+    "wildcard": false
+  },
+  {
+    "id": "L1-019",
+    "source_id": "E-019",
+    "level": "LEVEL ONE",
+    "text_en": "What does my Instagram tell you about me?",
+    "text_pt": "O que meu Instagram diz sobre mim?",
+    "wildcard": false
+  },
+  {
+    "id": "L1-020",
+    "source_id": "E-020",
+    "level": "LEVEL ONE",
+    "text_en": "Make an assumption about me",
+    "text_pt": "Faça uma suposição sobre mim.",
+    "wildcard": false
+  },
+  {
+    "id": "L1-021",
+    "source_id": "E-021",
+    "level": "LEVEL ONE",
+    "text_en": "What about me intrigues you?",
+    "text_pt": "O que em mim desperta sua curiosidade?",
+    "wildcard": false
+  },
+  {
+    "id": "L1-022",
+    "source_id": "E-022",
+    "level": "LEVEL ONE",
+    "text_en": "What do you think I'm most likely to splurge on?",
+    "text_pt": "Com o que você acha que eu mais gosto de gastar dinheiro?",
+    "wildcard": false
+  },
+  {
+    "id": "L1-023",
+    "source_id": "E-023",
+    "level": "LEVEL ONE",
+    "text_en": "As a child, what do you think I wanted to be?",
+    "text_pt": "O que você acha que eu queria ser quando era criança?",
+    "wildcard": false
+  },
+  {
+    "id": "L1-024",
+    "source_id": "E-024",
+    "level": "LEVEL ONE",
+    "text_en": "Finish the sentence: just by looking at you I'd think ...",
+    "text_pt": "Complete a frase: Só de olhar para você, eu diria que...",
+    "wildcard": false
+  },
+  {
+    "id": "L1-025",
+    "source_id": "E-025",
+    "level": "LEVEL ONE",
+    "text_en": "Do you think I was popular in school? Explain.",
+    "text_pt": "Você acha que eu era popular na escola? Explique.",
+    "wildcard": false
+  },
+  {
+    "id": "L1-026",
+    "source_id": "E-026",
+    "level": "LEVEL ONE",
+    "text_en": "How many speeding tickets do you think I've gotten in my life?",
+    "text_pt": "Quantas multas por excesso de velocidade você acha que já levei na vida?",
+    "wildcard": false
+  },
+  {
+    "id": "L1-027",
+    "source_id": "E-027",
+    "level": "LEVEL ONE",
+    "text_en": "Do I seem like someone who would get a name tattooed on myself? Why or why not?",
+    "text_pt": "Eu pareço alguém que tatuaria o nome de outra pessoa? Por que sim ou por que não?",
+    "wildcard": false
+  },
+  {
+    "id": "L1-028",
+    "source_id": "E-028",
+    "level": "LEVEL ONE",
+    "text_en": "Do you think I fall in love easily why or why not",
+    "text_pt": "Você acha que eu me apaixono facilmente? Por quê?",
+    "wildcard": false
+  },
+  {
+    "id": "L1-029",
+    "source_id": "E-029",
+    "level": "LEVEL ONE",
+    "text_en": "What compliment do you think I hear the most?",
+    "text_pt": "Qual elogio você acha que eu mais escuto?",
+    "wildcard": false
+  },
+  {
+    "id": "L1-030",
+    "source_id": "E-030",
+    "level": "LEVEL ONE",
+    "text_en": "Do you think I ever checked an Ex phone for evidence?",
+    "text_pt": "Você acha que eu já mexi no celular de um ex ou de uma ex para procurar alguma coisa?",
+    "wildcard": false
+  },
+  {
+    "id": "L1-031",
+    "source_id": "E-031",
+    "level": "LEVEL ONE",
+    "text_en": "What subject do you think I thrived at in school and did I fail any?",
+    "text_pt": "Em qual matéria você acha que eu me dava melhor na escola? E será que eu reprovei em alguma?",
+    "wildcard": false
+  },
+  {
+    "id": "L1-032",
+    "source_id": "E-032",
+    "level": "LEVEL ONE",
+    "text_en": "Do I seem like a coffee or tea person - sweetened or unsweetened?",
+    "text_pt": "Eu pareço mais uma pessoa do café ou do chá? Com açúcar ou sem?",
+    "wildcard": false
+  },
+  {
+    "id": "L1-033",
+    "source_id": "E-033",
+    "level": "LEVEL ONE",
+    "text_en": "As a child what do you think I wanted to be when I grow up?",
+    "text_pt": "O que você acha que eu queria ser quando crescesse?",
+    "wildcard": false
+  },
+  {
+    "id": "L1-034",
+    "source_id": "E-034",
+    "level": "LEVEL ONE",
+    "text_en": "Do I seem like a morning person or a night owl?",
+    "text_pt": "Eu pareço ser uma pessoa matutina ou noturna?",
+    "wildcard": false
+  },
+  {
+    "id": "L1-035",
+    "source_id": "E-035",
+    "level": "LEVEL ONE",
+    "text_en": "Do you think I was popular at school? Explain.",
+    "text_pt": "Você acha que eu era popular na escola? Explique.",
+    "wildcard": false
+  },
+  {
+    "id": "L1-036",
+    "source_id": "E-036",
+    "level": "LEVEL ONE",
+    "text_en": "Do you think I'm usually early on time or late to events. Explain.",
+    "text_pt": "Você acha que eu costumo chegar cedo, na hora ou atrasado aos compromissos? Explique.",
+    "wildcard": false
+  },
+  {
+    "id": "L1-037",
+    "source_id": "E-037",
+    "level": "LEVEL ONE",
+    "text_en": "Do I remind you of anyone you know?",
+    "text_pt": "Eu te lembro alguém que você conhece?",
+    "wildcard": false
+  },
+  {
+    "id": "L1-038",
+    "source_id": "E-038",
+    "level": "LEVEL ONE",
+    "text_en": "What do you think I'm most likely to splurge on?",
+    "text_pt": "Com o que você acha que eu mais gosto de gastar dinheiro?",
+    "wildcard": false
+  },
+  {
+    "id": "L1-039",
+    "source_id": "E-039",
+    "level": "LEVEL ONE",
+    "text_en": "How many speeding tickets you think I've gotten in my life?",
+    "text_pt": "Quantas multas por excesso de velocidade você acha que já levei na vida?",
+    "wildcard": false
+  },
+  {
+    "id": "L1-040",
+    "source_id": "E-040",
+    "level": "LEVEL ONE",
+    "text_en": "WILDCARD: Ask and answer the next question in a different accent.",
+    "text_pt": "CARTA CORINGA: Faça e responda à próxima pergunta usando um sotaque diferente.",
+    "wildcard": true
+  },
+  {
+    "id": "L1-041",
+    "source_id": "E-041",
+    "level": "LEVEL ONE",
+    "text_en": "WILDCARD: Create your own question.",
+    "text_pt": "CARTA CORINGA: Crie sua própria pergunta.",
+    "wildcard": true
+  },
+  {
+    "id": "L1-042",
+    "source_id": "E-042",
+    "level": "LEVEL ONE",
+    "text_en": "Am I someone you typically connect with?",
+    "text_pt": "Eu sou alguém com quem você costuma criar conexão?",
+    "wildcard": false
+  },
+  {
+    "id": "L1-043",
+    "source_id": "E-043",
+    "level": "LEVEL ONE",
+    "text_en": "Do I intimidate you? Why or why not?",
+    "text_pt": "Eu te intimido? Por que sim ou por que não?",
+    "wildcard": false
+  },
+  {
+    "id": "L1-044",
+    "source_id": "E-044",
+    "level": "LEVEL ONE",
+    "text_en": "What's your favorite song lyric that comes to your mind from the top of your head?",
+    "text_pt": "Qual é a primeira letra de música que vier à sua cabeça e que você mais gosta?",
+    "wildcard": false
+  },
+  {
+    "id": "L1-045",
+    "source_id": "E-045",
+    "level": "LEVEL ONE",
+    "text_en": "As a child, what do you think I wanted to be?",
+    "text_pt": "O que você acha que eu queria ser quando era criança?",
+    "wildcard": false
+  },
+  {
+    "id": "L1-046",
+    "source_id": "E-046",
+    "level": "LEVEL ONE",
+    "text_en": "WILDCARD: Write down your number one goal for the next month. Compare.",
+    "text_pt": "CARTA CORINGA: Escreva seu principal objetivo para o próximo mês. Depois, comparem.",
+    "wildcard": true
+  },
+  {
+    "id": "L2-001",
+    "source_id": "O-001",
+    "level": "LEVEL TWO",
+    "text_en": "What's been your happiest memory this past year?",
+    "text_pt": "Qual foi sua lembrança mais feliz do último ano?",
+    "wildcard": false
+  },
+  {
+    "id": "L2-002",
+    "source_id": "O-002",
+    "level": "LEVEL TWO",
+    "text_en": "Have you changed your mind about anything recently?",
+    "text_pt": "Você mudou de opinião sobre alguma coisa recentemente?",
+    "wildcard": false
+  },
+  {
+    "id": "L2-003",
+    "source_id": "O-003",
+    "level": "LEVEL TWO",
+    "text_en": "What has been your earliest recollection of happiness?",
+    "text_pt": "Qual é sua lembrança mais antiga de um momento feliz?",
+    "wildcard": false
+  },
+  {
+    "id": "L2-004",
+    "source_id": "O-004",
+    "level": "LEVEL TWO",
+    "text_en": "What lesson took you the longest to un-learn?",
+    "text_pt": "Que lição você demorou mais tempo para desaprender?",
+    "wildcard": false
+  },
+  {
+    "id": "L2-005",
+    "source_id": "O-005",
+    "level": "LEVEL TWO",
+    "text_en": "Are you lying to yourself about anything?",
+    "text_pt": "Você está mentindo para si mesmo sobre alguma coisa?",
+    "wildcard": false
+  },
+  {
+    "id": "L2-006",
+    "source_id": "O-006",
+    "level": "LEVEL TWO",
+    "text_en": "What questions are you trying to answer most in your life right now?",
+    "text_pt": "Quais perguntas você mais está tentando responder na sua vida neste momento?",
+    "wildcard": false
+  },
+  {
+    "id": "L2-007",
+    "source_id": "O-007",
+    "level": "LEVEL TWO",
+    "text_en": "When was the last time you surprised yourself?",
+    "text_pt": "Quando foi a última vez que você surpreendeu a si mesmo?",
+    "wildcard": false
+  },
+  {
+    "id": "L2-008",
+    "source_id": "O-008",
+    "level": "LEVEL TWO",
+    "text_en": "What title would you give this chapter in your life?",
+    "text_pt": "Que título você daria a este capítulo da sua vida?",
+    "wildcard": false
+  },
+  {
+    "id": "L2-009",
+    "source_id": "O-009",
+    "level": "LEVEL TWO",
+    "text_en": "What do you crave more of?",
+    "text_pt": "Do que você sente mais falta ou vontade na sua vida hoje?",
+    "wildcard": false
+  },
+  {
+    "id": "L2-010",
+    "source_id": "O-010",
+    "level": "LEVEL TWO",
+    "text_en": "Finish the sentence: Strangers would describe me as ______ only I know that I am _______",
+    "text_pt": "Complete a frase: Para pessoas desconhecidas, eu pareço ser ________, mas só eu sei que sou ________.",
+    "wildcard": false
+  },
+  {
+    "id": "L2-011",
+    "source_id": "O-011",
+    "level": "LEVEL TWO",
+    "text_en": "What's the worst pain you have ever been in that wasn't physical?",
+    "text_pt": "Qual foi a maior dor que você já sentiu que não foi física?",
+    "wildcard": false
+  },
+  {
+    "id": "L2-012",
+    "source_id": "O-012",
+    "level": "LEVEL TWO",
+    "text_en": "Has a stranger ever changed your life?",
+    "text_pt": "Alguma pessoa desconhecida já mudou sua vida?",
+    "wildcard": false
+  },
+  {
+    "id": "L2-013",
+    "source_id": "O-013",
+    "level": "LEVEL TWO",
+    "text_en": "What's your first loves name and the reason you fell in love with them?",
+    "text_pt": "Qual é o nome do seu primeiro amor e por que você se apaixonou por essa pessoa?",
+    "wildcard": false
+  },
+  {
+    "id": "L2-014",
+    "source_id": "O-014",
+    "level": "LEVEL TWO",
+    "text_en": "What would your younger self not believe about your life today?",
+    "text_pt": "O que seu eu mais jovem não acreditaria sobre sua vida hoje?",
+    "wildcard": false
+  },
+  {
+    "id": "L2-015",
+    "source_id": "O-015",
+    "level": "LEVEL TWO",
+    "text_en": "How would you describe the feeling of being in love with one word?",
+    "text_pt": "Se você tivesse que descrever a sensação de estar apaixonado em uma palavra, qual seria?",
+    "wildcard": false
+  },
+  {
+    "id": "L2-016",
+    "source_id": "O-016",
+    "level": "LEVEL TWO",
+    "text_en": "What are you more afraid of: failure or success and why?",
+    "text_pt": "Do que você tem mais medo: do fracasso ou do sucesso? Por quê?",
+    "wildcard": false
+  },
+  {
+    "id": "L2-017",
+    "source_id": "O-017",
+    "level": "LEVEL TWO",
+    "text_en": "What is a dream you let go of?",
+    "text_pt": "Qual é um sonho do qual você abriu mão?",
+    "wildcard": false
+  },
+  {
+    "id": "L2-018",
+    "source_id": "O-018",
+    "level": "LEVEL TWO",
+    "text_en": "If you could get to know someone in your life on a deeper level who would it be and why?",
+    "text_pt": "Se pudesse conhecer alguém da sua vida mais profundamente, quem seria e por quê?",
+    "wildcard": false
+  },
+  {
+    "id": "L2-019",
+    "source_id": "O-019",
+    "level": "LEVEL TWO",
+    "text_en": "What's your mom's name and what is the most beautiful thing about her?",
+    "text_pt": "Qual é o nome da sua mãe e o que há de mais bonito nela?",
+    "wildcard": false
+  },
+  {
+    "id": "L2-020",
+    "source_id": "O-020",
+    "level": "LEVEL TWO",
+    "text_en": "What part of your life works what part of your life hurts?",
+    "text_pt": "Que parte da sua vida está funcionando e que parte está doendo?",
+    "wildcard": false
+  },
+  {
+    "id": "L2-021",
+    "source_id": "O-021",
+    "level": "LEVEL TWO",
+    "text_en": "How can you become a better person?",
+    "text_pt": "Como você pode se tornar uma pessoa melhor?",
+    "wildcard": false
+  },
+  {
+    "id": "L2-022",
+    "source_id": "O-022",
+    "level": "LEVEL TWO",
+    "text_en": "Do you think the image you have of yourself matches the image other people see you as?",
+    "text_pt": "Você acha que a imagem que tem de si mesmo corresponde à imagem que as outras pessoas têm de você?",
+    "wildcard": false
+  },
+  {
+    "id": "L2-023",
+    "source_id": "O-023",
+    "level": "LEVEL TWO",
+    "text_en": "Are you missing anyone right now? Do you think they miss you to?",
+    "text_pt": "Você está sentindo falta de alguém neste momento? Acha que essa pessoa também sente sua falta?",
+    "wildcard": false
+  },
+  {
+    "id": "L2-024",
+    "source_id": "O-024",
+    "level": "LEVEL TWO",
+    "text_en": "What fast food restaurant do you think I'm most likely to drive through? What's my order?",
+    "text_pt": "Em qual rede de fast-food você acha que eu mais provavelmente pararia de carro? O que eu pediria?",
+    "wildcard": false
+  },
+  {
+    "id": "L2-025",
+    "source_id": "O-025",
+    "level": "LEVEL TWO",
+    "text_en": "Do you think I intimidate others? Why or why not?",
+    "text_pt": "Você acha que eu intimido outras pessoas? Por quê?",
+    "wildcard": false
+  },
+  {
+    "id": "L2-026",
+    "source_id": "O-026",
+    "level": "LEVEL TWO",
+    "text_en": "When you are asked how are you, how often do you answer truthfully?",
+    "text_pt": "Quando alguém pergunta como você está, com que frequência você responde com sinceridade?",
+    "wildcard": false
+  },
+  {
+    "id": "L2-027",
+    "source_id": "O-027",
+    "level": "LEVEL TWO",
+    "text_en": "How are you, really?",
+    "text_pt": "Como você está, de verdade?",
+    "wildcard": false
+  },
+  {
+    "id": "L2-028",
+    "source_id": "O-028",
+    "level": "LEVEL TWO",
+    "text_en": "What's the most unexplainable thing that happened to you?",
+    "text_pt": "Qual foi a coisa mais inexplicável que já aconteceu com você?",
+    "wildcard": false
+  },
+  {
+    "id": "L2-029",
+    "source_id": "O-029",
+    "level": "LEVEL TWO",
+    "text_en": "What's your father's name? And tell me one thing about him.",
+    "text_pt": "Qual é o nome do seu pai? Me conte uma coisa sobre ele.",
+    "wildcard": false
+  },
+  {
+    "id": "L2-030",
+    "source_id": "O-030",
+    "level": "LEVEL TWO",
+    "text_en": "If you could have it your way: who would you be with? Where would you be? What would you be doing?",
+    "text_pt": "Se dependesse só de você: com quem estaria? Onde estaria? O que estaria fazendo?",
+    "wildcard": false
+  },
+  {
+    "id": "L2-031",
+    "source_id": "O-031",
+    "level": "LEVEL TWO",
+    "text_en": "Describe your perfect day!",
+    "text_pt": "Descreva seu dia perfeito!",
+    "wildcard": false
+  },
+  {
+    "id": "L2-032",
+    "source_id": "O-032",
+    "level": "LEVEL TWO",
+    "text_en": "What dating advice would you give your younger self?",
+    "text_pt": "Que conselho amoroso você daria para sua versão mais jovem?",
+    "wildcard": false
+  },
+  {
+    "id": "L2-033",
+    "source_id": "O-033",
+    "level": "LEVEL TWO",
+    "text_en": "How old do you feel emotionally?",
+    "text_pt": "Quantos anos você sente que tem emocionalmente?",
+    "wildcard": false
+  },
+  {
+    "id": "L2-034",
+    "source_id": "O-034",
+    "level": "LEVEL TWO",
+    "text_en": "Will I find your Ex on your Insta feed? Why or why not?",
+    "text_pt": "Eu encontraria seu ex ou sua ex no seu Instagram? Por que sim ou por que não?",
+    "wildcard": false
+  },
+  {
+    "id": "L2-035",
+    "source_id": "O-035",
+    "level": "LEVEL TWO",
+    "text_en": "What's the most embarrassing thing that happened to you on a date?",
+    "text_pt": "Qual foi a coisa mais constrangedora que já aconteceu com você em um encontro?",
+    "wildcard": false
+  },
+  {
+    "id": "L2-036",
+    "source_id": "O-036",
+    "level": "LEVEL TWO",
+    "text_en": "What could you have done better in previous relationships?",
+    "text_pt": "O que você poderia ter feito melhor nos seus relacionamentos anteriores?",
+    "wildcard": false
+  },
+  {
+    "id": "L2-037",
+    "source_id": "O-037",
+    "level": "LEVEL TWO",
+    "text_en": "Is there an image of yourself you try to project on a first date you wish you could let go of?",
+    "text_pt": "Existe alguma imagem de si mesmo que você tenta passar no primeiro encontro, mas gostaria de deixar para trás?",
+    "wildcard": false
+  },
+  {
+    "id": "L2-038",
+    "source_id": "O-038",
+    "level": "LEVEL TWO",
+    "text_en": "Finish the sentence: Dating is ____________ (both players)",
+    "text_pt": "Complete a frase: Namorar é ____________. (Os dois respondem.)",
+    "wildcard": false
+  },
+  {
+    "id": "L2-039",
+    "source_id": "O-039",
+    "level": "LEVEL TWO",
+    "text_en": "What did the people who raised you teach you about love?",
+    "text_pt": "O que as pessoas que te criaram ensinaram a você sobre o amor?",
+    "wildcard": false
+  },
+  {
+    "id": "L2-040",
+    "source_id": "O-040",
+    "level": "LEVEL TWO",
+    "text_en": "Describe your perfect date.",
+    "text_pt": "Descreva seu encontro perfeito.",
+    "wildcard": false
+  },
+  {
+    "id": "L2-041",
+    "source_id": "O-041",
+    "level": "LEVEL TWO",
+    "text_en": "What has being single taught you about yourself?",
+    "text_pt": "O que estar solteiro ensinou a você sobre si mesmo?",
+    "wildcard": false
+  },
+  {
+    "id": "L2-042",
+    "source_id": "O-042",
+    "level": "LEVEL TWO",
+    "text_en": "What's your least favorite question to be asked on a date? What do you wish you would be asked more?",
+    "text_pt": "Qual é sua pergunta menos favorita de ouvir em um encontro? O que você gostaria que perguntassem mais?",
+    "wildcard": false
+  },
+  {
+    "id": "L2-043",
+    "source_id": "O-043",
+    "level": "LEVEL TWO",
+    "text_en": "What are you passionate about?",
+    "text_pt": "Pelo que você é apaixonado?",
+    "wildcard": false
+  },
+  {
+    "id": "L2-044",
+    "source_id": "O-044",
+    "level": "LEVEL TWO",
+    "text_en": "What are you not currently giving enough time to?",
+    "text_pt": "A que você não está dedicando tempo suficiente neste momento?",
+    "wildcard": false
+  },
+  {
+    "id": "L2-045",
+    "source_id": "O-045",
+    "level": "LEVEL TWO",
+    "text_en": "What about my profile made you swipe right?",
+    "text_pt": "O que havia no meu perfil que fez você curtir meu perfil?",
+    "wildcard": false
+  },
+  {
+    "id": "L2-046",
+    "source_id": "O-046",
+    "level": "LEVEL TWO",
+    "text_en": "WILDCARD: Write down the three most important things to you in a relationship (30 sec) Compare.",
+    "text_pt": "CARTA CORINGA: Escrevam as três coisas mais importantes para vocês em um relacionamento (30 segundos). Depois, comparem.",
+    "wildcard": true
+  },
+  {
+    "id": "L2-047",
+    "source_id": "O-047",
+    "level": "LEVEL TWO",
+    "text_en": "WILDCARD: Write down a dating pet peeve (30 sec). Compare.",
+    "text_pt": "CARTA CORINGA: Escreva algo que te incomoda em encontros amorosos (30 segundos). Depois, comparem.",
+    "wildcard": true
+  },
+  {
+    "id": "L2-048",
+    "source_id": "O-048",
+    "level": "LEVEL TWO",
+    "text_en": "WILDCARD: Draw your current mood. Compare.",
+    "text_pt": "CARTA CORINGA: Desenhe como está seu humor agora. Depois, comparem.",
+    "wildcard": true
+  },
+  {
+    "id": "L3-001",
+    "source_id": "E-001",
+    "level": "LEVEL THREE",
+    "text_en": "Based on what you learned about me what would you recommend I read?",
+    "text_pt": "Com base no que você descobriu sobre mim, o que você recomendaria que eu lesse?",
+    "wildcard": false
+  },
+  {
+    "id": "L3-002",
+    "source_id": "E-002",
+    "level": "LEVEL THREE",
+    "text_en": "What about me surprised you?",
+    "text_pt": "O que em mim te surpreendeu?",
+    "wildcard": false
+  },
+  {
+    "id": "L3-003",
+    "source_id": "E-003",
+    "level": "LEVEL THREE",
+    "text_en": "Based on what you know about me, do you have a Netflix recommendation?",
+    "text_pt": "Com base no que você sabe sobre mim, que filme ou série da Netflix você me recomendaria?",
+    "wildcard": false
+  },
+  {
+    "id": "L3-004",
+    "source_id": "E-004",
+    "level": "LEVEL THREE",
+    "text_en": "What do you think my superpower is?",
+    "text_pt": "Qual você acha que é meu superpoder?",
+    "wildcard": false
+  },
+  {
+    "id": "L3-005",
+    "source_id": "E-005",
+    "level": "LEVEL THREE",
+    "text_en": "What do you think our most important similarities are?",
+    "text_pt": "Quais você acha que são nossas semelhanças mais importantes?",
+    "wildcard": false
+  },
+  {
+    "id": "L3-006",
+    "source_id": "E-006",
+    "level": "LEVEL THREE",
+    "text_en": "What do you think is one thing I could do that would drastically improve my life?",
+    "text_pt": "Qual é uma coisa que você acha que eu poderia fazer para melhorar muito minha vida?",
+    "wildcard": false
+  },
+  {
+    "id": "L3-007",
+    "source_id": "E-007",
+    "level": "LEVEL THREE",
+    "text_en": "What would be the perfect gift for me?",
+    "text_pt": "Qual seria o presente perfeito para mim?",
+    "wildcard": false
+  },
+  {
+    "id": "L3-008",
+    "source_id": "E-008",
+    "level": "LEVEL THREE",
+    "text_en": "How would you describe me to a stranger?",
+    "text_pt": "Como você me descreveria para uma pessoa desconhecida?",
+    "wildcard": false
+  },
+  {
+    "id": "L3-009",
+    "source_id": "E-009",
+    "level": "LEVEL THREE",
+    "text_en": "What do I need to hear right now?",
+    "text_pt": "O que eu preciso ouvir neste momento?",
+    "wildcard": false
+  },
+  {
+    "id": "L3-010",
+    "source_id": "E-010",
+    "level": "LEVEL THREE",
+    "text_en": "Based on what you've learned about me, does my social media portray me accurately?",
+    "text_pt": "Com base no que você descobriu sobre mim, acha que minhas redes sociais me representam de verdade?",
+    "wildcard": false
+  },
+  {
+    "id": "L3-011",
+    "source_id": "E-011",
+    "level": "LEVEL THREE",
+    "text_en": "What is a lesson you will take away from our conversation?",
+    "text_pt": "Que lição você vai levar da nossa conversa?",
+    "wildcard": false
+  },
+  {
+    "id": "L3-012",
+    "source_id": "E-012",
+    "level": "LEVEL THREE",
+    "text_en": "What can I help you with?",
+    "text_pt": "Em que posso te ajudar?",
+    "wildcard": false
+  },
+  {
+    "id": "L3-013",
+    "source_id": "E-013",
+    "level": "LEVEL THREE",
+    "text_en": "What do you think do I fear the most?",
+    "text_pt": "O que você acha que eu mais temo?",
+    "wildcard": false
+  },
+  {
+    "id": "L3-014",
+    "source_id": "E-014",
+    "level": "LEVEL THREE",
+    "text_en": "Where am I most qualified to give advice about?",
+    "text_pt": "Sobre qual assunto você acha que eu sou mais qualificado para dar conselhos?",
+    "wildcard": false
+  },
+  {
+    "id": "L3-015",
+    "source_id": "E-015",
+    "level": "LEVEL THREE",
+    "text_en": "What about me is the hardest for you to understand?",
+    "text_pt": "O que há em mim que é mais difícil para você entender?",
+    "wildcard": false
+  },
+  {
+    "id": "L3-016",
+    "source_id": "E-016",
+    "level": "LEVEL THREE",
+    "text_en": "If we were a band what would be our name?",
+    "text_pt": "Se nós fôssemos uma banda, qual seria nosso nome?",
+    "wildcard": false
+  },
+  {
+    "id": "L3-017",
+    "source_id": "E-017",
+    "level": "LEVEL THREE",
+    "text_en": "Admit something.",
+    "text_pt": "Admita alguma coisa.",
+    "wildcard": false
+  },
+  {
+    "id": "L3-018",
+    "source_id": "E-018",
+    "level": "LEVEL THREE",
+    "text_en": "What parts of yourself do you see in me?",
+    "text_pt": "Que partes de você mesmo você enxerga em mim?",
+    "wildcard": false
+  },
+  {
+    "id": "L3-019",
+    "source_id": "E-019",
+    "level": "LEVEL THREE",
+    "text_en": "How does one earn your vulnerability?",
+    "text_pt": "O que alguém precisa fazer para conquistar sua vulnerabilidade e confiança?",
+    "wildcard": false
+  },
+  {
+    "id": "L3-020",
+    "source_id": "E-020",
+    "level": "LEVEL THREE",
+    "text_en": "Dare your partner to do something out of their comfort zone next week.",
+    "text_pt": "Desafie a outra pessoa a fazer algo fora da zona de conforto dela na próxima semana.",
+    "wildcard": false
+  },
+  {
+    "id": "L3-021",
+    "source_id": "E-021",
+    "level": "LEVEL THREE",
+    "text_en": "What do you recommend I should let go of?",
+    "text_pt": "O que você recomenda que eu deixe para trás?",
+    "wildcard": false
+  },
+  {
+    "id": "L3-022",
+    "source_id": "E-022",
+    "level": "LEVEL THREE",
+    "text_en": "What has this conversation taught you about yourself?",
+    "text_pt": "O que esta conversa te ensinou sobre você mesmo?",
+    "wildcard": false
+  },
+  {
+    "id": "L3-023",
+    "source_id": "E-023",
+    "level": "LEVEL THREE",
+    "text_en": "What do you think my defining characteristic is?",
+    "text_pt": "Qual você acha que é minha característica mais marcante?",
+    "wildcard": false
+  },
+  {
+    "id": "L3-024",
+    "source_id": "E-024",
+    "level": "LEVEL THREE",
+    "text_en": "What question were you most afraid to answer?",
+    "text_pt": "Qual pergunta você teve mais medo de responder?",
+    "wildcard": false
+  },
+  {
+    "id": "L3-025",
+    "source_id": "E-025",
+    "level": "LEVEL THREE",
+    "text_en": "Why do you think we met?",
+    "text_pt": "Por que você acha que nos conhecemos?",
+    "wildcard": false
+  },
+  {
+    "id": "L3-026",
+    "source_id": "E-026",
+    "level": "LEVEL THREE",
+    "text_en": "When this game is over, what will be something you will remember about me?",
+    "text_pt": "Quando este jogo terminar, o que você vai lembrar sobre mim?",
+    "wildcard": false
+  },
+  {
+    "id": "L3-027",
+    "source_id": "E-027",
+    "level": "LEVEL THREE",
+    "text_en": "What do you think my weakness is?",
+    "text_pt": "Qual você acha que é meu ponto fraco?",
+    "wildcard": false
+  },
+  {
+    "id": "L3-028",
+    "source_id": "E-028",
+    "level": "LEVEL THREE",
+    "text_en": "How do our personalities compliment each other?",
+    "text_pt": "Como nossas personalidades se complementam?",
+    "wildcard": false
+  },
+  {
+    "id": "L3-029",
+    "source_id": "E-029",
+    "level": "LEVEL THREE",
+    "text_en": "What do you think I should know about myself that perhaps I'm unaware of?",
+    "text_pt": "O que você acha que eu deveria saber sobre mim, mas talvez ainda não tenha percebido?",
+    "wildcard": false
+  },
+  {
+    "id": "L3-030",
+    "source_id": "E-030",
+    "level": "LEVEL THREE",
+    "text_en": "What would make you feel closer to me?",
+    "text_pt": "O que faria você se sentir mais próximo de mim?",
+    "wildcard": false
+  },
+  {
+    "id": "L3-031",
+    "source_id": "E-031",
+    "level": "LEVEL THREE",
+    "text_en": "What do you admire most about me?",
+    "text_pt": "O que você mais admira em mim?",
+    "wildcard": false
+  },
+  {
+    "id": "L3-032",
+    "source_id": "E-032",
+    "level": "LEVEL THREE",
+    "text_en": "In one word, describe how you feel right now.",
+    "text_pt": "Descreva em uma palavra como você está se sentindo agora.",
+    "wildcard": false
+  },
+  {
+    "id": "L3-033",
+    "source_id": "E-033",
+    "level": "LEVEL THREE",
+    "text_en": "Do you believe everyone has a calling? If so, do you think I've found mine?",
+    "text_pt": "Você acredita que todo mundo tem um propósito? Se sim, acha que eu encontrei o meu?",
+    "wildcard": false
+  },
+  {
+    "id": "L3-034",
+    "source_id": "E-034",
+    "level": "LEVEL THREE",
+    "text_en": "What do you think my defining characteristic is?",
+    "text_pt": "Qual você acha que é minha característica mais marcante?",
+    "wildcard": false
+  },
+  {
+    "id": "L3-035",
+    "source_id": "E-035",
+    "level": "LEVEL THREE",
+    "text_en": "What can we create together?",
+    "text_pt": "O que podemos criar juntos?",
+    "wildcard": false
+  },
+  {
+    "id": "L3-036",
+    "source_id": "E-036",
+    "level": "LEVEL THREE",
+    "text_en": "What answer of mine made you light up?",
+    "text_pt": "Qual resposta minha fez seus olhos brilharem?",
+    "wildcard": false
+  },
+  {
+    "id": "L3-037",
+    "source_id": "E-037",
+    "level": "LEVEL THREE",
+    "text_en": "What's the most attractive quality about me that isn't physical?",
+    "text_pt": "Qual é minha qualidade mais atraente que não tem a ver com aparência física?",
+    "wildcard": false
+  },
+  {
+    "id": "L3-038",
+    "source_id": "E-038",
+    "level": "LEVEL THREE",
+    "text_en": "WILDCARD: Based on what you learned re-write each other's dating app bios. (30 sec)",
+    "text_pt": "CARTA CORINGA: Com base no que descobriram um sobre o outro, reescrevam a bio de aplicativo de namoro um do outro. (30 segundos)",
+    "wildcard": true
+  },
+  {
+    "id": "L3-039",
+    "source_id": "E-039",
+    "level": "LEVEL THREE",
+    "text_en": "Am I like you expected me to be?",
+    "text_pt": "Eu sou como você esperava que fosse?",
+    "wildcard": false
+  },
+  {
+    "id": "L3-040",
+    "source_id": "E-040",
+    "level": "LEVEL THREE",
+    "text_en": "What do you admire most about me?",
+    "text_pt": "O que você mais admira em mim?",
+    "wildcard": false
+  },
+  {
+    "id": "L3-041",
+    "source_id": "E-041",
+    "level": "LEVEL THREE",
+    "text_en": "How would you describe me to a stranger?",
+    "text_pt": "Como você me descreveria para uma pessoa desconhecida?",
+    "wildcard": false
+  },
+  {
+    "id": "L3-042",
+    "source_id": "E-042",
+    "level": "LEVEL THREE",
+    "text_en": "WILDCARD: Draw your favorite memory with me. Compare.",
+    "text_pt": "CARTA CORINGA: Desenhe sua lembrança favorita comigo. Depois, comparem.",
+    "wildcard": true
+  }
+]

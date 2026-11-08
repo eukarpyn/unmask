@@ -1,0 +1,10 @@
+{
+  "name": "não mente pra mim",
+  "short_name": "não mente pra mim",
+  "description": "Um jogo de cartas para conversas mais sinceras.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#ff1b2d",
+  "theme_color": "#ff1b2d",
+  "icons": [{"src":"icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}]
+}
