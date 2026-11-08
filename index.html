@@ -7,112 +7,205 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
 <title>não mente pra mim</title>
 <style>
-:root{--red:#ff1b2d;--red-dark:#d90d20;--yellow:#fff0a8;--white:#fff;--soft:#ffd9dc;--shadow:#8b061866;--poster:'Anton',Impact,'Arial Narrow Bold','Arial Black',sans-serif}
-*{box-sizing:border-box}body{margin:0;background:var(--red);color:var(--white);font-family:Arial,Helvetica,sans-serif;min-height:100svh;overflow-x:hidden}
-button,input{font:inherit}button{cursor:pointer}
-.app{max-width:540px;margin:auto;min-height:100svh;padding:env(safe-area-inset-top) 20px calc(18px + env(safe-area-inset-bottom));display:flex;flex-direction:column}
-header{display:flex;justify-content:space-between;align-items:center;padding:22px 0 16px;border-bottom:1px solid #ffffff55}.app.home header{display:none}
-.brand{font-family:var(--poster);font-weight:400;font-size:24px;letter-spacing:.2px;cursor:pointer;line-height:1}.sub{font-size:10px;color:var(--yellow);letter-spacing:.19em;margin-top:5px;text-transform:uppercase}
-.iconbtn{background:transparent;color:var(--white);border:1px solid #ffffff88;border-radius:50%;width:42px;height:42px;font-size:12px;font-weight:bold}
-main{flex:1;display:flex;flex-direction:column;justify-content:center;gap:18px;padding:22px 0}
+:root{--red:#ff1b2d;--red-dark:#d90d20;--yellow:#fff0a8;--ink:#1c1c1e;--gray:#8e8e93;--shadow:#8b061888;--poster:'Anton',Impact,'Arial Narrow Bold','Arial Black',sans-serif;--sys:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display",system-ui,"Helvetica Neue",Arial,sans-serif}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;height:100%;background:var(--red);overflow:hidden}
+body{color:#fff;font-family:var(--sys);-webkit-font-smoothing:antialiased}
+button,input{font:inherit}button{cursor:pointer;touch-action:manipulation}
+svg{display:block}.ic{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+.app{position:relative;max-width:540px;height:100svh;height:100dvh;margin:auto;padding:calc(env(safe-area-inset-top) + 8px) 18px calc(env(safe-area-inset-bottom) + 10px);display:flex;flex-direction:column;overflow:hidden;transition:transform .6s cubic-bezier(.65,0,.25,1);will-change:transform}
+.app.notrans{transition:none}.app.home{overflow-y:auto}
+
+/* controles comuns */
+.seg{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:2px;padding:2px;background:#ffffff33;border-radius:10px}
+.seg button{border:0;background:transparent;color:#fff;font-size:13px;font-weight:600;padding:8px 4px;border-radius:8px;transition:background .2s,color .2s}
+.seg button.active{background:#fff;color:var(--red-dark);box-shadow:0 1px 4px #0003}
+.cta{border:0;border-radius:14px;background:#fff;color:var(--red-dark);font-size:17px;font-weight:700;padding:16px;transition:transform .12s}.cta:active{transform:scale(.97)}
+:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
 
 /* tela inicial */
-.welcome{text-align:center;display:flex;flex-direction:column;align-items:center;gap:16px}
-.logo{font-family:var(--poster);font-weight:400;font-size:clamp(64px,22vw,112px);line-height:.88;letter-spacing:-1px;margin:6px 0 0;transform:rotate(-3deg);text-shadow:4px 4px 0 var(--red-dark)}
-.logo i{font-style:normal;color:var(--yellow)}
-.welcome p{color:var(--yellow);font-size:14px;line-height:1.5;max-width:300px;margin:0}
-.players{display:grid;gap:10px;width:100%;max-width:330px;text-align:left}
-.field{display:grid;gap:6px}.field label{font-size:11px;font-weight:700;letter-spacing:.1em;color:var(--yellow)}
-.field input{width:100%;border:0;border-radius:12px;padding:15px;font-size:16px;font-weight:700;background:var(--white);color:var(--red-dark)}
-.field input::placeholder{color:#d14a53aa;font-weight:400}
-.field input:focus-visible,.langbtn:focus-visible,.action:focus-visible,.chip:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
-.langchoices{display:grid;gap:12px;width:100%;max-width:330px;margin-top:6px}
-.langbtn{background:var(--white);color:var(--red-dark);border:0;border-radius:12px;padding:17px;font-size:15px;font-weight:800;box-shadow:0 7px 0 var(--shadow)}.langbtn:active{transform:translateY(3px);box-shadow:0 4px 0 var(--shadow)}
+.welcome{display:flex;flex-direction:column;align-items:center;gap:14px;margin:auto 0;padding:10px 0;width:100%;max-width:340px;align-self:center;text-align:center}
+.logo{font-family:var(--poster);font-weight:400;font-size:clamp(64px,22vw,108px);line-height:.88;letter-spacing:-1px;margin:6px 0 0;transform:rotate(-3deg);text-shadow:4px 4px 0 var(--red-dark)}.logo i{font-style:normal;color:var(--yellow)}
+.welcome p{color:var(--yellow);font-size:15px;line-height:1.4;margin:0}
+.group{width:100%;background:#fff;border-radius:14px;overflow:hidden;text-align:left}
+.row{display:flex;align-items:center;gap:12px;padding:0 16px;min-height:52px;color:var(--ink)}.row+.row{border-top:1px solid #e5e5ea}
+.row span{width:84px;flex:none;font-size:15px;color:var(--gray)}.row input{flex:1;min-width:0;border:0;outline:0;background:transparent;font-size:17px;font-weight:600;color:var(--ink);padding:14px 0}
+.welcome .seg,.welcome .cta{width:100%}
+.hint{font-size:12px!important;color:#ffe4e5!important;opacity:.9}
 
 /* jogo */
-#game{display:none}.app:not(.home) #game{display:block}.app:not(.home) #welcome{display:none}
-#game>*+*{margin-top:18px}
-.eyebrow{text-align:center;font-size:11px;letter-spacing:.2em;color:var(--yellow);text-transform:uppercase;font-weight:700}
-.turn{text-align:center;display:flex;flex-direction:column;gap:3px}.turn b{font-family:var(--poster);font-weight:400;font-size:34px;line-height:1;letter-spacing:.3px;overflow-wrap:anywhere}.turn span{font-size:12px;color:var(--yellow)}
-.card{background:var(--white);color:var(--red-dark);border-radius:18px;min-height:365px;padding:24px 22px 20px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 16px 35px var(--shadow);touch-action:pan-y;user-select:none;will-change:transform}
-.cardtop,.cardbottom{display:flex;justify-content:space-between;align-items:center;font-size:10px;letter-spacing:.1em;color:#d14a53;font-weight:700;text-transform:uppercase}
-.question{font-size:clamp(25px,7vw,35px);line-height:1.2;text-align:center;overflow-wrap:anywhere;font-weight:800}.wild{color:#b48b00}
-.progress{text-align:center;color:var(--yellow);font-size:11px;letter-spacing:.12em}
-.controls{display:flex;gap:10px;justify-content:center}.action{border:1px solid #ffffffaa;background:transparent;color:var(--white);padding:14px 13px;border-radius:10px;font-size:11px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;flex:1}.action.primary{background:var(--yellow);color:var(--red-dark);border-color:var(--yellow)}
-.toolbar{display:flex;justify-content:space-between;gap:8px}.small{background:none;border:0;color:var(--yellow);font-size:10px;font-weight:700;letter-spacing:.06em;padding:9px 0}
-nav{display:flex;gap:7px;justify-content:center;flex-wrap:wrap}.chip{background:transparent;border:1px solid #ffffff88;color:var(--white);padding:9px 11px;border-radius:30px;font-size:10px;font-weight:700;letter-spacing:.04em}.chip.active{background:var(--yellow);border-color:var(--yellow);color:var(--red-dark)}
-.panel{background:var(--red-dark);border:1px solid #ffffff55;border-radius:12px;padding:15px;display:none}.panel.show{display:block}.panel h2{font-size:18px;margin:0 0 10px}.list{max-height:40vh;overflow:auto}.entry{padding:11px 0;border-bottom:1px solid #ffffff33;font-size:14px;line-height:1.4}.entry small{display:block;color:var(--yellow);font-size:10px;letter-spacing:.08em;margin-bottom:4px}
-footer{text-align:center;color:#ffe4e5;font-size:9px;letter-spacing:.12em;padding:14px 0 4px}
-@media(max-height:720px){.card{min-height:290px}.question{font-size:26px}main{gap:13px;padding:14px 0}}
-</style></head><body><div class="app home" id="app">
-<header><div><div class="brand" id="brand" role="button" tabindex="0" aria-label="Início">não mente pra mim</div><div class="sub" id="tagline">um jogo de conexão</div></div><button class="iconbtn" id="langBtn" aria-label="Change language">EN</button></header>
-<main>
+#game{display:none}.app:not(.home) #welcome{display:none}.app:not(.home) #game{display:flex;flex-direction:column;gap:12px;flex:1;min-height:0}
+.navbar{display:flex;justify-content:space-between;align-items:center;min-height:36px}
+.navbtn{display:flex;align-items:center;gap:2px;background:none;border:0;color:#fff;font-size:17px;padding:6px 6px 6px 0}.navbtn svg{width:22px;height:22px;stroke-width:2.6}
+.pill{background:#ffffff33;border:0;color:#fff;font-weight:700;font-size:13px;padding:7px 14px;border-radius:999px}
+.turn{text-align:center;display:flex;flex-direction:column;gap:4px}.turn b{font-family:var(--poster);font-weight:400;font-size:36px;line-height:1;overflow-wrap:anywhere}.turn span{font-size:13px;color:var(--yellow)}
+.card{flex:1;min-height:0;background:#fff;color:var(--red-dark);border-radius:22px;padding:18px 20px 16px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 20px 40px -12px var(--shadow);touch-action:pan-y;user-select:none;-webkit-user-select:none}
+.cardtop,.cardbottom{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:.08em;color:#d14a53;font-weight:700;text-transform:uppercase}
+.heart{background:none;border:0;color:var(--red-dark);padding:2px;margin:-2px -2px 0 0}.heart svg{width:28px;height:28px}.heart.on svg{fill:currentColor}
+.question{font-size:clamp(22px,6.4vw,32px);line-height:1.22;text-align:center;overflow-wrap:anywhere;font-weight:800;padding:8px 0}.wild{color:#b48b00}
+.progress{text-align:center;color:var(--yellow);font-size:12px;font-weight:600}
+.controls{display:flex;gap:10px}.controls .cta{flex:1}
+.round{width:54px;flex:none;border:0;border-radius:14px;background:#ffffff33;color:#fff;display:grid;place-items:center;transition:opacity .2s,transform .12s}.round:active{transform:scale(.95)}.round:disabled{opacity:.35}.round svg{width:24px;height:24px;stroke-width:2.6}
+.tabbar{display:flex;background:#ffffff29;-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);border-radius:20px;padding:4px 8px}
+.tabbar button{flex:1;background:none;border:0;color:#fff;display:grid;justify-items:center;gap:2px;font-size:10px;font-weight:600;padding:6px}.tabbar svg{width:24px;height:24px}
+
+/* sheet (favoritas / histórico) */
+.scrim{position:absolute;inset:0;background:#0006;opacity:0;pointer-events:none;transition:opacity .3s;z-index:5}.scrim.show{opacity:1;pointer-events:auto}
+.sheet{position:absolute;left:0;right:0;bottom:0;max-height:74%;display:flex;flex-direction:column;background:#f2f2f7;color:var(--ink);border-radius:16px 16px 0 0;transform:translateY(105%);transition:transform .38s cubic-bezier(.32,.72,0,1);z-index:6;visibility:hidden}
+.sheet.show{transform:none;visibility:visible}
+.grab{width:36px;height:5px;border-radius:3px;background:#c7c7cc;margin:8px auto 0}
+.sheethead{display:flex;justify-content:space-between;align-items:center;padding:10px 16px 8px}.sheethead h2{margin:0;font-size:20px}.sheethead button{background:none;border:0;color:var(--red-dark);font-size:17px;font-weight:600}
+.sheetlist{overflow:auto;padding:4px 16px calc(env(safe-area-inset-bottom) + 16px)}
+.sheetlist .group{border-radius:12px}.entry{display:block;width:100%;text-align:left;background:#fff;border:0;color:var(--ink);padding:13px 16px;font-size:16px;line-height:1.35}.entry+.entry{border-top:1px solid #e5e5ea}.entry small{display:block;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--red-dark);margin-bottom:3px}
+.empty{color:var(--gray);text-align:center;padding:28px 12px;font-size:15px}
+
+@media(max-height:700px){.logo{font-size:64px}.turn b{font-size:30px}.question{font-size:22px}}
+@media(prefers-reduced-motion:reduce){.app,.sheet,.scrim{transition:none}}
+</style></head><body>
+<div class="app home" id="app">
+
 <section class="welcome" id="welcome">
 <h1 class="logo" aria-label="não mente pra mim">não<br>mente<br>pra mim<i>.</i></h1>
 <p id="welcomeText">Até onde você está disposto a ser sincero?</p>
-<div class="players">
-<div class="field"><label for="name1">JOGADOR 1 · PLAYER 1</label><input id="name1" maxlength="20" autocomplete="off" placeholder="Nome / Name"></div>
-<div class="field"><label for="name2">JOGADOR 2 · PLAYER 2</label><input id="name2" maxlength="20" autocomplete="off" placeholder="Nome / Name"></div>
+<div class="group">
+<label class="row"><span id="lab1">Jogador 1</span><input id="name1" placeholder="Jogador 1" maxlength="20" autocomplete="off" enterkeyhint="next"></label>
+<label class="row"><span id="lab2">Jogador 2</span><input id="name2" placeholder="Jogador 2" maxlength="20" autocomplete="off" enterkeyhint="done"></label>
 </div>
-<div class="langchoices"><button class="langbtn" id="choosePt">🇧🇷 Jogar em Português</button><button class="langbtn" id="chooseEn">🇬🇧 Play in English</button></div>
+<div class="seg" id="langSeg"><button data-l="pt" class="active">🇧🇷 Português</button><button data-l="en">🇬🇧 English</button></div>
+<button class="cta" id="playBtn">Jogar</button>
+<p class="hint" id="hintText">Deixem o celular sobre a mesa, entre vocês. A tela vira a cada turno.</p>
 </section>
-<section id="game"><nav id="levels"></nav><div class="eyebrow" id="levelLabel">TODAS AS CARTAS</div><div class="turn" aria-live="polite"><b id="turnName"></b><span id="turnSub"></span></div><div class="card" id="card"><div class="cardtop"><span id="cardLevel"></span><span id="cardNum"></span></div><div class="question" id="question">...</div><div class="cardbottom"><span id="cardType"></span><span id="swipeHint"></span></div></div><div class="progress" id="progress"></div><div class="controls"><button class="action" id="prev"></button><button class="action primary" id="next"></button></div><div class="toolbar"><button class="small" id="shuffle"></button><button class="small" id="favorite"></button><button class="small" id="favoritesBtn"></button><button class="small" id="historyBtn"></button></div><section class="panel" id="panel"><h2 id="panelTitle"></h2><div class="list" id="panelList"></div></section></section>
-</main><footer id="footerText">VÁ NO SEU TEMPO · NÃO EXISTEM RESPOSTAS ERRADAS</footer></div>
+
+<section id="game">
+<div class="navbar"><button class="navbtn" id="homeBtn"><svg class="ic" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg><span id="homeLabel"></span></button><button class="pill" id="langBtn"></button></div>
+<nav class="seg" id="levels"></nav>
+<div class="turn" aria-live="polite"><b id="turnName"></b><span id="turnSub"></span></div>
+<div class="card" id="card">
+<div class="cardtop"><span id="cardLevel"></span><button class="heart" id="heart"><svg class="ic" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></button></div>
+<div class="question" id="question"></div>
+<div class="cardbottom"><span id="cardType"></span><span id="cardNum"></span></div>
+</div>
+<div class="progress" id="progress"></div>
+<div class="controls"><button class="round" id="prev"><svg class="ic" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button><button class="cta" id="next"></button></div>
+<div class="tabbar"><button id="favoritesBtn"><svg class="ic" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg><span id="favLabel"></span></button><button id="historyBtn"><svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span id="histLabel"></span></button></div>
+</section>
+
+<div class="scrim" id="scrim"></div>
+<aside class="sheet" id="sheet" role="dialog" aria-modal="true"><div class="grab"></div><div class="sheethead"><h2 id="sheetTitle"></h2><button id="sheetClose"></button></div><div class="sheetlist" id="sheetList"></div></aside>
+</div>
+
 <script>
-let all=[],deck=[],index=0,level='ALL',lang=localStorage.getItem('nm-language')||'',history=JSON.parse(localStorage.getItem('nm-history')||'[]'),favorites=JSON.parse(localStorage.getItem('nm-favorites')||'[]'),names=null,turn=0,busy=false;
-try{names=JSON.parse(localStorage.getItem('nm-names')||'null')}catch(e){names=null}
-const $=id=>document.getElementById(id);
-const words={pt:{tag:'um jogo de conexão',welcome:'Até onde você está disposto a ser sincero?',all:'TODAS',levels:['NÍVEL 1','NÍVEL 2','NÍVEL 3'],allLevels:'TODOS OS NÍVEIS',wild:'CORINGA',talk:'CONVERSA',swipe:'DESLIZE PARA AVANÇAR',back:'← VOLTAR',next:'PRÓXIMA CARTA →',shuffle:'⤨ EMBARALHAR',favorite:'♡ FAVORITAS',saved:'♥ SALVA',favoritesBtn:'♡ SALVAS',history:'◷ HISTÓRICO',recent:'Vistas recentemente',empty:'Ainda não há cartas por aqui.',footer:'VÁ NO SEU TEMPO · NÃO EXISTEM RESPOSTAS ERRADAS',change:'EN',asks:'pergunta para',player:'Jogador'},en:{tag:'a game of connection',welcome:'How honest are you willing to be?',all:'ALL',levels:['LEVEL ONE','LEVEL TWO','LEVEL THREE'],allLevels:'ALL LEVELS',wild:'WILDCARD',talk:'CONVERSATION',swipe:'SWIPE TO EXPLORE',back:'← BACK',next:'NEXT CARD →',shuffle:'⤨ SHUFFLE',favorite:'♡ FAVORITES',saved:'♥ SAVED',favoritesBtn:'♡ SAVED',history:'◷ HISTORY',recent:'Recently viewed',empty:'No cards here yet.',footer:'TAKE YOUR TIME · THERE ARE NO WRONG ANSWERS',change:'PT',asks:'asks',player:'Player'}};
-const t=()=>words[lang==='pt'?'pt':'en'];const textOf=c=>lang==='pt'?c.text_pt:c.text_en;const levelName=v=>v==='LEVEL ONE'?t().levels[0]:v==='LEVEL TWO'?t().levels[1]:t().levels[2];
+const mem={};const store={get(k){try{return localStorage.getItem(k)}catch(e){return k in mem?mem[k]:null}},set(k,v){try{localStorage.setItem(k,v)}catch(e){mem[k]=v}}};
+const load=(k,d)=>{try{const v=JSON.parse(store.get(k));return v==null?d:v}catch(e){return d}};
+let all=[],deck=[],index=0,trail=[],ptr=0,used=new Set(),level='ALL',busy=false,turn=0,rot=0,names=null,
+lang=store.get('nm-language')||((navigator.language||'').toLowerCase().startsWith('pt')?'pt':'en'),
+history=load('nm-history',[]),favorites=load('nm-favorites',[]);
+names=load('nm-names',null);
+const $=id=>document.getElementById(id),app=$('app'),card=$('card');
+function showMsg(m){let b=$('msg');if(!b){b=document.createElement('p');b.id='msg';b.style.cssText='background:#fff;color:#d90d20;border-radius:10px;padding:10px 12px;font-size:13px;margin:0;width:100%';$('welcome').append(b)}b.textContent=m}
+window.addEventListener('error',e=>showMsg('Erro: '+e.message));
+const words={
+pt:{welcome:'Até onde você está disposto a ser sincero?',all:'Todas',levels:['Nível 1','Nível 2','Nível 3'],wild:'Coringa',talk:'Conversa',cardWord:'CARTA ',back:'Voltar',next:'Próxima carta',favorites:'Favoritas',history:'Histórico',recent:'Vistas recentemente',emptyFav:'Toque no coração de uma carta para guardá-la aqui.',emptyHist:'As cartas que você ver aparecem aqui.',change:'EN',asks:'pergunta para',player:'Jogador',play:'Jogar',home:'Início',done:'OK',hint:'Deixem o celular sobre a mesa, entre vocês. A tela vira a cada turno.'},
+en:{welcome:'How honest are you willing to be?',all:'All',levels:['Level 1','Level 2','Level 3'],wild:'Wildcard',talk:'Conversation',cardWord:'CARD ',back:'Back',next:'Next card',favorites:'Favorites',history:'History',recent:'Recently viewed',emptyFav:'Tap the heart on a card to keep it here.',emptyHist:'Cards you see will show up here.',change:'PT',asks:'asks',player:'Player',play:'Play',home:'Home',done:'Done',hint:'Leave the phone on the table between you. The screen flips every turn.'}};
+const t=()=>words[lang==='pt'?'pt':'en'],textOf=c=>lang==='pt'?c.text_pt:c.text_en;
+const levelName=v=>v==='LEVEL ONE'?t().levels[0]:v==='LEVEL TWO'?t().levels[1]:t().levels[2];
+
+/* textos fixos (início + jogo) no idioma atual */
+function applyLang(){
+const w=t();document.documentElement.lang=lang==='pt'?'pt-BR':'en';
+$('welcomeText').textContent=w.welcome;$('hintText').textContent=w.hint;$('playBtn').textContent=w.play;
+$('lab1').textContent=w.player+' 1';$('lab2').textContent=w.player+' 2';$('name1').placeholder=w.player+' 1';$('name2').placeholder=w.player+' 2';
+document.querySelectorAll('#langSeg button').forEach(b=>b.classList.toggle('active',b.dataset.l===lang));
+$('langBtn').textContent=w.change;$('homeLabel').textContent=w.home;$('next').textContent=w.next;$('prev').setAttribute('aria-label',w.back);
+$('favLabel').textContent=w.favorites;$('histLabel').textContent=w.history;$('sheetClose').textContent=w.done;
+}
+function setLang(l){lang=l;store.set('nm-language',lang);applyLang();if(deck.length){buildLevels();render()}}
 
 async function init(){
-all=await(await fetch('cards.json')).json();
 if(names){$('name1').value=names[0];$('name2').value=names[1]}
-$('choosePt').onclick=()=>begin('pt');$('chooseEn').onclick=()=>begin('en');
-$('langBtn').onclick=()=>start(lang==='pt'?'en':'pt');
-$('brand').onclick=goHome;$('brand').onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();goHome()}};
-if(lang&&names)start(lang);
+applyLang();
+document.querySelectorAll('#langSeg button').forEach(b=>b.onclick=()=>setLang(b.dataset.l));
+$('langBtn').onclick=()=>setLang(lang==='pt'?'en':'pt');
+$('playBtn').onclick=begin;$('homeBtn').onclick=goHome;
+$('name1').onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();$('name2').focus()}};$('name2').onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();begin()}};
+try{all=await(await fetch('cards.json')).json()}catch(e){showMsg('Não consegui carregar as cartas (cards.json). Verifique a conexão e recarregue.')}
 }
 
-/* começa uma partida nova: lê os nomes, zera os turnos */
-function begin(language){
-const p=words[language].player;
-names=[$('name1').value.trim()||p+' 1',$('name2').value.trim()||p+' 2'];
-turn=0;localStorage.setItem('nm-names',JSON.stringify(names));
-start(language);
+/* sempre abre na tela inicial, com os nomes anteriores já preenchidos */
+function resetRotation(){turn=0;rot=0;app.classList.add('notrans');app.style.transform='';void app.offsetWidth;app.classList.remove('notrans')}
+function begin(){
+if(!all.length){showMsg('As cartas ainda não carregaram. Aguarde um instante e toque em Jogar de novo.');return}
+const p=t().player;names=[$('name1').value.trim()||p+' 1',$('name2').value.trim()||p+' 2'];
+store.set('nm-names',JSON.stringify(names));
+resetRotation();level='ALL';app.classList.remove('home');app.scrollTop=0;buildLevels();setLevel('ALL');
 }
-function goHome(){if(names){$('name1').value=names[0];$('name2').value=names[1]}$('panel').classList.remove('show');$('app').classList.add('home')}
+function goHome(){closeSheet();resetRotation();if(names){$('name1').value=names[0];$('name2').value=names[1]}app.classList.add('home')}
 
-function start(language){lang=language;localStorage.setItem('nm-language',lang);$('app').classList.remove('home');document.documentElement.lang=lang==='pt'?'pt-BR':'en';$('tagline').textContent=t().tag;$('welcomeText').textContent=t().welcome;$('langBtn').textContent=t().change;$('footerText').textContent=t().footer;$('prev').textContent=t().back;$('next').textContent=t().next;$('shuffle').textContent=t().shuffle;$('historyBtn').textContent=t().history;$('favoritesBtn').textContent=t().favoritesBtn;buildLevels();setLevel(level);}
+function buildLevels(){const nav=$('levels');nav.innerHTML='';[['ALL',t().all],['LEVEL ONE',t().levels[0]],['LEVEL TWO',t().levels[1]],['LEVEL THREE',t().levels[2]]].forEach(([v,label])=>{const b=document.createElement('button');b.textContent=label;b.dataset.level=v;b.className=v===level?'active':'';b.onclick=()=>setLevel(v);nav.append(b)})}
 
-function buildLevels(){let nav=$('levels');nav.innerHTML='';[['ALL',t().all],['LEVEL ONE',t().levels[0]],['LEVEL TWO',t().levels[1]],['LEVEL THREE',t().levels[2]]].forEach(([v,label])=>{let b=document.createElement('button');b.className='chip';b.textContent=label;b.dataset.level=v;b.onclick=()=>setLevel(v);nav.append(b)})}
+/* troca de nível: começa numa carta aleatória (a vez continua com quem está jogando) */
+function setLevel(v){level=v;deck=all.filter(c=>v==='ALL'||c.level===v);document.querySelectorAll('#levels button').forEach(b=>b.classList.toggle('active',b.dataset.level===v));closeSheet();if(!deck.length)return;index=Math.floor(Math.random()*deck.length);trail=[index];ptr=0;used=new Set();render()}
 
-function setLevel(v){level=v;deck=all.filter(c=>v==='ALL'||c.level===v);index=0;document.querySelectorAll('.chip').forEach(b=>b.classList.toggle('active',b.dataset.level===v));$('levelLabel').textContent=v==='ALL'?t().allLevels:levelName(v);$('panel').classList.remove('show');render()}
+function pickRandom(){
+let pool=deck.map((_,i)=>i).filter(i=>!used.has(i));
+if(!pool.length){used=new Set([index]);pool=deck.map((_,i)=>i).filter(i=>i!==index)}
+return pool.length?pool[Math.floor(Math.random()*pool.length)]:index;
+}
 
-function render(){if(!deck.length)return;let c=deck[index];$('question').textContent=textOf(c);$('question').classList.toggle('wild',c.wildcard);$('cardLevel').textContent=levelName(c.level);$('cardNum').textContent='CARTA '+String(all.findIndex(x=>x.id===c.id)+1).padStart(3,'0');if(lang==='en')$('cardNum').textContent='CARD '+String(all.findIndex(x=>x.id===c.id)+1).padStart(3,'0');$('cardType').textContent=c.wildcard?t().wild:t().talk;$('swipeHint').textContent=t().swipe;$('progress').textContent=(index+1)+' / '+deck.length;$('favorite').textContent=favorites.includes(c.id)?t().saved:t().favorite;$('favorite').style.color=favorites.includes(c.id)?'var(--yellow)':'';
+function render(){
+if(!deck.length)return;const c=deck[index],n=String(all.findIndex(x=>x.id===c.id)+1).padStart(3,'0'),fav=favorites.includes(c.id);
+used.add(index);
+$('question').textContent=textOf(c);$('question').classList.toggle('wild',!!c.wildcard);
+$('cardLevel').textContent=levelName(c.level);$('cardType').textContent=c.wildcard?t().wild:t().talk;$('cardNum').textContent=t().cardWord+n;
+$('heart').classList.toggle('on',fav);$('heart').setAttribute('aria-label',fav?'Remover das favoritas':'Favoritar');
+$('progress').textContent=used.size+' / '+deck.length;$('prev').disabled=ptr===0;
 if(names){$('turnName').textContent=names[turn];$('turnSub').textContent=t().asks+' '+names[1-turn]}
-history.unshift(c.id);history=[...new Set(history)].slice(0,100);localStorage.setItem('nm-history',JSON.stringify(history))}
+history.unshift(c.id);history=[...new Set(history)].slice(0,100);store.set('nm-history',JSON.stringify(history));
+}
 
-/* passa a carta: a atual sai deslizando, a próxima entra; a vez troca de jogador */
-function move(n){
-if(busy||!deck.length)return;
-turn=1-turn;
-const card=$('card');
-if(matchMedia('(prefers-reduced-motion:reduce)').matches){index=(index+n+deck.length)%deck.length;render();return}
-busy=true;const dir=n>0?1:-1;
-card.animate([{transform:'translateX(0) rotate(0deg)',opacity:1},{transform:`translateX(${-115*dir}%) rotate(${-10*dir}deg)`,opacity:0}],{duration:210,easing:'ease-in',fill:'forwards'}).onfinish=()=>{
-index=(index+n+deck.length)%deck.length;render();
-card.animate([{transform:`translateX(${115*dir}%) rotate(${10*dir}deg)`,opacity:0},{transform:'translateX(0) rotate(0deg)',opacity:1}],{duration:280,easing:'cubic-bezier(.2,.9,.3,1)'}).onfinish=()=>{card.getAnimations().forEach(a=>a.cancel());busy=false}
-}}
-$('next').onclick=()=>move(1);$('prev').onclick=()=>move(-1);$('shuffle').onclick=()=>{deck=[...deck].sort(()=>Math.random()-.5);index=0;render()};
+/* próxima carta = aleatória; voltar = cartas já vistas. Cada movimento vira a tela 180° para o outro jogador */
+function move(dir){
+if(busy||!deck.length)return;let target;
+if(dir>0){if(ptr<trail.length-1){ptr++;target=trail[ptr]}else{target=pickRandom();trail.push(target);ptr=trail.length-1}}
+else{if(ptr===0)return;ptr--;target=trail[ptr]}
+busy=true;const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+const flip=()=>{
+card.getAnimations().forEach(a=>a.cancel());
+turn=1-turn;rot+=180*dir;index=target;render();app.style.transform=`rotate(${rot}deg)`;
+if(!reduce)card.animate([{opacity:0,transform:'scale(.9)'},{opacity:1,transform:'scale(1)'}],{duration:420,delay:140,easing:'cubic-bezier(.2,.9,.3,1)',fill:'backwards'});
+setTimeout(()=>{busy=false},reduce?0:620);
+};
+if(reduce){flip();return}
+card.animate([{transform:'translateX(0) rotate(0deg)',opacity:1},{transform:`translateX(${-110*dir}%) rotate(${-8*dir}deg)`,opacity:0}],{duration:190,easing:'ease-in',fill:'forwards'}).onfinish=flip;
+}
+$('next').onclick=()=>move(1);$('prev').onclick=()=>move(-1);
 
-$('favorite').onclick=()=>{let id=deck[index].id;favorites=favorites.includes(id)?favorites.filter(x=>x!==id):[...favorites,id];localStorage.setItem('nm-favorites',JSON.stringify(favorites));render()};
+$('heart').onclick=()=>{const id=deck[index].id;favorites=favorites.includes(id)?favorites.filter(x=>x!==id):[...favorites,id];store.set('nm-favorites',JSON.stringify(favorites));render()};
 
-function showPanel(type){let p=$('panel');p.classList.toggle('show');if(!p.classList.contains('show'))return;let ids=type==='favorites'?[...favorites].reverse():history;$('panelTitle').textContent=type==='favorites'?t().favorite:t().recent;$('panelList').innerHTML='';let items=ids.map(id=>all.find(c=>c.id===id)).filter(Boolean);if(!items.length){$('panelList').textContent=t().empty;return}items.forEach(c=>{let d=document.createElement('div');d.className='entry';let s=document.createElement('small');s.textContent=levelName(c.level)+(c.wildcard?' · '+t().wild:'');d.append(s,document.createTextNode(textOf(c)));d.onclick=()=>{setLevel(c.level);index=deck.findIndex(x=>x.id===c.id);render();p.classList.remove('show')};$('panelList').append(d)})}
+/* abre uma carta guardada/vista sem trocar a vez */
+function showCard(id){
+if(!deck.some(c=>c.id===id)){level='ALL';deck=all.slice();document.querySelectorAll('#levels button').forEach(b=>b.classList.toggle('active',b.dataset.level==='ALL'));used=new Set();trail=[];ptr=0}
+index=deck.findIndex(c=>c.id===id);trail=trail.slice(0,ptr+1);trail.push(index);ptr=trail.length-1;render();
+}
 
-$('historyBtn').onclick=()=>showPanel('history');$('favoritesBtn').onclick=()=>showPanel('favorites');
+function openSheet(type){
+const ids=type==='favorites'?[...favorites].reverse():history,items=ids.map(id=>all.find(c=>c.id===id)).filter(Boolean),list=$('sheetList');
+$('sheetTitle').textContent=type==='favorites'?t().favorites:t().recent;list.innerHTML='';
+if(!items.length){const e=document.createElement('div');e.className='empty';e.textContent=type==='favorites'?t().emptyFav:t().emptyHist;list.append(e)}
+else{const g=document.createElement('div');g.className='group';items.forEach(c=>{const b=document.createElement('button');b.className='entry';const s=document.createElement('small');s.textContent=levelName(c.level)+(c.wildcard?' · '+t().wild:'');b.append(s,document.createTextNode(textOf(c)));b.onclick=()=>{closeSheet();showCard(c.id)};g.append(b)});list.append(g)}
+list.scrollTop=0;$('sheet').classList.add('show');$('scrim').classList.add('show');
+}
+function closeSheet(){$('sheet').classList.remove('show');$('scrim').classList.remove('show')}
+$('favoritesBtn').onclick=()=>openSheet('favorites');$('historyBtn').onclick=()=>openSheet('history');$('sheetClose').onclick=closeSheet;$('scrim').onclick=closeSheet;
 
-let startX=0;const card=$('card');card.addEventListener('touchstart',e=>startX=e.changedTouches[0].clientX,{passive:true});card.addEventListener('touchend',e=>{let dx=e.changedTouches[0].clientX-startX;if(Math.abs(dx)>55)move(dx<0?1:-1)},{passive:true});card.addEventListener('mousedown',e=>startX=e.clientX);card.addEventListener('mouseup',e=>{let dx=e.clientX-startX;if(Math.abs(dx)>70)move(dx<0?1:-1)});
+/* swipe: com a tela virada, os lados da tela se invertem */
+let startX=0;const side=()=>turn===1?-1:1;
+card.addEventListener('touchstart',e=>startX=e.changedTouches[0].clientX,{passive:true});
+card.addEventListener('touchend',e=>{const dx=(e.changedTouches[0].clientX-startX)*side();if(Math.abs(dx)>55)move(dx<0?1:-1)},{passive:true});
+card.addEventListener('mousedown',e=>startX=e.clientX);
+card.addEventListener('mouseup',e=>{const dx=(e.clientX-startX)*side();if(Math.abs(dx)>70)move(dx<0?1:-1)});
 
-if('serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));init();
+if('serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
+init();
 </script></body></html>
