@@ -73,8 +73,10 @@ svg{display:block}.ic{fill:none;stroke:currentColor;stroke-width:2;stroke-lineca
 <label class="row"><span id="lab2">Jogador 2</span><input id="name2" placeholder="Jogador 2" maxlength="20" autocomplete="off" enterkeyhint="done"></label>
 </div>
 <div class="seg" id="langSeg"><button data-l="pt" class="active">🇧🇷 Português</button><button data-l="en">🇬🇧 English</button></div>
+<p class="hint" id="modeTitle">Como vocês vão jogar?</p>
+<div class="seg" id="modeSeg"><button data-m="face" class="active">Olho no olho</button><button data-m="side">Lado a lado</button></div>
+<p class="hint" id="hintText">Celular sobre a mesa, entre vocês. A tela vira a cada turno.</p>
 <button class="cta" id="playBtn">Jogar</button>
-<p class="hint" id="hintText">Deixem o celular sobre a mesa, entre vocês. A tela vira a cada turno.</p>
 </section>
 
 <section id="game">
@@ -98,34 +100,36 @@ svg{display:block}.ic{fill:none;stroke:currentColor;stroke-width:2;stroke-lineca
 <script>
 const mem={};const store={get(k){try{return localStorage.getItem(k)}catch(e){return k in mem?mem[k]:null}},set(k,v){try{localStorage.setItem(k,v)}catch(e){mem[k]=v}}};
 const load=(k,d)=>{try{const v=JSON.parse(store.get(k));return v==null?d:v}catch(e){return d}};
-let all=[],deck=[],index=0,trail=[],ptr=0,used=new Set(),level='ALL',busy=false,turn=0,rot=0,names=null,
+let all=[],deck=[],index=0,trail=[],ptr=0,used=new Set(),level='ALL',busy=false,turn=0,rot=0,mode='face',names=null,
 lang=store.get('nm-language')||((navigator.language||'').toLowerCase().startsWith('pt')?'pt':'en'),
 history=load('nm-history',[]),favorites=load('nm-favorites',[]);
-names=load('nm-names',null);
+names=load('nm-names',null);mode=store.get('nm-mode')==='side'?'side':'face';
 const $=id=>document.getElementById(id),app=$('app'),card=$('card');
 function showMsg(m){let b=$('msg');if(!b){b=document.createElement('p');b.id='msg';b.style.cssText='background:#fff;color:#d90d20;border-radius:10px;padding:10px 12px;font-size:13px;margin:0;width:100%';$('welcome').append(b)}b.textContent=m}
 window.addEventListener('error',e=>showMsg('Erro: '+e.message));
 const words={
-pt:{welcome:'Até onde você está disposto a ser sincero?',all:'Todas',levels:['Nível 1','Nível 2','Nível 3'],wild:'Coringa',talk:'Conversa',cardWord:'CARTA ',back:'Voltar',next:'Próxima carta',favorites:'Favoritas',history:'Histórico',recent:'Vistas recentemente',emptyFav:'Toque no coração de uma carta para guardá-la aqui.',emptyHist:'As cartas que você ver aparecem aqui.',change:'EN',asks:'pergunta para',player:'Jogador',play:'Jogar',home:'Início',done:'OK',hint:'Deixem o celular sobre a mesa, entre vocês. A tela vira a cada turno.'},
-en:{welcome:'How honest are you willing to be?',all:'All',levels:['Level 1','Level 2','Level 3'],wild:'Wildcard',talk:'Conversation',cardWord:'CARD ',back:'Back',next:'Next card',favorites:'Favorites',history:'History',recent:'Recently viewed',emptyFav:'Tap the heart on a card to keep it here.',emptyHist:'Cards you see will show up here.',change:'PT',asks:'asks',player:'Player',play:'Play',home:'Home',done:'Done',hint:'Leave the phone on the table between you. The screen flips every turn.'}};
+pt:{welcome:'Até onde você está disposto a ser sincero?',all:'Todas',levels:['Nível 1','Nível 2','Nível 3'],wild:'Coringa',talk:'Conversa',cardWord:'CARTA ',back:'Voltar',next:'Próxima carta',favorites:'Favoritas',history:'Histórico',recent:'Vistas recentemente',emptyFav:'Toque no coração de uma carta para guardá-la aqui.',emptyHist:'As cartas que você ver aparecem aqui.',change:'EN',asks:'pergunta para',player:'Jogador',play:'Jogar',home:'Início',done:'OK',modeTitle:'Como vocês vão jogar?',face:'Olho no olho',side:'Lado a lado',hintFace:'Celular sobre a mesa, entre vocês. A tela vira a cada turno.',hintSide:'Um ao lado do outro. A tela fica parada.'},
+en:{welcome:'How honest are you willing to be?',all:'All',levels:['Level 1','Level 2','Level 3'],wild:'Wildcard',talk:'Conversation',cardWord:'CARD ',back:'Back',next:'Next card',favorites:'Favorites',history:'History',recent:'Recently viewed',emptyFav:'Tap the heart on a card to keep it here.',emptyHist:'Cards you see will show up here.',change:'PT',asks:'asks',player:'Player',play:'Play',home:'Home',done:'Done',modeTitle:'How are you playing?',face:'Face to face',side:'Side by side',hintFace:'Phone on the table between you. The screen flips every turn.',hintSide:'Sitting next to each other. The screen stays still.'}};
 const t=()=>words[lang==='pt'?'pt':'en'],textOf=c=>lang==='pt'?c.text_pt:c.text_en;
 const levelName=v=>v==='LEVEL ONE'?t().levels[0]:v==='LEVEL TWO'?t().levels[1]:t().levels[2];
 
 /* textos fixos (início + jogo) no idioma atual */
 function applyLang(){
 const w=t();document.documentElement.lang=lang==='pt'?'pt-BR':'en';
-$('welcomeText').textContent=w.welcome;$('hintText').textContent=w.hint;$('playBtn').textContent=w.play;
+$('welcomeText').textContent=w.welcome;applyMode();$('playBtn').textContent=w.play;
 $('lab1').textContent=w.player+' 1';$('lab2').textContent=w.player+' 2';$('name1').placeholder=w.player+' 1';$('name2').placeholder=w.player+' 2';
 document.querySelectorAll('#langSeg button').forEach(b=>b.classList.toggle('active',b.dataset.l===lang));
 $('langBtn').textContent=w.change;$('homeLabel').textContent=w.home;$('next').textContent=w.next;$('prev').setAttribute('aria-label',w.back);
 $('favLabel').textContent=w.favorites;$('histLabel').textContent=w.history;$('sheetClose').textContent=w.done;
 }
+function applyMode(){const w=t();$('modeTitle').textContent=w.modeTitle;document.querySelectorAll('#modeSeg button').forEach(b=>{b.textContent=w[b.dataset.m];b.classList.toggle('active',b.dataset.m===mode)});$('hintText').textContent=mode==='face'?w.hintFace:w.hintSide}
 function setLang(l){lang=l;store.set('nm-language',lang);applyLang();if(deck.length){buildLevels();render()}}
 
 async function init(){
 if(names){$('name1').value=names[0];$('name2').value=names[1]}
 applyLang();
 document.querySelectorAll('#langSeg button').forEach(b=>b.onclick=()=>setLang(b.dataset.l));
+document.querySelectorAll('#modeSeg button').forEach(b=>b.onclick=()=>{mode=b.dataset.m;store.set('nm-mode',mode);applyMode()});
 $('langBtn').onclick=()=>setLang(lang==='pt'?'en':'pt');
 $('playBtn').onclick=begin;$('homeBtn').onclick=goHome;
 $('name1').onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();$('name2').focus()}};$('name2').onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();begin()}};
@@ -172,9 +176,9 @@ else{if(ptr===0)return;ptr--;target=trail[ptr]}
 busy=true;const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
 const flip=()=>{
 card.getAnimations().forEach(a=>a.cancel());
-turn=1-turn;rot+=180*dir;index=target;render();app.style.transform=`rotate(${rot}deg)`;
-if(!reduce)card.animate([{opacity:0,transform:'scale(.9)'},{opacity:1,transform:'scale(1)'}],{duration:420,delay:140,easing:'cubic-bezier(.2,.9,.3,1)',fill:'backwards'});
-setTimeout(()=>{busy=false},reduce?0:620);
+turn=1-turn;if(mode==='face'){rot+=180*dir;app.style.transform=`rotate(${rot}deg)`}index=target;render();
+if(!reduce)card.animate([{opacity:0,transform:'scale(.9)'},{opacity:1,transform:'scale(1)'}],{duration:mode==='face'?420:320,delay:mode==='face'?140:0,easing:'cubic-bezier(.2,.9,.3,1)',fill:'backwards'});
+setTimeout(()=>{busy=false},reduce?0:(mode==='face'?620:420));
 };
 if(reduce){flip();return}
 card.animate([{transform:'translateX(0) rotate(0deg)',opacity:1},{transform:`translateX(${-110*dir}%) rotate(${-8*dir}deg)`,opacity:0}],{duration:190,easing:'ease-in',fill:'forwards'}).onfinish=flip;
@@ -200,7 +204,7 @@ function closeSheet(){$('sheet').classList.remove('show');$('scrim').classList.r
 $('favoritesBtn').onclick=()=>openSheet('favorites');$('historyBtn').onclick=()=>openSheet('history');$('sheetClose').onclick=closeSheet;$('scrim').onclick=closeSheet;
 
 /* swipe: com a tela virada, os lados da tela se invertem */
-let startX=0;const side=()=>turn===1?-1:1;
+let startX=0;const side=()=>Math.abs(Math.round(rot/180))%2===1?-1:1;
 card.addEventListener('touchstart',e=>startX=e.changedTouches[0].clientX,{passive:true});
 card.addEventListener('touchend',e=>{const dx=(e.changedTouches[0].clientX-startX)*side();if(Math.abs(dx)>55)move(dx<0?1:-1)},{passive:true});
 card.addEventListener('mousedown',e=>startX=e.clientX);
