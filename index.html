@@ -76,8 +76,12 @@ svg{display:block}.ic{fill:none;stroke:currentColor;stroke-width:2;stroke-lineca
 .endtitle{font-family:var(--poster);font-weight:400;font-size:62px;line-height:1;margin:0}#end p{margin:0;color:var(--yellow);font-size:15px}#end .winner{font-size:17px;font-weight:700;color:#fff}#end .cta{width:100%}
 .scores{display:grid;grid-template-columns:1fr 1fr;gap:12px;width:100%;margin:6px 0}.score{background:var(--paper);color:var(--red-dark);border-radius:18px;padding:16px 8px}
 .score em{display:block;font-style:normal;font-weight:700;color:var(--ink);margin-bottom:6px;overflow-wrap:anywhere}.score b{display:block;font-family:var(--poster);font-weight:400;font-size:56px;line-height:1}.score span{font-size:12px;color:var(--gray)}
+.alertwrap{position:absolute;inset:0;z-index:9;display:flex;align-items:center;justify-content:center;padding:28px;background:#0009;opacity:0;visibility:hidden;transition:opacity .2s,visibility 0s .2s}.alertwrap.show{opacity:1;visibility:visible;transition-delay:0s}
+.alertbox{width:100%;max-width:300px;background:var(--paper);color:var(--ink);border-radius:18px;overflow:hidden;text-align:center;transform:scale(.94);transition:transform .22s cubic-bezier(.2,.9,.3,1)}.alertwrap.show .alertbox{transform:none}
+.alertbox h3{margin:0;padding:20px 18px 6px;font-size:17px}.alertbox p{margin:0;padding:0 18px 18px;font-size:14px;line-height:1.35;color:#6b5a56}
+.alertbtns button{display:block;width:100%;border:0;border-top:1px solid #e1d8bd;background:transparent;padding:15px 8px;font-size:17px;font-weight:700;color:var(--red-dark)}.alertbtns .danger{font-weight:500;color:#d11a2a}.alertbtns button:active{background:#0000000d}
 @media(max-height:700px){.mark{width:190px}.turn b{font-size:34px}.question{font-size:22px}}
-@media(prefers-reduced-motion:reduce){.app,.sheet,.scrim{transition:none}.timer.over b{animation:none}.cupid{animation:none}}
+@media(prefers-reduced-motion:reduce){.app,.sheet,.scrim,.alertwrap,.alertbox{transition:none}.timer.over b{animation:none}.cupid{animation:none}}
 </style></head><body>
 <div class="app home" id="app">
 
@@ -140,6 +144,7 @@ svg{display:block}.ic{fill:none;stroke:currentColor;stroke-width:2;stroke-lineca
 </section>
 
 <div class="scrim" id="scrim"></div>
+<div class="alertwrap" id="alert" role="alertdialog" aria-modal="true" aria-labelledby="alertTitle" aria-describedby="alertMsg"><div class="alertbox"><h3 id="alertTitle"></h3><p id="alertMsg"></p><div class="alertbtns"><button class="danger" id="alertOk"></button><button id="alertCancel"></button></div></div></div>
 <aside class="sheet" id="sheet" role="dialog" aria-modal="true"><div class="grab"></div><div class="sheethead"><h2 id="sheetTitle"></h2><button id="sheetClose"></button></div><div class="sheetlist" id="sheetList"></div></aside>
 </div>
 
@@ -159,12 +164,12 @@ pt:{welcome:'Até onde você está disposto a ser sincero?',all:'Todas',levels:[
 progress:(n,m)=>`Carta ${n} de ${m}`,turnRead:(a,b)=>`${a} pergunta para ${b}`,turnThink:(a,b)=>`${b}, você tem 1 minuto para começar`,turnRate:(a,b)=>`A resposta de ${b} foi sincera?`,
 readDone:'Terminei de ler',noTimer:'Sem timer',answerStart:'Começou a responder',rateYes:'Foi sincero',rateNo:'Não foi sincero',timeUp:'Tempo!',
 cardActions:'Esta carta',answered:'Já respondi esta',skip:'Pular esta carta',actionNote:'Sai do baralho até o fim da partida e não conta nas 20.',
-endTitle:'Fim de jogo',endSub:n=>`${n} cartas respondidas`,honestCount:'respostas sinceras',best:'Mais sinceridade:',tie:'Empate perfeito',again:'Jogar de novo'},
+alertTitle:'Voltar ao início?',alertMsg:'A partida atual será perdida.',alertOk:'Voltar ao início',alertCancel:'Continuar jogando',endTitle:'Fim de jogo',endSub:n=>`${n} cartas respondidas`,honestCount:'respostas sinceras',best:'Mais sinceridade:',tie:'Empate perfeito',again:'Jogar de novo'},
 en:{welcome:'How honest are you willing to be?',all:'All',levels:['Level 1','Level 2','Level 3'],wild:'Wildcard',talk:'Conversation',cardWord:'CARD ',favorites:'Favorites',history:'History',recent:'Recently viewed',emptyFav:'Tap the heart on a card to keep it here.',emptyHist:'Cards you see will show up here.',change:'PT',player:'Player',play:'Play',home:'Home',done:'Done',modeTitle:'How are you playing?',face:'Face to face',side:'Side by side',hintFace:'Phone on the table between you. The screen flips every turn.',hintSide:'Sitting next to each other. The screen stays still.',
 progress:(n,m)=>`Card ${n} of ${m}`,turnRead:(a,b)=>`${a} asks ${b}`,turnThink:(a,b)=>`${b}, you have a minute to start`,turnRate:(a,b)=>`Was ${b}'s answer honest?`,
 readDone:'Done reading',noTimer:'No timer',answerStart:'Started answering',rateYes:'Honest',rateNo:'Not honest',timeUp:"Time's up!",
 cardActions:'This card',answered:'Already answered this',skip:'Skip this card',actionNote:"Leaves the deck until the match ends and doesn't count toward the 20.",
-endTitle:'Game over',endSub:n=>`${n} cards answered`,honestCount:'honest answers',best:'Most honest:',tie:'A perfect tie',again:'Play again'}};
+alertTitle:'Back to home?',alertMsg:'The current match will be lost.',alertOk:'Back to home',alertCancel:'Keep playing',endTitle:'Game over',endSub:n=>`${n} cards answered`,honestCount:'honest answers',best:'Most honest:',tie:'A perfect tie',again:'Play again'}};
 const t=()=>words[lang==='pt'?'pt':'en'],textOf=c=>lang==='pt'?c.text_pt:c.text_en;
 const levelName=v=>v==='LEVEL ONE'?t().levels[0]:v==='LEVEL TWO'?t().levels[1]:t().levels[2];
 
@@ -172,7 +177,7 @@ const levelName=v=>v==='LEVEL ONE'?t().levels[0]:v==='LEVEL TWO'?t().levels[1]:t
 /* flecha do cupido: cruza a tela nas trocas de carta e de menu */
 const ARROW='<svg viewBox="0 0 150 28" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 14C40 13 80 15 134 14"/><path d="M8 14L3 6M8 14L3 22M22 14L17 6M22 14L17 22"/><path d="M122 5L146 14L122 23Z" fill="currentColor"/></svg>';
 function shoot(ref,dir,scale,dur){
-if(!ref||!ref.offsetParent||matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+if(!ref||!ref.offsetParent||!document.body.animate)return;
 const W=app.clientWidth,w=150*scale,el=document.createElement('div');
 el.className='arrow';el.innerHTML=ARROW;el.firstChild.style.cssText=`width:${w}px;height:${28*scale}px`;
 el.style.top=(ref.offsetTop+ref.offsetHeight/2)+'px';app.append(el);
@@ -199,7 +204,7 @@ applyLang();
 document.querySelectorAll('#langSeg button').forEach(b=>b.onclick=()=>setLang(b.dataset.l));
 document.querySelectorAll('#modeSeg button').forEach(b=>b.onclick=()=>{mode=b.dataset.m;store.set('nm-mode',mode);applyMode()});
 $('langBtn').onclick=()=>setLang(lang==='pt'?'en':'pt');
-$('playBtn').onclick=begin;$('homeBtn').onclick=goHome;$('againBtn').onclick=startMatch;$('endHome').onclick=goHome;
+$('playBtn').onclick=begin;$('homeBtn').onclick=askHome;$('againBtn').onclick=startMatch;$('endHome').onclick=goHome;
 $('name1').onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();$('name2').focus()}};$('name2').onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();begin()}};
 try{all=await(await fetch('cards.json')).json()}catch(e){showMsg('Não consegui carregar as cartas (cards.json). Verifique a conexão e recarregue.')}
 }
@@ -216,7 +221,16 @@ function startMatch(){
 stopTimer();closeSheet();resetRotation();app.classList.remove('ended');
 done=0;score=[[0,0],[0,0]];excluded=new Set();phase='read';busy=false;level='ALL';buildLevels();setLevel('ALL');shoot(card,1,1,520);
 }
-function goHome(){stopTimer();busy=false;closeSheet();resetRotation();app.classList.remove('ended');if(names){$('name1').value=names[0];$('name2').value=names[1]}app.classList.add('home')}
+function askHome(){
+if(busy)return;const w=t();
+$('alertTitle').textContent=w.alertTitle;$('alertMsg').textContent=w.alertMsg;$('alertOk').textContent=w.alertOk;$('alertCancel').textContent=w.alertCancel;
+$('alert').classList.add('show');$('alertCancel').focus();
+}
+function closeAlert(){$('alert').classList.remove('show')}
+$('alertCancel').onclick=closeAlert;$('alertOk').onclick=()=>{closeAlert();goHome()};
+$('alert').onclick=e=>{if(e.target===$('alert'))closeAlert()};
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeAlert()});
+function goHome(){closeAlert();stopTimer();busy=false;closeSheet();resetRotation();app.classList.remove('ended');if(names){$('name1').value=names[0];$('name2').value=names[1]}app.classList.add('home')}
 
 const LV=['ALL','LEVEL ONE','LEVEL TWO','LEVEL THREE'];
 function buildLevels(){const nav=$('levels');nav.innerHTML='';[['ALL',t().all],['LEVEL ONE',t().levels[0]],['LEVEL TWO',t().levels[1]],['LEVEL THREE',t().levels[2]]].forEach(([v,label])=>{const b=document.createElement('button');b.textContent=label;b.dataset.level=v;b.className=v===level?'active':'';b.onclick=()=>{if(busy)return;if(v!==level)shoot(nav,LV.indexOf(v)>LV.indexOf(level)?1:-1,.55,380);setLevel(v)};nav.append(b)})}
