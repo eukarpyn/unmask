@@ -1,7 +1,7 @@
-// não mente pra mim — service worker
+// unmask — service worker
 // Estratégia: rede primeiro (sempre pega a versão mais nova do site) e cache só como reserva offline.
-const CACHE = 'nmpm-v2';
-const CORE = ['./', 'index.html', 'cards.json', 'manifest.json', 'icon.svg'];
+const CACHE = 'unmask-v1';
+const CORE = ['./', 'index.html', 'cards.json', 'manifest.json', 'icon.svg', 'icon-192.png', 'icon-512.png', 'apple-touch-icon.png'];
 
 self.addEventListener('install', (e) => {
   self.skipWaiting(); // ativa a versão nova sem esperar fechar o app
@@ -37,4 +37,3 @@ self.addEventListener('fetch', (e) => {
       )
   );
 });
-
