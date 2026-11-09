@@ -1,4 +1,4 @@
-NÃO MENTE PRA MIM - versão bilíngue
+Unmask- versão bilíngue
 
 Este é um protótipo de aplicativo web instalável (PWA), pensado para iPhone.
 
