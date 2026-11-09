@@ -45,7 +45,7 @@ svg{display:block}.ic{fill:none;stroke:currentColor;stroke-width:2;stroke-lineca
 .heart{background:none;border:0;color:var(--red-dark);padding:2px;margin:-2px -2px 0 0}.heart svg{width:28px;height:28px}.heart.on svg{fill:currentColor}
 .question{font-size:clamp(22px,6.4vw,32px);line-height:1.22;text-align:center;overflow-wrap:anywhere;font-weight:800;padding:8px 0}.wild{color:#b48b00}
 .progress{text-align:center;color:var(--yellow);font-size:12px;font-weight:600}
-.controls{display:flex;gap:10px}.controls .cta{flex:1}
+
 .round{width:54px;flex:none;border:0;border-radius:14px;background:#ffffff33;color:#fff;display:grid;place-items:center;transition:opacity .2s,transform .12s}.round:active{transform:scale(.95)}.round:disabled{opacity:.35}.round svg{width:24px;height:24px;stroke-width:2.6}
 .tabbar{display:flex;background:#ffffff29;-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);border-radius:20px;padding:4px 8px}
 .tabbar button{flex:1;background:none;border:0;color:#fff;display:grid;justify-items:center;gap:2px;font-size:10px;font-weight:600;padding:6px}.tabbar svg{width:24px;height:24px}
@@ -60,8 +60,21 @@ svg{display:block}.ic{fill:none;stroke:currentColor;stroke-width:2;stroke-lineca
 .sheetlist .group{border-radius:12px}.entry{display:block;width:100%;text-align:left;background:#fff;border:0;color:var(--ink);padding:13px 16px;font-size:16px;line-height:1.35}.entry+.entry{border-top:1px solid #e5e5ea}.entry small{display:block;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--red-dark);margin-bottom:3px}
 .empty{color:var(--gray);text-align:center;padding:28px 12px;font-size:15px}
 
+.controls{display:none;gap:10px}.controls .cta{flex:1}.cta.ghost{background:#ffffff33;color:#fff}#ctlRead .ghost{flex:0 0 34%}
+.app[data-phase=read] #ctlRead,.app[data-phase=think] #ctlThink,.app[data-phase=answer] #ctlRate{display:flex}
+.tools{display:flex;gap:8px}.tools .heart{margin:0}.dots circle{fill:currentColor;stroke:none}.app[data-phase=answer] #more{opacity:.3;pointer-events:none}
+.slot{min-height:46px;display:grid;place-items:center}.timer{display:none;width:100%;text-align:center}
+.app[data-phase=think] .timer{display:grid;gap:6px}.app[data-phase=think] .progress{display:none}
+.timer b{font-family:var(--poster);font-weight:400;font-size:34px;line-height:1}
+.bar{display:block;height:5px;border-radius:3px;background:#ffffff40;overflow:hidden}.bar i{display:block;height:100%;width:100%;background:var(--yellow)}
+.timer.over b{color:var(--yellow);animation:pulse .8s ease-in-out infinite}@keyframes pulse{50%{transform:scale(1.12)}}
+.entry small.sub{text-transform:none;letter-spacing:0;color:var(--gray);font-weight:400;font-size:13px;margin:2px 0 0}
+#end{display:none}.app.ended #game{display:none!important}.app.ended #end{display:flex;flex:1;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:14px;width:100%;max-width:340px;align-self:center}
+.endtitle{font-family:var(--poster);font-weight:400;font-size:54px;line-height:1;margin:0}#end p{margin:0;color:var(--yellow);font-size:15px}#end .winner{font-size:17px;font-weight:700;color:#fff}#end .cta{width:100%}
+.scores{display:grid;grid-template-columns:1fr 1fr;gap:12px;width:100%;margin:6px 0}.score{background:#fff;color:var(--red-dark);border-radius:18px;padding:16px 8px}
+.score em{display:block;font-style:normal;font-weight:700;color:var(--ink);margin-bottom:6px;overflow-wrap:anywhere}.score b{display:block;font-family:var(--poster);font-weight:400;font-size:50px;line-height:1}.score span{font-size:12px;color:var(--gray)}
 @media(max-height:700px){.logo{font-size:64px}.turn b{font-size:30px}.question{font-size:22px}}
-@media(prefers-reduced-motion:reduce){.app,.sheet,.scrim{transition:none}}
+@media(prefers-reduced-motion:reduce){.app,.sheet,.scrim{transition:none}.timer.over b{animation:none}}
 </style></head><body>
 <div class="app home" id="app">
 
@@ -84,13 +97,21 @@ svg{display:block}.ic{fill:none;stroke:currentColor;stroke-width:2;stroke-lineca
 <nav class="seg" id="levels"></nav>
 <div class="turn" aria-live="polite"><b id="turnName"></b><span id="turnSub"></span></div>
 <div class="card" id="card">
-<div class="cardtop"><span id="cardLevel"></span><button class="heart" id="heart"><svg class="ic" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></button></div>
+<div class="cardtop"><span id="cardLevel"></span><div class="tools"><button class="heart" id="heart"><svg class="ic" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></button><button class="heart" id="more" aria-label="Mais opções"><svg class="ic dots" viewBox="0 0 24 24"><circle cx="5" cy="12" r="1.8"/><circle cx="12" cy="12" r="1.8"/><circle cx="19" cy="12" r="1.8"/></svg></button></div></div>
 <div class="question" id="question"></div>
 <div class="cardbottom"><span id="cardType"></span><span id="cardNum"></span></div>
 </div>
-<div class="progress" id="progress"></div>
-<div class="controls"><button class="round" id="prev"><svg class="ic" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button><button class="cta" id="next"></button></div>
+<div class="slot"><div class="progress" id="progress"></div><div class="timer" id="timer"><b id="timeText">1:00</b><span class="bar"><i id="timeBar"></i></span></div></div>
+<div class="controls" id="ctlRead"><button class="cta" id="readDone"></button><button class="cta ghost" id="noTimer"></button></div>
+<div class="controls" id="ctlThink"><button class="cta" id="answerStart"></button></div>
+<div class="controls" id="ctlRate"><button class="cta" id="rateYes"></button><button class="cta ghost" id="rateNo"></button></div>
 <div class="tabbar"><button id="favoritesBtn"><svg class="ic" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg><span id="favLabel"></span></button><button id="historyBtn"><svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span id="histLabel"></span></button></div>
+</section>
+
+<section id="end">
+<h2 class="endtitle" id="endTitle"></h2><p id="endSub"></p>
+<div class="scores" id="scores"></div><p class="winner" id="winner"></p>
+<button class="cta" id="againBtn"></button><button class="cta ghost" id="endHome"></button>
 </section>
 
 <div class="scrim" id="scrim"></div>
@@ -98,9 +119,10 @@ svg{display:block}.ic{fill:none;stroke:currentColor;stroke-width:2;stroke-lineca
 </div>
 
 <script>
+const TOTAL=20,LIMIT=60;
 const mem={};const store={get(k){try{return localStorage.getItem(k)}catch(e){return k in mem?mem[k]:null}},set(k,v){try{localStorage.setItem(k,v)}catch(e){mem[k]=v}}};
 const load=(k,d)=>{try{const v=JSON.parse(store.get(k));return v==null?d:v}catch(e){return d}};
-let all=[],deck=[],index=0,trail=[],ptr=0,used=new Set(),level='ALL',busy=false,turn=0,rot=0,mode='face',names=null,
+let all=[],deck=[],index=0,used=new Set(),excluded=new Set(),level='ALL',busy=false,turn=0,rot=0,mode='face',names=null,phase='read',done=0,score=[[0,0],[0,0]],timerId=null,timerEnd=0,
 lang=store.get('nm-language')||((navigator.language||'').toLowerCase().startsWith('pt')?'pt':'en'),
 history=load('nm-history',[]),favorites=load('nm-favorites',[]);
 names=load('nm-names',null);mode=store.get('nm-mode')==='side'?'side':'face';
@@ -108,8 +130,16 @@ const $=id=>document.getElementById(id),app=$('app'),card=$('card');
 function showMsg(m){let b=$('msg');if(!b){b=document.createElement('p');b.id='msg';b.style.cssText='background:#fff;color:#d90d20;border-radius:10px;padding:10px 12px;font-size:13px;margin:0;width:100%';$('welcome').append(b)}b.textContent=m}
 window.addEventListener('error',e=>showMsg('Erro: '+e.message));
 const words={
-pt:{welcome:'Até onde você está disposto a ser sincero?',all:'Todas',levels:['Nível 1','Nível 2','Nível 3'],wild:'Coringa',talk:'Conversa',cardWord:'CARTA ',back:'Voltar',next:'Próxima carta',favorites:'Favoritas',history:'Histórico',recent:'Vistas recentemente',emptyFav:'Toque no coração de uma carta para guardá-la aqui.',emptyHist:'As cartas que você ver aparecem aqui.',change:'EN',asks:'pergunta para',player:'Jogador',play:'Jogar',home:'Início',done:'OK',modeTitle:'Como vocês vão jogar?',face:'Olho no olho',side:'Lado a lado',hintFace:'Celular sobre a mesa, entre vocês. A tela vira a cada turno.',hintSide:'Um ao lado do outro. A tela fica parada.'},
-en:{welcome:'How honest are you willing to be?',all:'All',levels:['Level 1','Level 2','Level 3'],wild:'Wildcard',talk:'Conversation',cardWord:'CARD ',back:'Back',next:'Next card',favorites:'Favorites',history:'History',recent:'Recently viewed',emptyFav:'Tap the heart on a card to keep it here.',emptyHist:'Cards you see will show up here.',change:'PT',asks:'asks',player:'Player',play:'Play',home:'Home',done:'Done',modeTitle:'How are you playing?',face:'Face to face',side:'Side by side',hintFace:'Phone on the table between you. The screen flips every turn.',hintSide:'Sitting next to each other. The screen stays still.'}};
+pt:{welcome:'Até onde você está disposto a ser sincero?',all:'Todas',levels:['Nível 1','Nível 2','Nível 3'],wild:'Coringa',talk:'Conversa',cardWord:'CARTA ',favorites:'Favoritas',history:'Histórico',recent:'Vistas recentemente',emptyFav:'Toque no coração de uma carta para guardá-la aqui.',emptyHist:'As cartas que você ver aparecem aqui.',change:'EN',player:'Jogador',play:'Jogar',home:'Início',done:'OK',modeTitle:'Como vocês vão jogar?',face:'Olho no olho',side:'Lado a lado',hintFace:'Celular sobre a mesa, entre vocês. A tela vira a cada turno.',hintSide:'Um ao lado do outro. A tela fica parada.',
+progress:(n,m)=>`Carta ${n} de ${m}`,turnRead:(a,b)=>`${a} pergunta para ${b}`,turnThink:(a,b)=>`${b}, você tem 1 minuto para começar`,turnRate:(a,b)=>`A resposta de ${b} foi sincera?`,
+readDone:'Terminei de ler',noTimer:'Sem timer',answerStart:'Começou a responder',rateYes:'Foi sincero',rateNo:'Não foi sincero',timeUp:'Tempo!',
+cardActions:'Esta carta',answered:'Já respondi esta',skip:'Pular esta carta',actionNote:'Sai do baralho até o fim da partida e não conta nas 20.',
+endTitle:'Fim de jogo',endSub:n=>`${n} cartas respondidas`,honestCount:'respostas sinceras',best:'Mais sinceridade:',tie:'Empate perfeito',again:'Jogar de novo'},
+en:{welcome:'How honest are you willing to be?',all:'All',levels:['Level 1','Level 2','Level 3'],wild:'Wildcard',talk:'Conversation',cardWord:'CARD ',favorites:'Favorites',history:'History',recent:'Recently viewed',emptyFav:'Tap the heart on a card to keep it here.',emptyHist:'Cards you see will show up here.',change:'PT',player:'Player',play:'Play',home:'Home',done:'Done',modeTitle:'How are you playing?',face:'Face to face',side:'Side by side',hintFace:'Phone on the table between you. The screen flips every turn.',hintSide:'Sitting next to each other. The screen stays still.',
+progress:(n,m)=>`Card ${n} of ${m}`,turnRead:(a,b)=>`${a} asks ${b}`,turnThink:(a,b)=>`${b}, you have a minute to start`,turnRate:(a,b)=>`Was ${b}'s answer honest?`,
+readDone:'Done reading',noTimer:'No timer',answerStart:'Started answering',rateYes:'Honest',rateNo:'Not honest',timeUp:"Time's up!",
+cardActions:'This card',answered:'Already answered this',skip:'Skip this card',actionNote:"Leaves the deck until the match ends and doesn't count toward the 20.",
+endTitle:'Game over',endSub:n=>`${n} cards answered`,honestCount:'honest answers',best:'Most honest:',tie:'A perfect tie',again:'Play again'}};
 const t=()=>words[lang==='pt'?'pt':'en'],textOf=c=>lang==='pt'?c.text_pt:c.text_en;
 const levelName=v=>v==='LEVEL ONE'?t().levels[0]:v==='LEVEL TWO'?t().levels[1]:t().levels[2];
 
@@ -119,7 +149,8 @@ const w=t();document.documentElement.lang=lang==='pt'?'pt-BR':'en';
 $('welcomeText').textContent=w.welcome;applyMode();$('playBtn').textContent=w.play;
 $('lab1').textContent=w.player+' 1';$('lab2').textContent=w.player+' 2';$('name1').placeholder=w.player+' 1';$('name2').placeholder=w.player+' 2';
 document.querySelectorAll('#langSeg button').forEach(b=>b.classList.toggle('active',b.dataset.l===lang));
-$('langBtn').textContent=w.change;$('homeLabel').textContent=w.home;$('next').textContent=w.next;$('prev').setAttribute('aria-label',w.back);
+$('langBtn').textContent=w.change;$('homeLabel').textContent=w.home;
+$('readDone').textContent=w.readDone;$('noTimer').textContent=w.noTimer;$('answerStart').textContent=w.answerStart;$('rateYes').textContent=w.rateYes;$('rateNo').textContent=w.rateNo;
 $('favLabel').textContent=w.favorites;$('histLabel').textContent=w.history;$('sheetClose').textContent=w.done;
 }
 function applyMode(){const w=t();$('modeTitle').textContent=w.modeTitle;document.querySelectorAll('#modeSeg button').forEach(b=>{b.textContent=w[b.dataset.m];b.classList.toggle('active',b.dataset.m===mode)});$('hintText').textContent=mode==='face'?w.hintFace:w.hintSide}
@@ -131,85 +162,139 @@ applyLang();
 document.querySelectorAll('#langSeg button').forEach(b=>b.onclick=()=>setLang(b.dataset.l));
 document.querySelectorAll('#modeSeg button').forEach(b=>b.onclick=()=>{mode=b.dataset.m;store.set('nm-mode',mode);applyMode()});
 $('langBtn').onclick=()=>setLang(lang==='pt'?'en':'pt');
-$('playBtn').onclick=begin;$('homeBtn').onclick=goHome;
+$('playBtn').onclick=begin;$('homeBtn').onclick=goHome;$('againBtn').onclick=startMatch;$('endHome').onclick=goHome;
 $('name1').onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();$('name2').focus()}};$('name2').onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();begin()}};
 try{all=await(await fetch('cards.json')).json()}catch(e){showMsg('Não consegui carregar as cartas (cards.json). Verifique a conexão e recarregue.')}
 }
 
-/* sempre abre na tela inicial, com os nomes anteriores já preenchidos */
+/* partida nova: zera pontos, cartas descartadas e turno */
 function resetRotation(){turn=0;rot=0;app.classList.add('notrans');app.style.transform='';void app.offsetWidth;app.classList.remove('notrans')}
 function begin(){
 if(!all.length){showMsg('As cartas ainda não carregaram. Aguarde um instante e toque em Jogar de novo.');return}
 const p=t().player;names=[$('name1').value.trim()||p+' 1',$('name2').value.trim()||p+' 2'];
 store.set('nm-names',JSON.stringify(names));
-resetRotation();level='ALL';app.classList.remove('home');app.scrollTop=0;buildLevels();setLevel('ALL');
+app.classList.remove('home');app.scrollTop=0;startMatch();
 }
-function goHome(){closeSheet();resetRotation();if(names){$('name1').value=names[0];$('name2').value=names[1]}app.classList.add('home')}
+function startMatch(){
+stopTimer();closeSheet();resetRotation();app.classList.remove('ended');
+done=0;score=[[0,0],[0,0]];excluded=new Set();phase='read';busy=false;level='ALL';buildLevels();setLevel('ALL');
+}
+function goHome(){stopTimer();busy=false;closeSheet();resetRotation();app.classList.remove('ended');if(names){$('name1').value=names[0];$('name2').value=names[1]}app.classList.add('home')}
 
-function buildLevels(){const nav=$('levels');nav.innerHTML='';[['ALL',t().all],['LEVEL ONE',t().levels[0]],['LEVEL TWO',t().levels[1]],['LEVEL THREE',t().levels[2]]].forEach(([v,label])=>{const b=document.createElement('button');b.textContent=label;b.dataset.level=v;b.className=v===level?'active':'';b.onclick=()=>setLevel(v);nav.append(b)})}
+function buildLevels(){const nav=$('levels');nav.innerHTML='';[['ALL',t().all],['LEVEL ONE',t().levels[0]],['LEVEL TWO',t().levels[1]],['LEVEL THREE',t().levels[2]]].forEach(([v,label])=>{const b=document.createElement('button');b.textContent=label;b.dataset.level=v;b.className=v===level?'active':'';b.onclick=()=>{if(!busy)setLevel(v)};nav.append(b)})}
 
-/* troca de nível: começa numa carta aleatória (a vez continua com quem está jogando) */
-function setLevel(v){level=v;deck=all.filter(c=>v==='ALL'||c.level===v);document.querySelectorAll('#levels button').forEach(b=>b.classList.toggle('active',b.dataset.level===v));closeSheet();if(!deck.length)return;index=Math.floor(Math.random()*deck.length);trail=[index];ptr=0;used=new Set();render()}
+/* troca de nível: carta nova (sem contar nas 20); a vez continua com quem está jogando */
+function setLevel(v){
+level=v;deck=all.filter(c=>v==='ALL'||c.level===v);
+document.querySelectorAll('#levels button').forEach(b=>b.classList.toggle('active',b.dataset.level===v));
+closeSheet();stopTimer();phase='read';used=new Set();if(!deck.length)return;
+const ok=deck.map((_,i)=>i).filter(i=>!excluded.has(deck[i].id));
+index=ok.length?ok[Math.floor(Math.random()*ok.length)]:0;render();
+}
 
+/* próxima carta aleatória: sem repetir e sem as descartadas nesta partida */
 function pickRandom(){
-let pool=deck.map((_,i)=>i).filter(i=>!used.has(i));
-if(!pool.length){used=new Set([index]);pool=deck.map((_,i)=>i).filter(i=>i!==index)}
-return pool.length?pool[Math.floor(Math.random()*pool.length)]:index;
+const idx=deck.map((_,i)=>i).filter(i=>i!==index&&!excluded.has(deck[i].id));
+let pool=idx.filter(i=>!used.has(i));
+if(!pool.length){used=new Set([index]);pool=idx}
+return pool.length?pool[Math.floor(Math.random()*pool.length)]:null;
 }
 
 function render(){
-if(!deck.length)return;const c=deck[index],n=String(all.findIndex(x=>x.id===c.id)+1).padStart(3,'0'),fav=favorites.includes(c.id);
-used.add(index);
+if(!deck.length)return;const c=deck[index],w=t(),n=String(all.findIndex(x=>x.id===c.id)+1).padStart(3,'0'),fav=favorites.includes(c.id);
+used.add(index);app.dataset.phase=phase;
 $('question').textContent=textOf(c);$('question').classList.toggle('wild',!!c.wildcard);
-$('cardLevel').textContent=levelName(c.level);$('cardType').textContent=c.wildcard?t().wild:t().talk;$('cardNum').textContent=t().cardWord+n;
+$('cardLevel').textContent=levelName(c.level);$('cardType').textContent=c.wildcard?w.wild:w.talk;$('cardNum').textContent=w.cardWord+n;
 $('heart').classList.toggle('on',fav);$('heart').setAttribute('aria-label',fav?'Remover das favoritas':'Favoritar');
-$('progress').textContent=used.size+' / '+deck.length;$('prev').disabled=ptr===0;
-if(names){$('turnName').textContent=names[turn];$('turnSub').textContent=t().asks+' '+names[1-turn]}
+$('progress').textContent=w.progress(done+1,TOTAL);
+if(names){const a=names[turn],b=names[1-turn];$('turnName').textContent=a;$('turnSub').textContent=phase==='read'?w.turnRead(a,b):phase==='think'?w.turnThink(a,b):w.turnRate(a,b)}
 history.unshift(c.id);history=[...new Set(history)].slice(0,100);store.set('nm-history',JSON.stringify(history));
 }
 
-/* próxima carta = aleatória; voltar = cartas já vistas. Cada movimento vira a tela 180° para o outro jogador */
-function move(dir){
-if(busy||!deck.length)return;let target;
-if(dir>0){if(ptr<trail.length-1){ptr++;target=trail[ptr]}else{target=pickRandom();trail.push(target);ptr=trail.length-1}}
-else{if(ptr===0)return;ptr--;target=trail[ptr]}
-busy=true;const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
-const flip=()=>{
+/* passa para outra carta. flipTurn=true: troca de jogador (e a tela vira no modo olho no olho). false: só troca a carta */
+function advance(flipTurn){
+if(busy||!deck.length)return;
+const target=pickRandom();if(target===null){endMatch();return}
+busy=true;stopTimer();
+const face=flipTurn&&mode==='face',reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+const enter=()=>{
 card.getAnimations().forEach(a=>a.cancel());
-turn=1-turn;if(mode==='face'){rot+=180*dir;app.style.transform=`rotate(${rot}deg)`}index=target;render();
-if(!reduce)card.animate([{opacity:0,transform:'scale(.9)'},{opacity:1,transform:'scale(1)'}],{duration:mode==='face'?420:320,delay:mode==='face'?140:0,easing:'cubic-bezier(.2,.9,.3,1)',fill:'backwards'});
-setTimeout(()=>{busy=false},reduce?0:(mode==='face'?620:420));
+if(flipTurn)turn=1-turn;
+if(face){rot+=180;app.style.transform=`rotate(${rot}deg)`}
+index=target;phase='read';render();
+if(!reduce)card.animate([{opacity:0,transform:'scale(.9)'},{opacity:1,transform:'scale(1)'}],{duration:face?420:320,delay:face?140:0,easing:'cubic-bezier(.2,.9,.3,1)',fill:'backwards'});
+setTimeout(()=>{busy=false},reduce?0:(face?620:420));
 };
-if(reduce){flip();return}
-card.animate([{transform:'translateX(0) rotate(0deg)',opacity:1},{transform:`translateX(${-110*dir}%) rotate(${-8*dir}deg)`,opacity:0}],{duration:190,easing:'ease-in',fill:'forwards'}).onfinish=flip;
+if(reduce){enter();return}
+card.animate([{transform:'translateX(0) rotate(0deg)',opacity:1},{transform:'translateX(-110%) rotate(-8deg)',opacity:0}],{duration:190,easing:'ease-in',fill:'forwards'}).onfinish=enter;
 }
-$('next').onclick=()=>move(1);$('prev').onclick=()=>move(-1);
+
+/* timer de 1 minuto, ativado por quem leu a pergunta */
+function startTimer(){stopTimer();timerEnd=Date.now()+LIMIT*1000;$('timer').classList.remove('over');tick();timerId=setInterval(tick,200)}
+function stopTimer(){if(timerId){clearInterval(timerId);timerId=null}}
+function tick(){
+const left=Math.max(0,timerEnd-Date.now()),s=Math.ceil(left/1000);
+$('timeText').textContent=left===0?t().timeUp:Math.floor(s/60)+':'+String(s%60).padStart(2,'0');
+$('timeBar').style.width=(left/(LIMIT*1000)*100)+'%';
+if(left===0){$('timer').classList.add('over');stopTimer()}
+}
+
+/* fluxo de cada turno: ler → (timer) → responder → avaliar */
+$('readDone').onclick=()=>{if(busy)return;phase='think';startTimer();render()};
+$('noTimer').onclick=()=>{if(busy)return;phase='answer';render()};
+$('answerStart').onclick=()=>{if(busy)return;stopTimer();phase='answer';render()};
+$('rateYes').onclick=()=>rate(true);$('rateNo').onclick=()=>rate(false);
+function rate(honest){
+if(busy||phase!=='answer')return;
+const a=1-turn;score[a][1]++;if(honest)score[a][0]++;done++;
+if(done>=TOTAL)endMatch();else advance(true);
+}
+
+/* fim da partida: placar de sinceridade */
+function endMatch(){
+stopTimer();busy=true;const w=t();
+$('endTitle').textContent=w.endTitle;$('endSub').textContent=w.endSub(TOTAL);
+const box=$('scores');box.innerHTML='';
+score.forEach((s,i)=>{const d=document.createElement('div');d.className='score';const e=document.createElement('em'),b=document.createElement('b'),sp=document.createElement('span');e.textContent=names[i];b.textContent=s[0]+'/'+s[1];sp.textContent=w.honestCount;d.append(e,b,sp);box.append(d)});
+const [s0,s1]=score;$('winner').textContent=s0[0]===s1[0]?w.tie:w.best+' '+names[s0[0]>s1[0]?0:1];
+$('againBtn').textContent=w.again;$('endHome').textContent=w.home;
+const spin=turn===1&&mode==='face';
+if(spin){rot+=180;app.style.transform=`rotate(${rot}deg)`}
+setTimeout(()=>{resetRotation();app.classList.add('ended');busy=false},spin?650:0);
+}
 
 $('heart').onclick=()=>{const id=deck[index].id;favorites=favorites.includes(id)?favorites.filter(x=>x!==id):[...favorites,id];store.set('nm-favorites',JSON.stringify(favorites));render()};
+$('more').onclick=()=>{if(busy||phase==='answer')return;openSheet('actions')};
 
-/* abre uma carta guardada/vista sem trocar a vez */
+/* descartar: a carta sai do baralho até o fim desta partida e não conta nas 20 */
+function discard(){if(busy)return;excluded.add(deck[index].id);closeSheet();advance(false)}
+
+/* abre uma carta guardada/vista sem contar na partida */
 function showCard(id){
-if(!deck.some(c=>c.id===id)){level='ALL';deck=all.slice();document.querySelectorAll('#levels button').forEach(b=>b.classList.toggle('active',b.dataset.level==='ALL'));used=new Set();trail=[];ptr=0}
-index=deck.findIndex(c=>c.id===id);trail=trail.slice(0,ptr+1);trail.push(index);ptr=trail.length-1;render();
+stopTimer();phase='read';
+if(!deck.some(c=>c.id===id)){level='ALL';deck=all.slice();document.querySelectorAll('#levels button').forEach(b=>b.classList.toggle('active',b.dataset.level==='ALL'));used=new Set()}
+index=deck.findIndex(c=>c.id===id);render();
 }
 
 function openSheet(type){
-const ids=type==='favorites'?[...favorites].reverse():history,items=ids.map(id=>all.find(c=>c.id===id)).filter(Boolean),list=$('sheetList');
-$('sheetTitle').textContent=type==='favorites'?t().favorites:t().recent;list.innerHTML='';
-if(!items.length){const e=document.createElement('div');e.className='empty';e.textContent=type==='favorites'?t().emptyFav:t().emptyHist;list.append(e)}
-else{const g=document.createElement('div');g.className='group';items.forEach(c=>{const b=document.createElement('button');b.className='entry';const s=document.createElement('small');s.textContent=levelName(c.level)+(c.wildcard?' · '+t().wild:'');b.append(s,document.createTextNode(textOf(c)));b.onclick=()=>{closeSheet();showCard(c.id)};g.append(b)});list.append(g)}
+const w=t(),list=$('sheetList');list.innerHTML='';const g=document.createElement('div');g.className='group';
+if(type==='actions'){
+$('sheetTitle').textContent=w.cardActions;
+[w.answered,w.skip].forEach(label=>{const b=document.createElement('button');b.className='entry';b.append(document.createTextNode(label));const s=document.createElement('small');s.className='sub';s.textContent=w.actionNote;b.append(s);b.onclick=discard;g.append(b)});
+list.append(g);
+}else{
+const ids=type==='favorites'?[...favorites].reverse():history,items=ids.map(id=>all.find(c=>c.id===id)).filter(Boolean);
+$('sheetTitle').textContent=type==='favorites'?w.favorites:w.recent;
+if(!items.length){const e=document.createElement('div');e.className='empty';e.textContent=type==='favorites'?w.emptyFav:w.emptyHist;list.append(e)}
+else{items.forEach(c=>{const b=document.createElement('button');b.className='entry';const s=document.createElement('small');s.textContent=levelName(c.level)+(c.wildcard?' · '+w.wild:'');b.append(s,document.createTextNode(textOf(c)));b.onclick=()=>{closeSheet();showCard(c.id)};g.append(b)});list.append(g)}
+}
 list.scrollTop=0;$('sheet').classList.add('show');$('scrim').classList.add('show');
 }
 function closeSheet(){$('sheet').classList.remove('show');$('scrim').classList.remove('show')}
 $('favoritesBtn').onclick=()=>openSheet('favorites');$('historyBtn').onclick=()=>openSheet('history');$('sheetClose').onclick=closeSheet;$('scrim').onclick=closeSheet;
 
-/* swipe: com a tela virada, os lados da tela se invertem */
-let startX=0;const side=()=>Math.abs(Math.round(rot/180))%2===1?-1:1;
-card.addEventListener('touchstart',e=>startX=e.changedTouches[0].clientX,{passive:true});
-card.addEventListener('touchend',e=>{const dx=(e.changedTouches[0].clientX-startX)*side();if(Math.abs(dx)>55)move(dx<0?1:-1)},{passive:true});
-card.addEventListener('mousedown',e=>startX=e.clientX);
-card.addEventListener('mouseup',e=>{const dx=(e.clientX-startX)*side();if(Math.abs(dx)>70)move(dx<0?1:-1)});
-
-if('serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
+if('serviceWorker'in navigator){const had=!!navigator.serviceWorker.controller;let reloaded=false;
+navigator.serviceWorker.addEventListener('controllerchange',()=>{if(had&&!reloaded){reloaded=true;location.reload()}});
+window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').then(r=>r.update()).catch(()=>{}))}
 init();
 </script></body></html>
