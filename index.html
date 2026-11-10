@@ -83,6 +83,8 @@ svg{display:block}.ic{fill:none;stroke:currentColor;stroke-width:2;stroke-lineca
 .alertbox h3{margin:0;padding:20px 18px 6px;font-size:17px}.alertbox p{margin:0;padding:0 18px 18px;font-size:14px;line-height:1.35;color:#6b5a56}
 .alertbtns button{display:block;width:100%;border:0;border-top:1px solid #e1d8bd;background:transparent;padding:15px 8px;font-size:17px;font-weight:700;color:var(--red-dark)}.alertbtns .danger{font-weight:500;color:#d11a2a}.alertbtns button:active{background:#0000000d}
 #ctlRate .cta{font-size:16px;line-height:1.15;padding:14px 10px}
+.ver{margin:0;font-size:11px;letter-spacing:.06em;color:#efe4b080;text-align:center}
+#ctlWild{display:none}.app[data-card=wild][data-phase=answer] #ctlRate{display:none}.app[data-card=wild][data-phase=answer] #ctlWild{display:flex}
 @media(max-height:700px){.mark{width:250px}.turn b{font-size:34px}.question{font-size:22px}}
 @media(prefers-reduced-motion:reduce){.app,.sheet,.scrim,.alertwrap,.alertbox{transition:none}.timer.over b{animation:none}.cupidwrap{animation:none}}
 </style></head><body>
@@ -100,6 +102,7 @@ svg{display:block}.ic{fill:none;stroke:currentColor;stroke-width:2;stroke-lineca
 <div class="seg" id="modeSeg"><button data-m="face" class="active">Olho no olho</button><button data-m="side">Lado a lado</button></div>
 <p class="hint" id="hintText">Celular sobre a mesa, entre vocês. A tela vira a cada turno.</p>
 <button class="cta" id="playBtn">Jogar</button></div>
+<p class="ver" id="ver"></p>
 </section>
 
 <section id="game">
@@ -114,6 +117,7 @@ svg{display:block}.ic{fill:none;stroke:currentColor;stroke-width:2;stroke-lineca
 <div class="slot"><div class="progress" id="progress"></div><div class="timer" id="timer"><b id="timeText">1:00</b><span class="bar"><i id="timeBar"></i></span></div></div>
 <div class="controls" id="ctlRead"><button class="cta" id="readDone"></button><button class="cta ghost" id="noTimer"></button></div>
 <div class="controls" id="ctlThink"><button class="cta" id="answerStart"></button></div>
+<div class="controls" id="ctlWild"><button class="cta" id="wildDone"></button></div>
 <div class="controls" id="ctlRate"><button class="cta" id="rateYes"></button><button class="cta ghost" id="rateNo"></button></div>
 <div class="tabbar" id="tabbar"><button id="favoritesBtn"><svg class="ic" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg><span id="favLabel"></span></button><button id="historyBtn"><svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span id="histLabel"></span></button></div>
 </section>
@@ -130,6 +134,7 @@ svg{display:block}.ic{fill:none;stroke:currentColor;stroke-width:2;stroke-lineca
 </div>
 
 <script>
+const VERSION='v4 · 10 nov 2026';
 const TOTAL=20,LIMIT=60;
 const mem={};const store={get(k){try{return localStorage.getItem(k)}catch(e){return k in mem?mem[k]:null}},set(k,v){try{localStorage.setItem(k,v)}catch(e){mem[k]=v}}};
 const load=(k,d)=>{try{const v=JSON.parse(store.get(k));return v==null?d:v}catch(e){return d}};
@@ -143,15 +148,15 @@ window.addEventListener('error',e=>showMsg('Erro: '+e.message));
 const words={
 pt:{welcome:'O amor se constrói além da máscara',all:'Todas',levels:['Nível 1','Nível 2','Nível 3'],wild:'Coringa',talk:'Conversa',cardWord:'CARTA ',favorites:'Favoritas',history:'Histórico',recent:'Vistas recentemente',emptyFav:'Toque no coração de uma carta para guardá-la aqui.',emptyHist:'As cartas que você ver aparecem aqui.',change:'EN',player:'Jogador',nameField:'Nome',play:'Jogar',home:'Início',done:'OK',modeTitle:'Como vocês vão jogar?',face:'Olho no olho',side:'Lado a lado',hintFace:'Celular sobre a mesa, entre vocês. A tela vira a cada turno.',hintSide:'Um ao lado do outro. A tela fica parada.',
 progress:(n,m)=>`Carta ${n} de ${m}`,turnRead:(a,b)=>`${a} pergunta para ${b}`,turnThink:(a,b)=>`${b}, você tem 1 minuto para começar`,turnRate:(a,b)=>`A resposta de ${b} foi de coração?`,
-readDone:'Terminei de ler',noTimer:'Sem pressão',answerStart:'Começou a responder',rateYes:'Foi de coração',rateNo:'Foi personagem',timeUp:'Tempo!',
+readDone:'Terminei de ler',noTimer:'Sem pressão',answerStart:'Começou a responder',rateYes:'Foi de coração',rateNo:'Foi personagem',wildDone:'Concluído',wildStart:'Concluir desafio',wildDoing:'Desafio em andamento',wildTime:n=>`${n} segundos para o desafio`,timeUp:'Tempo!',
 cardActions:'Esta carta',answered:'Já respondi esta',skip:'Pular esta carta',actionNote:'Sai do baralho até o fim da partida e não conta nas 20.',
 alertTitle:'Voltar ao início?',alertMsg:'A partida atual será perdida.',alertOk:'Voltar ao início',alertCancel:'Continuar jogando',endTitle:'Fim de jogo',endSub:n=>`${n} cartas respondidas`,honestCount:'respostas de coração',best:'Mais de coração:',tie:'Empate perfeito',again:'Jogar de novo'},
 en:{welcome:'Love is built beyond the mask',all:'All',levels:['Level 1','Level 2','Level 3'],wild:'Wildcard',talk:'Conversation',cardWord:'CARD ',favorites:'Favorites',history:'History',recent:'Recently viewed',emptyFav:'Tap the heart on a card to keep it here.',emptyHist:'Cards you see will show up here.',change:'PT',player:'Player',nameField:'Name',play:'Play',home:'Home',done:'Done',modeTitle:'How are you playing?',face:'Face to face',side:'Side by side',hintFace:'Phone on the table between you. The screen flips every turn.',hintSide:'Sitting next to each other. The screen stays still.',
 progress:(n,m)=>`Card ${n} of ${m}`,turnRead:(a,b)=>`${a} asks ${b}`,turnThink:(a,b)=>`${b}, you have a minute to start`,turnRate:(a,b)=>`Was ${b}'s answer from the heart?`,
-readDone:'Done reading',noTimer:'No pressure',answerStart:'Started answering',rateYes:'From the heart',rateNo:'Playing a character',timeUp:"Time's up!",
+readDone:'Done reading',noTimer:'No pressure',answerStart:'Started answering',rateYes:'From the heart',rateNo:'Playing a character',wildDone:'Done',wildStart:'Finish challenge',wildDoing:'Challenge in progress',wildTime:n=>`${n} seconds for the challenge`,timeUp:"Time's up!",
 cardActions:'This card',answered:'Already answered this',skip:'Skip this card',actionNote:"Leaves the deck until the match ends and doesn't count toward the 20.",
 alertTitle:'Back to home?',alertMsg:'The current match will be lost.',alertOk:'Back to home',alertCancel:'Keep playing',endTitle:'Game over',endSub:n=>`${n} cards answered`,honestCount:'answers from the heart',best:'Most from the heart:',tie:'A perfect tie',again:'Play again'}};
-const t=()=>words[lang==='pt'?'pt':'en'],textOf=c=>lang==='pt'?c.text_pt:c.text_en;
+const t=()=>words[lang==='pt'?'pt':'en'],textOf=c=>(lang==='pt'?c.text_pt:c.text_en).replace(/^\s*(CARTA CORINGA|CORINGA|WILDCARD)\s*:\s*/i,'');
 const levelName=v=>v==='LEVEL ONE'?t().levels[0]:v==='LEVEL TWO'?t().levels[1]:t().levels[2];
 
 
@@ -168,12 +173,12 @@ el.animate([{transform:`translate(${a}px,-50%)${f} rotate(-3deg)`},{transform:`t
 
 /* textos fixos (início + jogo) no idioma atual */
 function applyLang(){
-const w=t();document.documentElement.lang=lang==='pt'?'pt-BR':'en';
+const w=t();$('ver').textContent='unmask '+VERSION;document.documentElement.lang=lang==='pt'?'pt-BR':'en';
 $('welcomeText').textContent=w.welcome;applyMode();$('playBtn').textContent=w.play;
 $('lab1').textContent=w.player+' 1';$('lab2').textContent=w.player+' 2';$('name1').placeholder=w.nameField;$('name2').placeholder=w.nameField;
 document.querySelectorAll('#langSeg button').forEach(b=>b.classList.toggle('active',b.dataset.l===lang));
 $('langBtn').textContent=w.change;$('homeLabel').textContent=w.home;
-$('readDone').textContent=w.readDone;$('noTimer').textContent=w.noTimer;$('answerStart').textContent=w.answerStart;$('rateYes').textContent=w.rateYes;$('rateNo').textContent=w.rateNo;
+$('readDone').textContent=w.readDone;$('noTimer').textContent=w.noTimer;$('answerStart').textContent=w.answerStart;$('rateYes').textContent=w.rateYes;$('rateNo').textContent=w.rateNo;$('wildDone').textContent=w.wildDone;
 $('favLabel').textContent=w.favorites;$('histLabel').textContent=w.history;$('sheetClose').textContent=w.done;
 }
 function applyMode(){const w=t();$('modeTitle').textContent=w.modeTitle;document.querySelectorAll('#modeSeg button').forEach(b=>{b.textContent=w[b.dataset.m];b.classList.toggle('active',b.dataset.m===mode)});$('hintText').textContent=mode==='face'?w.hintFace:w.hintSide}
@@ -273,12 +278,13 @@ return pool.length?pool[Math.floor(Math.random()*pool.length)]:null;
 
 function render(){
 if(!deck.length)return;const c=deck[index],w=t(),n=String(all.findIndex(x=>x.id===c.id)+1).padStart(3,'0'),fav=favorites.includes(c.id);
-used.add(index);app.dataset.phase=phase;
+used.add(index);app.dataset.phase=phase;app.dataset.card=c.wildcard?'wild':'q';
+$('answerStart').textContent=c.wildcard?w.wildStart:w.answerStart;const cs=c.wildcard?cardSeconds(c):null;
 $('question').textContent=textOf(c);$('question').classList.toggle('wild',!!c.wildcard);
 $('cardLevel').textContent=levelName(c.level);$('cardType').textContent=c.wildcard?w.wild:w.talk;$('cardNum').textContent=w.cardWord+n;
 $('heart').classList.toggle('on',fav);$('heart').setAttribute('aria-label',fav?'Remover das favoritas':'Favoritar');
 $('progress').textContent=w.progress(done+1,TOTAL);
-if(names){const a=names[turn],b=names[1-turn];$('turnName').textContent=a;$('turnSub').textContent=phase==='read'?w.turnRead(a,b):phase==='think'?w.turnThink(a,b):w.turnRate(a,b)}
+if(names){const a=names[turn],b=names[1-turn];$('turnName').textContent=a;$('turnSub').textContent=phase==='read'?w.turnRead(a,b):phase==='think'?(cs?w.wildTime(cs):w.turnThink(a,b)):(c.wildcard?w.wildDoing:w.turnRate(a,b))}
 history.unshift(c.id);history=[...new Set(history)].slice(0,100);store.set('nm-history',JSON.stringify(history));
 }
 
@@ -301,19 +307,24 @@ card.animate([{transform:'translateX(0) rotate(0deg)',opacity:1},{transform:'tra
 }
 
 /* timer de 1 minuto, ativado por quem leu a pergunta */
-function startTimer(){stopTimer();timerEnd=Date.now()+LIMIT*1000;$('timer').classList.remove('over');tick();timerId=setInterval(tick,200)}
+let timerLimit=LIMIT;
+function cardSeconds(c){const m=(lang==='pt'?c.text_pt:c.text_en).match(/(\d+)\s*(sec|seg|min)/i);return m?(/min/i.test(m[2])?m[1]*60:+m[1]):null}
+function startTimer(sec){stopTimer();timerLimit=sec||LIMIT;timerEnd=Date.now()+timerLimit*1000;$('timer').classList.remove('over');tick();timerId=setInterval(tick,200)}
 function stopTimer(){if(timerId){clearInterval(timerId);timerId=null}}
 function tick(){
 const left=Math.max(0,timerEnd-Date.now()),s=Math.ceil(left/1000);
 $('timeText').textContent=left===0?t().timeUp:Math.floor(s/60)+':'+String(s%60).padStart(2,'0');
-$('timeBar').style.width=(left/(LIMIT*1000)*100)+'%';
+$('timeBar').style.width=(left/(timerLimit*1000)*100)+'%';
 if(left===0){$('timer').classList.add('over');stopTimer()}
 }
 
 /* fluxo de cada turno: ler → (timer) → responder → avaliar */
-$('readDone').onclick=()=>{if(busy)return;phase='think';startTimer();render()};
+$('readDone').onclick=()=>{if(busy)return;phase='think';const c=deck[index];startTimer(c.wildcard?cardSeconds(c):null);render()};
 $('noTimer').onclick=()=>{if(busy)return;phase='answer';render()};
-$('answerStart').onclick=()=>{if(busy)return;stopTimer();phase='answer';render()};
+$('answerStart').onclick=()=>{if(busy)return;stopTimer();if(deck[index].wildcard){finishWild();return}phase='answer';render()};
+$('wildDone').onclick=finishWild;
+/* desafio (coringa): conta como carta jogada, mas não entra no placar */
+function finishWild(){if(busy)return;done++;if(done>=TOTAL)endMatch();else advance(true)}
 $('rateYes').onclick=()=>rate(true);$('rateNo').onclick=()=>rate(false);
 function rate(honest){
 if(busy||phase!=='answer')return;
