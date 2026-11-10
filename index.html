@@ -65,7 +65,7 @@ svg{display:block}.ic{fill:none;stroke:currentColor;stroke-width:2;stroke-lineca
 .sheetlist .group{border-radius:12px}.entry{display:block;width:100%;text-align:left;background:var(--paper);border:0;color:var(--ink);padding:13px 16px;font-size:16px;line-height:1.35}.entry+.entry{border-top:1px solid #e5e5ea}.entry small{display:block;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--red-dark);margin-bottom:3px}
 .empty{color:var(--gray);text-align:center;padding:28px 12px;font-size:15px}
 
-.controls{display:none;gap:10px}.controls .cta{flex:1}.cta.ghost{background:#ffffff33;color:#fff}#ctlRead .ghost{flex:0 0 40%}
+.controls{display:none;gap:10px}.controls .cta{flex:1}.cta.ghost{background:#ffffff33;color:#fff}
 .app[data-phase=read] #ctlRead,.app[data-phase=think] #ctlThink,.app[data-phase=answer] #ctlRate{display:flex}
 .tools{display:flex;gap:8px}.tools .heart{margin:0}.dots circle{fill:currentColor;stroke:none}.app[data-phase=answer] #more{opacity:.3;pointer-events:none}
 .slot{min-height:46px;display:grid;place-items:center}.timer{display:none;width:100%;text-align:center}
@@ -85,6 +85,10 @@ svg{display:block}.ic{fill:none;stroke:currentColor;stroke-width:2;stroke-lineca
 #ctlRate .cta{font-size:16px;line-height:1.15;padding:14px 10px}
 .ver{margin:0;font-size:11px;letter-spacing:.06em;color:#efe4b080;text-align:center}
 #ctlWild{display:none}.app[data-card=wild][data-phase=answer] #ctlRate{display:none}.app[data-card=wild][data-phase=answer] #ctlWild{display:flex}
+.linkbtn{background:none;border:0;color:var(--cream);font-size:15px;font-weight:600;text-decoration:underline;text-underline-offset:3px;padding:8px}
+.navright{display:flex;gap:8px}#howBtn2{width:34px;padding:7px 0;text-align:center}
+.sheet.tall{max-height:88%}.sheetfoot{display:none;padding:8px 16px calc(env(safe-area-inset-bottom) + 14px)}.sheet.cta-on .sheetfoot{display:block}.sheetfoot .cta{width:100%;background:var(--red);color:var(--cream)}
+.howintro{margin:0 4px 12px;font-size:15px;line-height:1.4;color:#6b5a56}.step{padding:13px 16px;background:var(--paper)}.step+.step{border-top:1px solid #e1d8bd}.step b{display:block;font-size:16px;margin-bottom:3px;color:var(--ink)}.step span{font-size:14px;line-height:1.4;color:#6b5a56}
 @media(max-height:700px){.mark{width:250px}.turn b{font-size:34px}.question{font-size:22px}}
 @media(prefers-reduced-motion:reduce){.app,.sheet,.scrim,.alertwrap,.alertbox{transition:none}.timer.over b{animation:none}.cupidwrap{animation:none}}
 </style></head><body>
@@ -101,12 +105,15 @@ svg{display:block}.ic{fill:none;stroke:currentColor;stroke-width:2;stroke-lineca
 <p class="hint" id="modeTitle">Como vocês vão jogar?</p>
 <div class="seg" id="modeSeg"><button data-m="face" class="active">Olho no olho</button><button data-m="side">Lado a lado</button></div>
 <p class="hint" id="hintText">Celular sobre a mesa, entre vocês. A tela vira a cada turno.</p>
-<button class="cta" id="playBtn">Jogar</button></div>
+<p class="hint" id="timerTitle"></p>
+<div class="seg" id="timerSeg"><button data-t="off" class="active"></button><button data-t="on"></button></div>
+<p class="hint" id="timerHint"></p>
+<button class="cta" id="playBtn">Jogar</button><button class="linkbtn" id="howBtn"></button></div>
 <p class="ver" id="ver"></p>
 </section>
 
 <section id="game">
-<div class="navbar"><button class="navbtn" id="homeBtn"><svg class="ic" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg><span id="homeLabel"></span></button><button class="pill" id="langBtn"></button></div>
+<div class="navbar"><button class="navbtn" id="homeBtn"><svg class="ic" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg><span id="homeLabel"></span></button><div class="navright"><button class="pill" id="howBtn2">?</button><button class="pill" id="langBtn"></button></div></div>
 <nav class="seg" id="levels"></nav>
 <div class="turn" aria-live="polite"><b id="turnName"></b><span id="turnSub"></span></div>
 <div class="card" id="card">
@@ -115,7 +122,7 @@ svg{display:block}.ic{fill:none;stroke:currentColor;stroke-width:2;stroke-lineca
 <div class="cardbottom"><span id="cardType"></span><span id="cardNum"></span></div>
 </div>
 <div class="slot"><div class="progress" id="progress"></div><div class="timer" id="timer"><b id="timeText">1:00</b><span class="bar"><i id="timeBar"></i></span></div></div>
-<div class="controls" id="ctlRead"><button class="cta" id="readDone"></button><button class="cta ghost" id="noTimer"></button></div>
+<div class="controls" id="ctlRead"><button class="cta" id="readDone"></button></div>
 <div class="controls" id="ctlThink"><button class="cta" id="answerStart"></button></div>
 <div class="controls" id="ctlWild"><button class="cta" id="wildDone"></button></div>
 <div class="controls" id="ctlRate"><button class="cta" id="rateYes"></button><button class="cta ghost" id="rateNo"></button></div>
@@ -130,30 +137,30 @@ svg{display:block}.ic{fill:none;stroke:currentColor;stroke-width:2;stroke-lineca
 
 <div class="scrim" id="scrim"></div>
 <div class="alertwrap" id="alert" role="alertdialog" aria-modal="true" aria-labelledby="alertTitle" aria-describedby="alertMsg"><div class="alertbox"><h3 id="alertTitle"></h3><p id="alertMsg"></p><div class="alertbtns"><button class="danger" id="alertOk"></button><button id="alertCancel"></button></div></div></div>
-<aside class="sheet" id="sheet" role="dialog" aria-modal="true"><div class="grab"></div><div class="sheethead"><h2 id="sheetTitle"></h2><button id="sheetClose"></button></div><div class="sheetlist" id="sheetList"></div></aside>
+<aside class="sheet" id="sheet" role="dialog" aria-modal="true"><div class="grab"></div><div class="sheethead"><h2 id="sheetTitle"></h2><button id="sheetClose"></button></div><div class="sheetlist" id="sheetList"></div><div class="sheetfoot"><button class="cta" id="howtoGo"></button></div></aside>
 </div>
 
 <script>
-const VERSION='v4 · 10 nov 2026';
+const VERSION='v6 · 10 nov 2026';
 const TOTAL=20,LIMIT=60;
 const mem={};const store={get(k){try{return localStorage.getItem(k)}catch(e){return k in mem?mem[k]:null}},set(k,v){try{localStorage.setItem(k,v)}catch(e){mem[k]=v}}};
 const load=(k,d)=>{try{const v=JSON.parse(store.get(k));return v==null?d:v}catch(e){return d}};
-let all=[],deck=[],index=0,used=new Set(),excluded=new Set(),level='ALL',busy=false,turn=0,rot=0,mode='face',names=null,phase='read',done=0,score=[[0,0],[0,0]],timerId=null,timerEnd=0,
+let all=[],deck=[],index=0,used=new Set(),excluded=new Set(),level='ALL',busy=false,turn=0,rot=0,mode='face',timerOn=false,names=null,phase='read',done=0,score=[[0,0],[0,0]],timerId=null,timerEnd=0,
 lang=store.get('nm-language')||((navigator.language||'').toLowerCase().startsWith('pt')?'pt':'en'),
 history=load('nm-history',[]),favorites=load('nm-favorites',[]);
-names=load('nm-names',null);mode=store.get('nm-mode')==='side'?'side':'face';
+names=load('nm-names',null);mode=store.get('nm-mode')==='side'?'side':'face';timerOn=store.get('nm-timer')==='on';
 const $=id=>document.getElementById(id),app=$('app'),card=$('card');
 function showMsg(m){let b=$('msg');if(!b){b=document.createElement('p');b.id='msg';b.style.cssText='background:#fff;color:#d90d20;border-radius:10px;padding:10px 12px;font-size:13px;margin:0;width:100%';$('welcome').append(b)}b.textContent=m}
 window.addEventListener('error',e=>showMsg('Erro: '+e.message));
 const words={
 pt:{welcome:'O amor se constrói além da máscara',all:'Todas',levels:['Nível 1','Nível 2','Nível 3'],wild:'Coringa',talk:'Conversa',cardWord:'CARTA ',favorites:'Favoritas',history:'Histórico',recent:'Vistas recentemente',emptyFav:'Toque no coração de uma carta para guardá-la aqui.',emptyHist:'As cartas que você ver aparecem aqui.',change:'EN',player:'Jogador',nameField:'Nome',play:'Jogar',home:'Início',done:'OK',modeTitle:'Como vocês vão jogar?',face:'Olho no olho',side:'Lado a lado',hintFace:'Celular sobre a mesa, entre vocês. A tela vira a cada turno.',hintSide:'Um ao lado do outro. A tela fica parada.',
 progress:(n,m)=>`Carta ${n} de ${m}`,turnRead:(a,b)=>`${a} pergunta para ${b}`,turnThink:(a,b)=>`${b}, você tem 1 minuto para começar`,turnRate:(a,b)=>`A resposta de ${b} foi de coração?`,
-readDone:'Terminei de ler',noTimer:'Sem pressão',answerStart:'Começou a responder',rateYes:'Foi de coração',rateNo:'Foi personagem',wildDone:'Concluído',wildStart:'Concluir desafio',wildDoing:'Desafio em andamento',wildTime:n=>`${n} segundos para o desafio`,timeUp:'Tempo!',
+readDone:'Abre o seu coração',wildGo:'Começar desafio',timerTitle:'Tempo para responder',tOff:'Sem pressão',tOn:'Com timer',hintTOff:'Cada um responde no seu tempo.',hintTOn:'Depois da pergunta, a outra pessoa tem 1 minuto para começar a responder.',noTimer:'Sem pressão',answerStart:'Começou a responder',rateYes:'Foi de coração',rateNo:'Foi personagem',wildDone:'Concluído',"howLink": "Como jogar", "howTitle": "Como jogar", "howGo": "Entendi, vamos jogar", "howIntro": "unmask é um jogo de conversa para duas pessoas se conhecerem melhor. Não existem respostas certas ou erradas, só respostas de verdade.", "howSteps": [["Quem pergunta lê a carta", "O nome grande no topo mostra de quem é a vez de perguntar. Leia a pergunta em voz alta para a outra pessoa. A vez alterna a cada carta."], ["Abre o seu coração", "Quando terminar de ler, toque em \"Abre o seu coração\". É o sinal de que agora é a vez da outra pessoa responder."], ["Sem pressão ou com timer", "Na tela inicial vocês escolhem. \"Sem pressão\": cada um responde no seu tempo. \"Com timer\": a outra pessoa tem 1 minuto para começar a responder, e quem perguntou toca em \"Começou a responder\" para parar o relógio."], ["Foi de coração ou foi personagem?", "Depois da resposta, quem perguntou diz o que sentiu. \"Foi de coração\": soou sincero, sem filtro. \"Foi personagem\": soou ensaiado, para agradar ou se proteger. É só a sua impressão, e vale conversar sobre ela."], ["Coringas e cartas que você não curtiu", "Coringas são desafios para fazer juntos; toque em \"Concluído\" no fim, e eles não entram no placar. Nos três pontinhos de qualquer carta você pode escolher \"Já respondi\" ou \"Pular\": ela some até o fim da partida."], ["Placar e modos", "Depois de 20 cartas, o jogo mostra quantas respostas de cada um foram de coração. Não é competição, é um espelho. No modo \"Olho no olho\" a tela vira a cada turno; em \"Lado a lado\" ela fica parada."]],wildStart:'Concluir desafio',wildDoing:'Desafio em andamento',wildTime:n=>`${n} segundos para o desafio`,timeUp:'Tempo!',
 cardActions:'Esta carta',answered:'Já respondi esta',skip:'Pular esta carta',actionNote:'Sai do baralho até o fim da partida e não conta nas 20.',
 alertTitle:'Voltar ao início?',alertMsg:'A partida atual será perdida.',alertOk:'Voltar ao início',alertCancel:'Continuar jogando',endTitle:'Fim de jogo',endSub:n=>`${n} cartas respondidas`,honestCount:'respostas de coração',best:'Mais de coração:',tie:'Empate perfeito',again:'Jogar de novo'},
 en:{welcome:'Love is built beyond the mask',all:'All',levels:['Level 1','Level 2','Level 3'],wild:'Wildcard',talk:'Conversation',cardWord:'CARD ',favorites:'Favorites',history:'History',recent:'Recently viewed',emptyFav:'Tap the heart on a card to keep it here.',emptyHist:'Cards you see will show up here.',change:'PT',player:'Player',nameField:'Name',play:'Play',home:'Home',done:'Done',modeTitle:'How are you playing?',face:'Face to face',side:'Side by side',hintFace:'Phone on the table between you. The screen flips every turn.',hintSide:'Sitting next to each other. The screen stays still.',
 progress:(n,m)=>`Card ${n} of ${m}`,turnRead:(a,b)=>`${a} asks ${b}`,turnThink:(a,b)=>`${b}, you have a minute to start`,turnRate:(a,b)=>`Was ${b}'s answer from the heart?`,
-readDone:'Done reading',noTimer:'No pressure',answerStart:'Started answering',rateYes:'From the heart',rateNo:'Playing a character',wildDone:'Done',wildStart:'Finish challenge',wildDoing:'Challenge in progress',wildTime:n=>`${n} seconds for the challenge`,timeUp:"Time's up!",
+readDone:'Open your heart',wildGo:'Start challenge',timerTitle:'Time to answer',tOff:'No pressure',tOn:'With timer',hintTOff:'Everyone answers at their own pace.',hintTOn:'After the question, the other person has 1 minute to start answering.',noTimer:'No pressure',answerStart:'Started answering',rateYes:'From the heart',rateNo:'Playing a character',wildDone:'Done',"howLink": "How to play", "howTitle": "How to play", "howGo": "Got it, let's play", "howIntro": "unmask is a conversation game for two people to get to know each other better. There are no right or wrong answers, only honest ones.", "howSteps": [["The asker reads the card", "The big name at the top shows whose turn it is to ask. Read the question out loud to the other person. The turn switches with every card."], ["Open your heart", "When you finish reading, tap \"Open your heart\". It is the signal that it is now the other person's turn to answer."], ["No pressure or with a timer", "You choose on the start screen. \"No pressure\": everyone answers at their own pace. \"With timer\": the other person has 1 minute to start answering, and the asker taps \"Started answering\" to stop the clock."], ["From the heart or playing a character?", "After the answer, the asker says what they felt. \"From the heart\": it sounded honest, unfiltered. \"Playing a character\": it sounded rehearsed, to please or to protect. It is only your impression, and worth talking about."], ["Wildcards and cards you did not like", "Wildcards are challenges to do together; tap \"Done\" at the end, and they do not count toward the score. In the three dots on any card you can pick \"Already answered this\" or \"Skip\": it leaves the deck until the match ends."], ["Score and modes", "After 20 cards the game shows how many of each person's answers were from the heart. It is not a competition, it is a mirror. In \"Face to face\" mode the screen flips every turn; in \"Side by side\" it stays still."]],wildStart:'Finish challenge',wildDoing:'Challenge in progress',wildTime:n=>`${n} seconds for the challenge`,timeUp:"Time's up!",
 cardActions:'This card',answered:'Already answered this',skip:'Skip this card',actionNote:"Leaves the deck until the match ends and doesn't count toward the 20.",
 alertTitle:'Back to home?',alertMsg:'The current match will be lost.',alertOk:'Back to home',alertCancel:'Keep playing',endTitle:'Game over',endSub:n=>`${n} cards answered`,honestCount:'answers from the heart',best:'Most from the heart:',tie:'A perfect tie',again:'Play again'}};
 const t=()=>words[lang==='pt'?'pt':'en'],textOf=c=>(lang==='pt'?c.text_pt:c.text_en).replace(/^\s*(CARTA CORINGA|CORINGA|WILDCARD)\s*:\s*/i,'');
@@ -178,10 +185,10 @@ $('welcomeText').textContent=w.welcome;applyMode();$('playBtn').textContent=w.pl
 $('lab1').textContent=w.player+' 1';$('lab2').textContent=w.player+' 2';$('name1').placeholder=w.nameField;$('name2').placeholder=w.nameField;
 document.querySelectorAll('#langSeg button').forEach(b=>b.classList.toggle('active',b.dataset.l===lang));
 $('langBtn').textContent=w.change;$('homeLabel').textContent=w.home;
-$('readDone').textContent=w.readDone;$('noTimer').textContent=w.noTimer;$('answerStart').textContent=w.answerStart;$('rateYes').textContent=w.rateYes;$('rateNo').textContent=w.rateNo;$('wildDone').textContent=w.wildDone;
-$('favLabel').textContent=w.favorites;$('histLabel').textContent=w.history;$('sheetClose').textContent=w.done;
+$('readDone').textContent=w.readDone;$('answerStart').textContent=w.answerStart;$('rateYes').textContent=w.rateYes;$('rateNo').textContent=w.rateNo;$('wildDone').textContent=w.wildDone;
+$('howBtn').textContent=w.howLink;$('howBtn2').setAttribute('aria-label',w.howLink);$('favLabel').textContent=w.favorites;$('histLabel').textContent=w.history;$('sheetClose').textContent=w.done;
 }
-function applyMode(){const w=t();$('modeTitle').textContent=w.modeTitle;document.querySelectorAll('#modeSeg button').forEach(b=>{b.textContent=w[b.dataset.m];b.classList.toggle('active',b.dataset.m===mode)});$('hintText').textContent=mode==='face'?w.hintFace:w.hintSide}
+function applyMode(){const w=t();$('timerTitle').textContent=w.timerTitle;document.querySelectorAll('#timerSeg button').forEach(b=>{b.textContent=b.dataset.t==='on'?w.tOn:w.tOff;b.classList.toggle('active',(b.dataset.t==='on')===timerOn)});$('timerHint').textContent=timerOn?w.hintTOn:w.hintTOff;$('modeTitle').textContent=w.modeTitle;document.querySelectorAll('#modeSeg button').forEach(b=>{b.textContent=w[b.dataset.m];b.classList.toggle('active',b.dataset.m===mode)});$('hintText').textContent=mode==='face'?w.hintFace:w.hintSide}
 function setLang(l){lang=l;store.set('nm-language',lang);applyLang();if(deck.length){buildLevels();render()}}
 
 async function init(){
@@ -189,7 +196,9 @@ if(names){$('name1').value=names[0];$('name2').value=names[1]}
 applyLang();
 document.querySelectorAll('#langSeg button').forEach(b=>b.onclick=()=>setLang(b.dataset.l));
 document.querySelectorAll('#modeSeg button').forEach(b=>b.onclick=()=>{mode=b.dataset.m;store.set('nm-mode',mode);applyMode()});
+document.querySelectorAll('#timerSeg button').forEach(b=>b.onclick=()=>{timerOn=b.dataset.t==='on';store.set('nm-timer',timerOn?'on':'off');applyMode()});
 $('langBtn').onclick=()=>setLang(lang==='pt'?'en':'pt');
+$('howBtn').onclick=()=>openHowTo(false);$('howBtn2').onclick=()=>openHowTo(false);$('howtoGo').onclick=()=>{closeSheet();begin()};
 $('playBtn').onclick=begin;$('homeBtn').onclick=askHome;$('againBtn').onclick=()=>startMatch();$('endHome').onclick=goHome;
 $('name1').onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();$('name2').focus()}};$('name2').onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();begin()}};
 try{all=await(await fetch('cards.json')).json()}catch(e){showMsg('Não consegui carregar as cartas (cards.json). Verifique a conexão e recarregue.')}
@@ -200,6 +209,7 @@ function resetRotation(){turn=0;rot=0;app.classList.add('notrans');app.style.tra
 let intro=false;
 function begin(){
 if(intro)return;
+if(!store.get('nm-howto')){store.set('nm-howto','1');openHowTo(true);return}
 if(!all.length){showMsg('As cartas ainda não carregaram. Aguarde um instante e toque em Jogar de novo.');return}
 const p=t().player;names=[$('name1').value.trim()||p+' 1',$('name2').value.trim()||p+' 2'];
 store.set('nm-names',JSON.stringify(names));
@@ -279,7 +289,7 @@ return pool.length?pool[Math.floor(Math.random()*pool.length)]:null;
 function render(){
 if(!deck.length)return;const c=deck[index],w=t(),n=String(all.findIndex(x=>x.id===c.id)+1).padStart(3,'0'),fav=favorites.includes(c.id);
 used.add(index);app.dataset.phase=phase;app.dataset.card=c.wildcard?'wild':'q';
-$('answerStart').textContent=c.wildcard?w.wildStart:w.answerStart;const cs=c.wildcard?cardSeconds(c):null;
+$('answerStart').textContent=c.wildcard?w.wildStart:w.answerStart;$('readDone').textContent=c.wildcard?w.wildGo:w.readDone;const cs=c.wildcard?cardSeconds(c):null;
 $('question').textContent=textOf(c);$('question').classList.toggle('wild',!!c.wildcard);
 $('cardLevel').textContent=levelName(c.level);$('cardType').textContent=c.wildcard?w.wild:w.talk;$('cardNum').textContent=w.cardWord+n;
 $('heart').classList.toggle('on',fav);$('heart').setAttribute('aria-label',fav?'Remover das favoritas':'Favoritar');
@@ -319,8 +329,7 @@ if(left===0){$('timer').classList.add('over');stopTimer()}
 }
 
 /* fluxo de cada turno: ler → (timer) → responder → avaliar */
-$('readDone').onclick=()=>{if(busy)return;phase='think';const c=deck[index];startTimer(c.wildcard?cardSeconds(c):null);render()};
-$('noTimer').onclick=()=>{if(busy)return;phase='answer';render()};
+$('readDone').onclick=()=>{if(busy)return;const c=deck[index],sec=c.wildcard?cardSeconds(c):null;if(sec||timerOn){phase='think';startTimer(sec)}else phase='answer';render()};
 $('answerStart').onclick=()=>{if(busy)return;stopTimer();if(deck[index].wildcard){finishWild();return}phase='answer';render()};
 $('wildDone').onclick=finishWild;
 /* desafio (coringa): conta como carta jogada, mas não entra no placar */
@@ -372,7 +381,15 @@ else{items.forEach(c=>{const b=document.createElement('button');b.className='ent
 }
 list.scrollTop=0;$('sheet').classList.add('show');$('scrim').classList.add('show');
 }
-function closeSheet(){$('sheet').classList.remove('show');$('scrim').classList.remove('show')}
+function closeSheet(){$('sheet').classList.remove('show','tall','cta-on');$('scrim').classList.remove('show')}
+function openHowTo(first){
+const w=t(),list=$('sheetList');list.innerHTML='';$('sheetTitle').textContent=w.howTitle;
+const intro=document.createElement('p');intro.className='howintro';intro.textContent=w.howIntro;list.append(intro);
+const g=document.createElement('div');g.className='group';
+w.howSteps.forEach(([h,x],i)=>{const d=document.createElement('div'),b=document.createElement('b'),sp=document.createElement('span');d.className='step';b.textContent=(i+1)+'. '+h;sp.textContent=x;d.append(b,sp);g.append(d)});
+list.append(g);list.scrollTop=0;$('howtoGo').textContent=w.howGo;
+$('sheet').classList.toggle('cta-on',!!first);$('sheet').classList.add('tall','show');$('scrim').classList.add('show');
+}
 $('favoritesBtn').onclick=()=>{shoot($('tabbar'),-1,.5,340);openSheet('favorites')};$('historyBtn').onclick=()=>{shoot($('tabbar'),1,.5,340);openSheet('history')};$('sheetClose').onclick=closeSheet;$('scrim').onclick=closeSheet;
 
 if('serviceWorker'in navigator){const had=!!navigator.serviceWorker.controller;let reloaded=false;
