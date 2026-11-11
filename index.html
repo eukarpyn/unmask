@@ -106,6 +106,7 @@ svg{display:block}.ic{fill:none;stroke:currentColor;stroke-width:2;stroke-lineca
 .tctl{flex:1;min-width:0}.tval{font-family:var(--poster);font-size:36px;line-height:1;color:var(--cream)}.tends{display:flex;justify-content:space-between;font-size:11px;color:#ffe4e5aa}
 #tsl{width:100%;margin:12px 0 6px;-webkit-appearance:none;appearance:none;height:8px;border-radius:5px;outline:none;background:linear-gradient(to right,var(--cream) var(--v,27%),#ffffff33 var(--v,27%))}
 #tsl::-webkit-slider-thumb{-webkit-appearance:none;width:28px;height:28px;border-radius:50%;background:var(--cream);border:0;box-shadow:0 2px 8px #0006}#tsl::-moz-range-thumb{width:28px;height:28px;border-radius:50%;background:var(--cream);border:0}
+#levels button{pointer-events:none;font-size:11px;letter-spacing:.02em;padding:9px 2px;white-space:nowrap}#levels .done{opacity:.6}#levels .done::before{content:'✓ '}
 @media(max-height:700px){.mark{width:210px}.turn b{font-size:34px}.question{font-size:22px}}
 @media(prefers-reduced-motion:reduce){.tsw .thumb,.tcopy,.tpanel,#pie,#hand{transition:none}#clock.tick{animation:none}.app,.sheet,.scrim,.alertwrap,.alertbox{transition:none}.timer.over b{animation:none}.cupidwrap{animation:none}}
 </style></head><body>
@@ -171,8 +172,8 @@ svg{display:block}.ic{fill:none;stroke:currentColor;stroke-width:2;stroke-lineca
 </div>
 
 <script>
-const VERSION='v7 · 10 nov 2026';
-const TOTAL=20,LIMIT=60;
+const VERSION='v8 · 10 nov 2026';
+const TOTAL=15,PER=5,LIMIT=60;
 const mem={};const store={get(k){try{return localStorage.getItem(k)}catch(e){return k in mem?mem[k]:null}},set(k,v){try{localStorage.setItem(k,v)}catch(e){mem[k]=v}}};
 const load=(k,d)=>{try{const v=JSON.parse(store.get(k));return v==null?d:v}catch(e){return d}};
 let all=[],deck=[],index=0,used=new Set(),excluded=new Set(),level='ALL',busy=false,turn=0,rot=0,mode='face',timerOn=false,tsec=60,navBusy=false,names=null,phase='read',done=0,score=[[0,0],[0,0]],timerId=null,timerEnd=0,
@@ -183,15 +184,15 @@ const $=id=>document.getElementById(id),app=$('app'),card=$('card');
 function showMsg(m){let b=$('msg');if(!b){b=document.createElement('p');b.id='msg';b.style.cssText='background:#fff;color:#d90d20;border-radius:10px;padding:10px 12px;font-size:13px;margin:0;width:100%';$('welcome').append(b)}b.textContent=m}
 window.addEventListener('error',e=>showMsg('Erro: '+e.message));
 const words={
-pt:{welcome:'O amor se constrói além da máscara',all:'Todas',levels:['Nível 1','Nível 2','Nível 3'],wild:'Coringa',talk:'Conversa',cardWord:'CARTA ',favorites:'Favoritas',history:'Histórico',recent:'Vistas recentemente',emptyFav:'Toque no coração de uma carta para guardá-la aqui.',emptyHist:'As cartas que você ver aparecem aqui.',change:'EN',player:'Jogador',nameField:'Nome',play:'Jogar',home:'Início',done:'OK',modeTitle:'Como vocês vão jogar?',face:'Olho no olho',side:'Lado a lado',hintFace:'Celular sobre a mesa, entre vocês. A tela vira a cada turno.',hintSide:'Um ao lado do outro. A tela fica parada.',
+pt:{welcome:'O amor se constrói além da máscara',all:'Todas',levels:['Nível 1 PERCEPÇÃO','Nível 2 CONEXÃO','Nível 3 REFLEXÃO'],stages:['PERCEPÇÃO','CONEXÃO','REFLEXÃO'],wild:'Coringa',talk:'Conversa',cardWord:'CARTA ',favorites:'Favoritas',history:'Histórico',recent:'Vistas recentemente',emptyFav:'Toque no coração de uma carta para guardá-la aqui.',emptyHist:'As cartas que você ver aparecem aqui.',change:'EN',player:'Jogador',nameField:'Nome',play:'Jogar',home:'Início',done:'OK',modeTitle:'Como vocês vão jogar?',face:'Olho no olho',side:'Lado a lado',hintFace:'Celular sobre a mesa, entre vocês. A tela vira a cada turno.',hintSide:'Um ao lado do outro. A tela fica parada.',
 progress:(n,m)=>`Carta ${n} de ${m}`,turnRead:(a,b)=>`${a} pergunta para ${b}`,turnThink:(a,b,n)=>`${b}, você tem ${tw(n)} para começar`,turnRate:(a,b)=>`A resposta de ${b} foi de coração?`,
-readDone:'Abre o seu coração',wildGo:'Começar desafio',timerTitle:'Tempo para responder',setupBack:'Voltar',startGame:'Começar',tOff:'Sem pressão',tOn:'Com timer',hintTOff:'Cada um responde no seu tempo.',hintTOn:n=>`A outra pessoa tem ${tw(n)} para começar a responder.`,noTimer:'Sem pressão',answerStart:'Começou a responder',rateYes:'Foi de coração',rateNo:'Foi personagem',wildDone:'Concluído',"howLink": "Como jogar", "howTitle": "Como jogar", "howGo": "Entendi, vamos jogar", "howIntro": "unmask é um jogo de conversa para duas pessoas se conhecerem melhor. Não existem respostas certas ou erradas, só respostas de verdade.", "howSteps": [["Quem pergunta lê a carta", "O nome grande no topo mostra de quem é a vez de perguntar. Leia a pergunta em voz alta para a outra pessoa. A vez alterna a cada carta."], ["Abre o seu coração", "Quando terminar de ler, toque em \"Abre o seu coração\". É o sinal de que agora é a vez da outra pessoa responder."], ["Sem pressão ou com timer", "Na tela inicial vocês escolhem. \"Sem pressão\": cada um responde no seu tempo. \"Com timer\": a outra pessoa tem o tempo que vocês escolherem (1 minuto, por padrão) para começar a responder, e quem perguntou toca em \"Começou a responder\" para parar o relógio."], ["Foi de coração ou foi personagem?", "Depois da resposta, quem perguntou diz o que sentiu. \"Foi de coração\": soou sincero, sem filtro. \"Foi personagem\": soou ensaiado, para agradar ou se proteger. É só a sua impressão, e vale conversar sobre ela."], ["Coringas e cartas que você não curtiu", "Coringas são desafios para fazer juntos; toque em \"Concluído\" no fim, e eles não entram no placar. Nos três pontinhos de qualquer carta você pode escolher \"Já respondi\" ou \"Pular\": ela some até o fim da partida."], ["Placar e modos", "Depois de 20 cartas, o jogo mostra quantas respostas de cada um foram de coração. Não é competição, é um espelho. No modo \"Olho no olho\" a tela vira a cada turno; em \"Lado a lado\" ela fica parada."]],wildStart:'Concluir desafio',wildDoing:'Desafio em andamento',wildTime:n=>`${n} segundos para o desafio`,timeUp:'Tempo!',
-cardActions:'Esta carta',answered:'Já respondi esta',skip:'Pular esta carta',actionNote:'Sai do baralho até o fim da partida e não conta nas 20.',
+readDone:'Abre o seu coração',wildGo:'Começar desafio',timerTitle:'Tempo para responder',setupBack:'Voltar',startGame:'Começar',tOff:'Sem pressão',tOn:'Com timer',hintTOff:'Cada um responde no seu tempo.',hintTOn:n=>`A outra pessoa tem ${tw(n)} para começar a responder.`,noTimer:'Sem pressão',answerStart:'Começou a responder',rateYes:'Foi de coração',rateNo:'Foi personagem',wildDone:'Concluído',"howLink": "Como jogar", "howTitle": "Como jogar", "howGo": "Entendi, vamos jogar", "howIntro": "unmask é um jogo de conversa para duas pessoas se conhecerem melhor. Não existem respostas certas ou erradas, só respostas de verdade.", "howSteps": [["Quem pergunta lê a carta", "O nome grande no topo mostra de quem é a vez de perguntar. Leia a pergunta em voz alta para a outra pessoa. A vez alterna a cada carta."], ["Três níveis, 15 cartas", "Cada partida tem 15 cartas em três níveis, 5 de cada: PERCEPÇÃO, CONEXÃO e REFLEXÃO. Vocês começam pelo mais leve e vão aprofundando. O indicador no topo mostra em qual nível vocês estão."], ["Abre o seu coração", "Quando terminar de ler, toque em \"Abre o seu coração\". É o sinal de que agora é a vez da outra pessoa responder."], ["Sem pressão ou com timer", "Na tela inicial vocês escolhem. \"Sem pressão\": cada um responde no seu tempo. \"Com timer\": a outra pessoa tem o tempo que vocês escolherem (1 minuto, por padrão) para começar a responder, e quem perguntou toca em \"Começou a responder\" para parar o relógio."], ["Foi de coração ou foi personagem?", "Depois da resposta, quem perguntou diz o que sentiu. \"Foi de coração\": soou sincero, sem filtro. \"Foi personagem\": soou ensaiado, para agradar ou se proteger. É só a sua impressão, e vale conversar sobre ela."], ["Coringas e cartas que você não curtiu", "Coringas são desafios para fazer juntos; toque em \"Concluído\" no fim, e eles não entram no placar. Nos três pontinhos de qualquer carta você pode escolher \"Já respondi\" ou \"Pular\": ela some até o fim da partida."], ["Placar e modos", "Depois de 15 cartas, o jogo mostra quantas respostas de cada um foram de coração. Não é competição, é um espelho. No modo \"Olho no olho\" a tela vira a cada turno; em \"Lado a lado\" ela fica parada."]],wildStart:'Concluir desafio',wildDoing:'Desafio em andamento',wildTime:n=>`${n} segundos para o desafio`,timeUp:'Tempo!',
+cardActions:'Esta carta',answered:'Já respondi esta',skip:'Pular esta carta',actionNote:'Sai do baralho até o fim da partida e não conta nas 15.',
 alertTitle:'Voltar ao início?',alertMsg:'A partida atual será perdida.',alertOk:'Voltar ao início',alertCancel:'Continuar jogando',endTitle:'Fim de jogo',endSub:n=>`${n} cartas respondidas`,honestCount:'respostas de coração',best:'Mais de coração:',tie:'Empate perfeito',again:'Jogar de novo'},
-en:{welcome:'Love is built beyond the mask',all:'All',levels:['Level 1','Level 2','Level 3'],wild:'Wildcard',talk:'Conversation',cardWord:'CARD ',favorites:'Favorites',history:'History',recent:'Recently viewed',emptyFav:'Tap the heart on a card to keep it here.',emptyHist:'Cards you see will show up here.',change:'PT',player:'Player',nameField:'Name',play:'Play',home:'Home',done:'Done',modeTitle:'How are you playing?',face:'Face to face',side:'Side by side',hintFace:'Phone on the table between you. The screen flips every turn.',hintSide:'Sitting next to each other. The screen stays still.',
+en:{welcome:'Love is built beyond the mask',all:'All',levels:['Level 1 PERCEPTION','Level 2 CONNECTION','Level 3 REFLECTION'],stages:['PERCEPTION','CONNECTION','REFLECTION'],wild:'Wildcard',talk:'Conversation',cardWord:'CARD ',favorites:'Favorites',history:'History',recent:'Recently viewed',emptyFav:'Tap the heart on a card to keep it here.',emptyHist:'Cards you see will show up here.',change:'PT',player:'Player',nameField:'Name',play:'Play',home:'Home',done:'Done',modeTitle:'How are you playing?',face:'Face to face',side:'Side by side',hintFace:'Phone on the table between you. The screen flips every turn.',hintSide:'Sitting next to each other. The screen stays still.',
 progress:(n,m)=>`Card ${n} of ${m}`,turnRead:(a,b)=>`${a} asks ${b}`,turnThink:(a,b,n)=>`${b}, you have ${tw(n)} to start`,turnRate:(a,b)=>`Was ${b}'s answer from the heart?`,
-readDone:'Open your heart',wildGo:'Start challenge',timerTitle:'Time to answer',setupBack:'Back',startGame:'Start',tOff:'No pressure',tOn:'With timer',hintTOff:'Everyone answers at their own pace.',hintTOn:n=>`The other person has ${tw(n)} to start answering.`,noTimer:'No pressure',answerStart:'Started answering',rateYes:'From the heart',rateNo:'Playing a character',wildDone:'Done',"howLink": "How to play", "howTitle": "How to play", "howGo": "Got it, let's play", "howIntro": "unmask is a conversation game for two people to get to know each other better. There are no right or wrong answers, only honest ones.", "howSteps": [["The asker reads the card", "The big name at the top shows whose turn it is to ask. Read the question out loud to the other person. The turn switches with every card."], ["Open your heart", "When you finish reading, tap \"Open your heart\". It is the signal that it is now the other person's turn to answer."], ["No pressure or with a timer", "You choose on the start screen. \"No pressure\": everyone answers at their own pace. \"With timer\": the other person has the time you choose (1 minute by default) to start answering, and the asker taps \"Started answering\" to stop the clock."], ["From the heart or playing a character?", "After the answer, the asker says what they felt. \"From the heart\": it sounded honest, unfiltered. \"Playing a character\": it sounded rehearsed, to please or to protect. It is only your impression, and worth talking about."], ["Wildcards and cards you did not like", "Wildcards are challenges to do together; tap \"Done\" at the end, and they do not count toward the score. In the three dots on any card you can pick \"Already answered this\" or \"Skip\": it leaves the deck until the match ends."], ["Score and modes", "After 20 cards the game shows how many of each person's answers were from the heart. It is not a competition, it is a mirror. In \"Face to face\" mode the screen flips every turn; in \"Side by side\" it stays still."]],wildStart:'Finish challenge',wildDoing:'Challenge in progress',wildTime:n=>`${n} seconds for the challenge`,timeUp:"Time's up!",
-cardActions:'This card',answered:'Already answered this',skip:'Skip this card',actionNote:"Leaves the deck until the match ends and doesn't count toward the 20.",
+readDone:'Open your heart',wildGo:'Start challenge',timerTitle:'Time to answer',setupBack:'Back',startGame:'Start',tOff:'No pressure',tOn:'With timer',hintTOff:'Everyone answers at their own pace.',hintTOn:n=>`The other person has ${tw(n)} to start answering.`,noTimer:'No pressure',answerStart:'Started answering',rateYes:'From the heart',rateNo:'Playing a character',wildDone:'Done',"howLink": "How to play", "howTitle": "How to play", "howGo": "Got it, let's play", "howIntro": "unmask is a conversation game for two people to get to know each other better. There are no right or wrong answers, only honest ones.", "howSteps": [["The asker reads the card", "The big name at the top shows whose turn it is to ask. Read the question out loud to the other person. The turn switches with every card."], ["Three levels, 15 cards", "Each match has 15 cards across three levels, 5 each: PERCEPTION, CONNECTION and REFLECTION. You start light and go deeper. The indicator at the top shows which level you are in."], ["Open your heart", "When you finish reading, tap \"Open your heart\". It is the signal that it is now the other person's turn to answer."], ["No pressure or with a timer", "You choose on the start screen. \"No pressure\": everyone answers at their own pace. \"With timer\": the other person has the time you choose (1 minute by default) to start answering, and the asker taps \"Started answering\" to stop the clock."], ["From the heart or playing a character?", "After the answer, the asker says what they felt. \"From the heart\": it sounded honest, unfiltered. \"Playing a character\": it sounded rehearsed, to please or to protect. It is only your impression, and worth talking about."], ["Wildcards and cards you did not like", "Wildcards are challenges to do together; tap \"Done\" at the end, and they do not count toward the score. In the three dots on any card you can pick \"Already answered this\" or \"Skip\": it leaves the deck until the match ends."], ["Score and modes", "After 15 cards the game shows how many of each person's answers were from the heart. It is not a competition, it is a mirror. In \"Face to face\" mode the screen flips every turn; in \"Side by side\" it stays still."]],wildStart:'Finish challenge',wildDoing:'Challenge in progress',wildTime:n=>`${n} seconds for the challenge`,timeUp:"Time's up!",
+cardActions:'This card',answered:'Already answered this',skip:'Skip this card',actionNote:"Leaves the deck until the match ends and doesn't count toward the 15.",
 alertTitle:'Back to home?',alertMsg:'The current match will be lost.',alertOk:'Back to home',alertCancel:'Keep playing',endTitle:'Game over',endSub:n=>`${n} cards answered`,honestCount:'answers from the heart',best:'Most from the heart:',tie:'A perfect tie',again:'Play again'}};
 const tw=n=>lang==='pt'?(n<60?`${n} segundos`:n%60===0?(n/60===1?'1 minuto':`${n/60} minutos`):`${Math.floor(n/60)} min ${n%60} s`):(n<60?`${n} seconds`:n%60===0?(n/60===1?'1 minute':`${n/60} minutes`):`${Math.floor(n/60)} min ${n%60} s`);
 const fmtT=n=>n<60?`${n} s`:(n%60?`${Math.floor(n/60)} min ${n%60} s`:`${Math.floor(n/60)} min`);
@@ -239,7 +240,7 @@ drag=null;el.classList.remove('drag');requestAnimationFrame(()=>{setSw(el,q);if(
 el.addEventListener('pointerup',end);el.addEventListener('pointercancel',end);
 el.querySelectorAll('.opt').forEach(b=>b.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();const q=+b.dataset.i;setSw(el,q);if(q!==v){v=q;onChange(q)}}}));
 }
-function setLang(l){lang=l;store.set('nm-language',lang);applyLang();if(deck.length){buildLevels();render()}}
+function setLang(l){lang=l;store.set('nm-language',lang);applyLang();if(deck.length){buildStages();render()}}
 
 async function init(){
 if(names){$('name1').value=names[0];$('name2').value=names[1]}
@@ -316,7 +317,7 @@ setTimeout(()=>{intro=false},400);
 }
 function startMatch(noArrow){
 stopTimer();closeSheet();resetRotation();app.classList.remove('ended');
-done=0;score=[[0,0],[0,0]];excluded=new Set();phase='read';busy=false;level='ALL';buildLevels();setLevel('ALL');if(!noArrow)shoot(card,1,1,520);
+done=0;score=[[0,0],[0,0]];excluded=new Set();phase='read';busy=false;stage=0;buildStages();setStage(0);if(!noArrow)shoot(card,1,1,520);
 }
 function askHome(){
 if(busy)return;const w=t();
@@ -329,16 +330,15 @@ $('alert').onclick=e=>{if(e.target===$('alert'))closeAlert()};
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeAlert()});
 function goHome(){closeAlert();stopTimer();busy=false;closeSheet();resetRotation();app.classList.remove('ended');if(names){$('name1').value=names[0];$('name2').value=names[1]}app.classList.remove('setup');app.classList.add('home')}
 
-const LV=['ALL','LEVEL ONE','LEVEL TWO','LEVEL THREE'];
-function buildLevels(){const nav=$('levels');nav.innerHTML='';[['ALL',t().all],['LEVEL ONE',t().levels[0]],['LEVEL TWO',t().levels[1]],['LEVEL THREE',t().levels[2]]].forEach(([v,label])=>{const b=document.createElement('button');b.textContent=label;b.dataset.level=v;b.className=v===level?'active':'';b.onclick=()=>{if(busy)return;if(v!==level)shoot(nav,LV.indexOf(v)>LV.indexOf(level)?1:-1,.55,380);setLevel(v)};nav.append(b)})}
+const LEVELS=['LEVEL ONE','LEVEL TWO','LEVEL THREE'];let stage=0;
+/* indicador dos 3 níveis (só mostra onde vocês estão; o jogo avança sozinho a cada 5 cartas) */
+function buildStages(){const nav=$('levels');nav.innerHTML='';t().stages.forEach((nm,i)=>{const b=document.createElement('button');b.tabIndex=-1;b.dataset.s=i;b.textContent=(i+1)+' · '+nm;nav.append(b)});markStages()}
+function markStages(){document.querySelectorAll('#levels button').forEach(b=>{const i=+b.dataset.s;b.classList.toggle('active',i===stage);b.classList.toggle('done',i<stage);b.setAttribute('aria-current',i===stage?'step':'false')})}
 
-/* troca de nível: carta nova (sem contar nas 20); a vez continua com quem está jogando */
-function setLevel(v){
-level=v;deck=all.filter(c=>v==='ALL'||c.level===v);
-document.querySelectorAll('#levels button').forEach(b=>b.classList.toggle('active',b.dataset.level===v));
-closeSheet();stopTimer();phase='read';used=new Set();if(!deck.length)return;
-const ok=deck.map((_,i)=>i).filter(i=>!excluded.has(deck[i].id));
-index=ok.length?ok[Math.floor(Math.random()*ok.length)]:0;render();
+/* começa um nível: baralho só desse nível, primeira carta sorteada */
+function setStage(n){
+stage=n;level=LEVELS[n];deck=all.filter(c=>c.level===level);markStages();closeSheet();stopTimer();phase='read';used=new Set();if(!deck.length)return;
+const ok=deck.map((_,i)=>i).filter(i=>!excluded.has(deck[i].id));index=ok.length?ok[Math.floor(Math.random()*ok.length)]:0;render();
 }
 
 /* próxima carta aleatória: sem repetir e sem as descartadas nesta partida */
@@ -364,13 +364,17 @@ history.unshift(c.id);history=[...new Set(history)].slice(0,100);store.set('nm-h
 /* passa para outra carta. flipTurn=true: troca de jogador (e a tela vira no modo olho no olho). false: só troca a carta */
 function advance(flipTurn){
 if(busy||!deck.length)return;
-const target=pickRandom();if(target===null){endMatch();return}
+const ns=Math.min(2,Math.floor(done/PER));let nd=deck,target;
+if(ns!==stage){nd=all.filter(c=>c.level===LEVELS[ns]);const ok=nd.map((_,i)=>i).filter(i=>!excluded.has(nd[i].id));target=ok.length?ok[Math.floor(Math.random()*ok.length)]:null}
+else target=pickRandom();
+if(target===null){endMatch();return}
 busy=true;stopTimer();shoot(card,-1,1,460);
 const face=flipTurn&&mode==='face',reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
 const enter=()=>{
 card.getAnimations().forEach(a=>a.cancel());
 if(flipTurn)turn=1-turn;
 if(face){rot+=180;app.style.transform=`rotate(${rot}deg)`}
+if(ns!==stage){stage=ns;level=LEVELS[ns];deck=nd;used=new Set();markStages();shoot($('levels'),1,.55,420)}
 index=target;phase='read';render();
 if(!reduce)card.animate([{opacity:0,transform:'scale(.9)'},{opacity:1,transform:'scale(1)'}],{duration:face?420:320,delay:face?140:0,easing:'cubic-bezier(.2,.9,.3,1)',fill:'backwards'});
 setTimeout(()=>{busy=false},reduce?0:(face?620:420));
@@ -410,7 +414,7 @@ stopTimer();busy=true;const w=t();
 $('endTitle').textContent=w.endTitle;$('endSub').textContent=w.endSub(TOTAL);
 const box=$('scores');box.innerHTML='';
 score.forEach((s,i)=>{const d=document.createElement('div');d.className='score';const e=document.createElement('em'),b=document.createElement('b'),sp=document.createElement('span');e.textContent=names[i];b.textContent=s[0]+'/'+s[1];sp.textContent=w.honestCount;d.append(e,b,sp);box.append(d)});
-const [s0,s1]=score;$('winner').textContent=s0[0]===s1[0]?w.tie:w.best+' '+names[s0[0]>s1[0]?0:1];
+const [s0,s1]=score,r0=s0[1]?s0[0]/s0[1]:0,r1=s1[1]?s1[0]/s1[1]:0;$('winner').textContent=Math.abs(r0-r1)<1e-9?w.tie:w.best+' '+names[r0>r1?0:1];
 $('againBtn').textContent=w.again;$('endHome').textContent=w.home;
 const spin=turn===1&&mode==='face';
 if(spin){rot+=180;app.style.transform=`rotate(${rot}deg)`}
@@ -423,13 +427,6 @@ $('more').onclick=()=>{if(busy||phase==='answer')return;openSheet('actions')};
 /* descartar: a carta sai do baralho até o fim desta partida e não conta nas 20 */
 function discard(){if(busy)return;excluded.add(deck[index].id);closeSheet();advance(false)}
 
-/* abre uma carta guardada/vista sem contar na partida */
-function showCard(id){
-stopTimer();phase='read';
-if(!deck.some(c=>c.id===id)){level='ALL';deck=all.slice();document.querySelectorAll('#levels button').forEach(b=>b.classList.toggle('active',b.dataset.level==='ALL'));used=new Set()}
-index=deck.findIndex(c=>c.id===id);render();
-}
-
 function openSheet(type){
 const w=t(),list=$('sheetList');list.innerHTML='';const g=document.createElement('div');g.className='group';
 if(type==='actions'){
@@ -440,7 +437,7 @@ list.append(g);
 const ids=type==='favorites'?[...favorites].reverse():history,items=ids.map(id=>all.find(c=>c.id===id)).filter(Boolean);
 $('sheetTitle').textContent=type==='favorites'?w.favorites:w.recent;
 if(!items.length){const e=document.createElement('div');e.className='empty';e.textContent=type==='favorites'?w.emptyFav:w.emptyHist;list.append(e)}
-else{items.forEach(c=>{const b=document.createElement('button');b.className='entry';const s=document.createElement('small');s.textContent=levelName(c.level)+(c.wildcard?' · '+w.wild:'');b.append(s,document.createTextNode(textOf(c)));b.onclick=()=>{closeSheet();showCard(c.id)};g.append(b)});list.append(g)}
+else{items.forEach(c=>{const b=document.createElement('div');b.className='entry';const s=document.createElement('small');s.textContent=levelName(c.level)+(c.wildcard?' · '+w.wild:'');b.append(s,document.createTextNode(textOf(c)));g.append(b)});list.append(g)}
 }
 list.scrollTop=0;$('sheet').classList.add('show');$('scrim').classList.add('show');
 }
