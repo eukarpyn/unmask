@@ -1,0 +1,906 @@
+[
+ {
+  "id": "C1-001",
+  "level": "LEVEL ONE",
+  "source_id": "C1-001",
+  "wildcard": false,
+  "text_en": "Do I seem like a cat or dog person?",
+  "text_pt": "Você acha que eu gosto mais de gatos ou cachorros?"
+ },
+ {
+  "id": "C1-002",
+  "level": "LEVEL ONE",
+  "source_id": "C1-002",
+  "wildcard": false,
+  "text_en": "How likely am I to go camping? How high-maintenance is my setup?",
+  "text_pt": "Qual a probabilidade de eu gostar de acampar? Você acha que eu seria exigente com a estrutura do acampamento?"
+ },
+ {
+  "id": "C1-003",
+  "level": "LEVEL ONE",
+  "source_id": "C1-003",
+  "wildcard": false,
+  "text_en": "What's the first thing you noticed about me? What was your first impression of me?",
+  "text_pt": "Qual foi a primeira coisa que você notou em mim? Qual foi sua primeira impressão sobre mim?"
+ },
+ {
+  "id": "C1-004",
+  "level": "LEVEL ONE",
+  "source_id": "C1-004",
+  "wildcard": false,
+  "text_en": "Close your eyes. What color are my eyes?",
+  "text_pt": "Feche os olhos. Qual é a cor dos meus olhos?"
+ },
+ {
+  "id": "C1-005",
+  "level": "LEVEL ONE",
+  "source_id": "C1-005",
+  "wildcard": false,
+  "text_en": "What subject do you think I thrived in at school? Did I fail any?",
+  "text_pt": "Em qual matéria você acha que eu me destacava na escola? Será que reprovei em alguma?"
+ },
+ {
+  "id": "C1-006",
+  "level": "LEVEL ONE",
+  "source_id": "C1-006",
+  "wildcard": false,
+  "text_en": "Do I look kind? Explain.",
+  "text_pt": "Eu pareço ser uma pessoa gentil? Explique."
+ },
+ {
+  "id": "C1-007",
+  "level": "LEVEL ONE",
+  "source_id": "C1-007",
+  "wildcard": false,
+  "text_en": "How would you describe what you think my type is in three words?",
+  "text_pt": "Como você descreveria meu tipo ideal em três palavras?"
+ },
+ {
+  "id": "C1-008",
+  "level": "LEVEL ONE",
+  "source_id": "C1-008",
+  "wildcard": false,
+  "text_en": "What does my Instagram tell you about me?",
+  "text_pt": "O que meu Instagram diz sobre mim?"
+ },
+ {
+  "id": "C1-009",
+  "level": "LEVEL ONE",
+  "source_id": "C1-009",
+  "wildcard": false,
+  "text_en": "Name a place where you would be down to having sex.",
+  "text_pt": "Diga um lugar onde você toparia fazer sexo."
+ },
+ {
+  "id": "C1-010",
+  "level": "LEVEL ONE",
+  "source_id": "C1-010",
+  "wildcard": false,
+  "text_en": "Name a place where you would never have sex.",
+  "text_pt": "Diga um lugar onde você jamais faria sexo."
+ },
+ {
+  "id": "C1-011",
+  "level": "LEVEL ONE",
+  "source_id": "C1-011",
+  "wildcard": false,
+  "text_en": "Give your last sexual partner a review, stars and opinion.",
+  "text_pt": "Faça uma avaliação do seu último parceiro sexual, com estrelas e comentários."
+ },
+ {
+  "id": "C1-012",
+  "level": "LEVEL ONE",
+  "source_id": "C1-012",
+  "wildcard": false,
+  "text_en": "As a child, what do you think I wanted to be?",
+  "text_pt": "O que você acha que eu queria ser quando era criança?"
+ },
+ {
+  "id": "C1-013",
+  "level": "LEVEL ONE",
+  "source_id": "C1-013",
+  "wildcard": false,
+  "text_en": "Think of something that you dislike that most people don't. On the count of 3, say it out loud.",
+  "text_pt": "Pense em algo de que você não gosta, mas que a maioria das pessoas gosta. Na contagem de três, digam em voz alta."
+ },
+ {
+  "id": "C1-014",
+  "level": "LEVEL ONE",
+  "source_id": "C1-014",
+  "wildcard": false,
+  "text_en": "What's something you're thankful for?",
+  "text_pt": "Pelo que você é grato?"
+ },
+ {
+  "id": "C1-015",
+  "level": "LEVEL ONE",
+  "source_id": "C1-015",
+  "wildcard": false,
+  "text_en": "What age range were you in when you had your first kiss?",
+  "text_pt": "Em que faixa etária você teve seu primeiro beijo?"
+ },
+ {
+  "id": "C1-016",
+  "level": "LEVEL ONE",
+  "source_id": "C1-016",
+  "wildcard": false,
+  "text_en": "What's something you love most about yourself?",
+  "text_pt": "O que você mais ama em si mesmo?"
+ },
+ {
+  "id": "C1-017",
+  "level": "LEVEL ONE",
+  "source_id": "C1-017",
+  "wildcard": false,
+  "text_en": "Do I seem more creative or analytical? Explain.",
+  "text_pt": "Você me considera uma pessoa mais criativa ou analítica? Por quê?"
+ },
+ {
+  "id": "C1-018",
+  "level": "LEVEL ONE",
+  "source_id": "C1-018",
+  "wildcard": false,
+  "text_en": "What type of social situation makes you feel the most awkward?",
+  "text_pt": "Que tipo de situação social deixa você mais desconfortável?"
+ },
+ {
+  "id": "C1-019",
+  "level": "LEVEL ONE",
+  "source_id": "C1-019",
+  "wildcard": false,
+  "text_en": "If your camera roll went public, would you still be able to run for president?",
+  "text_pt": "Se todas as fotos do seu celular fossem divulgadas, você ainda poderia se candidatar à presidência?"
+ },
+ {
+  "id": "C1-020",
+  "level": "LEVEL ONE",
+  "source_id": "C1-020",
+  "wildcard": false,
+  "text_en": "Do I seem like someone who would get a name tattooed on myself? Why or why not?",
+  "text_pt": "Você acha que eu seria capaz de tatuar o nome de alguém? Por quê?"
+ },
+ {
+  "id": "C1-021",
+  "level": "LEVEL ONE",
+  "source_id": "C1-021",
+  "wildcard": false,
+  "text_en": "Think of your favorite video game of all time. On the count of three, say it out loud! (Both players.)",
+  "text_pt": "Pense no seu videogame favorito de todos os tempos. Na contagem de três, digam o nome em voz alta! (Os dois jogadores.)"
+ },
+ {
+  "id": "C1-022",
+  "level": "LEVEL ONE",
+  "source_id": "C1-022",
+  "wildcard": false,
+  "text_en": "Do you have a favorite picture of me?",
+  "text_pt": "Você tem uma foto minha de que gosta especialmente?"
+ },
+ {
+  "id": "C1-023",
+  "level": "LEVEL ONE",
+  "source_id": "C1-023",
+  "wildcard": false,
+  "text_en": "How or when did you know that you were in love with me?",
+  "text_pt": "Como ou quando você percebeu que estava apaixonado por mim?"
+ },
+ {
+  "id": "C1-024",
+  "level": "LEVEL ONE",
+  "source_id": "C1-024",
+  "wildcard": false,
+  "text_en": "Does any moment from our last year together stand out to you?",
+  "text_pt": "Algum momento do nosso último ano juntos ficou especialmente marcado para você?"
+ },
+ {
+  "id": "C1-025",
+  "level": "LEVEL ONE",
+  "source_id": "C1-025",
+  "wildcard": false,
+  "text_en": "Is there anything I've stopped doing that you miss or used to like?",
+  "text_pt": "Tem alguma coisa que eu fazia e deixei de fazer, mas que você sente falta?"
+ },
+ {
+  "id": "C1-026",
+  "level": "LEVEL ONE",
+  "source_id": "C1-026",
+  "wildcard": false,
+  "text_en": "Was there a time when I disappointed you and you didn't tell me?",
+  "text_pt": "Já aconteceu de eu te decepcionar e você não ter me contado?"
+ },
+ {
+  "id": "C1-027",
+  "level": "LEVEL ONE",
+  "source_id": "C1-027",
+  "wildcard": false,
+  "text_en": "What's a date-night activity you'd like us to do but haven't tried yet?",
+  "text_pt": "Que tipo de encontro você gostaria de ter comigo, mas que ainda não tivemos?"
+ },
+ {
+  "id": "C1-028",
+  "level": "LEVEL ONE",
+  "source_id": "C1-028",
+  "wildcard": false,
+  "text_en": "What's the sexiest thing I've ever said or done to you?",
+  "text_pt": "Qual foi a coisa mais sexy que eu já disse ou fiz com você?"
+ },
+ {
+  "id": "C1-029",
+  "level": "LEVEL ONE",
+  "source_id": "C1-029",
+  "wildcard": false,
+  "text_en": "Has there ever been a time when I worried you?",
+  "text_pt": "Já aconteceu de eu fazer você ficar preocupado comigo?"
+ },
+ {
+  "id": "C1-030",
+  "level": "LEVEL ONE",
+  "source_id": "C1-030",
+  "wildcard": false,
+  "text_en": "Do you believe in love at first sight? Do you think that's what happened to us? Why or why not?",
+  "text_pt": "Você acredita em amor à primeira vista? Acha que foi isso que aconteceu com a gente? Por quê?"
+ },
+ {
+  "id": "C2-001",
+  "level": "LEVEL TWO",
+  "source_id": "C2-001",
+  "wildcard": false,
+  "text_en": "What makes someone go from being a friend to becoming a best friend?",
+  "text_pt": "O que faz alguém deixar de ser apenas um amigo e se tornar um melhor amigo para você?"
+ },
+ {
+  "id": "C2-002",
+  "level": "LEVEL TWO",
+  "source_id": "C2-002",
+  "wildcard": false,
+  "text_en": "Do you consider me your best friend?",
+  "text_pt": "Você me considera seu melhor amigo?"
+ },
+ {
+  "id": "C2-003",
+  "level": "LEVEL TWO",
+  "source_id": "C2-003",
+  "wildcard": false,
+  "text_en": "Describe your most embarrassing date.",
+  "text_pt": "Descreva o encontro mais constrangedor que você já teve."
+ },
+ {
+  "id": "C2-004",
+  "level": "LEVEL TWO",
+  "source_id": "C2-004",
+  "wildcard": false,
+  "text_en": "What's something you've learned not to take personally when it comes to me?",
+  "text_pt": "O que você aprendeu a não levar para o lado pessoal comigo?"
+ },
+ {
+  "id": "C2-005",
+  "level": "LEVEL TWO",
+  "source_id": "C2-005",
+  "wildcard": false,
+  "text_en": "What's the most valuable lesson our relationship has taught you so far?",
+  "text_pt": "Qual foi a lição mais valiosa que nosso relacionamento te ensinou até agora?"
+ },
+ {
+  "id": "C2-006",
+  "level": "LEVEL TWO",
+  "source_id": "C2-006",
+  "wildcard": false,
+  "text_en": "What's the kindest thing you've done for yourself in the past month?",
+  "text_pt": "Qual foi a coisa mais gentil que você fez por si mesmo no último mês?"
+ },
+ {
+  "id": "C2-007",
+  "level": "LEVEL TWO",
+  "source_id": "C2-007",
+  "wildcard": false,
+  "text_en": "What's your love language?",
+  "text_pt": "Qual é a sua linguagem do amor?"
+ },
+ {
+  "id": "C2-008",
+  "level": "LEVEL TWO",
+  "source_id": "C2-008",
+  "wildcard": false,
+  "text_en": "Has a stranger ever changed your life?",
+  "text_pt": "Algum desconhecido já mudou sua vida?"
+ },
+ {
+  "id": "C2-009",
+  "level": "LEVEL TWO",
+  "source_id": "C2-009",
+  "wildcard": false,
+  "text_en": "Do you feel there's a connection between us?",
+  "text_pt": "Você sente que existe uma conexão entre nós?"
+ },
+ {
+  "id": "C2-010",
+  "level": "LEVEL TWO",
+  "source_id": "C2-010",
+  "wildcard": false,
+  "text_en": "What's an assumption you made about me that turned out to be wrong?",
+  "text_pt": "Que suposição você fez sobre mim que acabou se revelando falsa?"
+ },
+ {
+  "id": "C2-011",
+  "level": "LEVEL TWO",
+  "source_id": "C2-011",
+  "wildcard": false,
+  "text_en": "What excites you most about our future together?",
+  "text_pt": "O que mais te entusiasma em relação ao nosso futuro?"
+ },
+ {
+  "id": "C2-012",
+  "level": "LEVEL TWO",
+  "source_id": "C2-012",
+  "wildcard": false,
+  "text_en": "What's something you're insecure about?",
+  "text_pt": "Qual é uma coisa sobre a qual você se sente inseguro?"
+ },
+ {
+  "id": "C2-013",
+  "level": "LEVEL TWO",
+  "source_id": "C2-013",
+  "wildcard": false,
+  "text_en": "How many times do you think we've argued? Is it too much?",
+  "text_pt": "Quantas vezes você acha que já brigamos? É demais?"
+ },
+ {
+  "id": "C2-014",
+  "level": "LEVEL TWO",
+  "source_id": "C2-014",
+  "wildcard": false,
+  "text_en": "What's something you'd like us to do more often in our relationship?",
+  "text_pt": "O que você gostaria que fizéssemos mais no nosso relacionamento?"
+ },
+ {
+  "id": "C2-015",
+  "level": "LEVEL TWO",
+  "source_id": "C2-015",
+  "wildcard": false,
+  "text_en": "How hard do you think it is to please me?",
+  "text_pt": "O quanto você acha que sou difícil de agradar?"
+ },
+ {
+  "id": "C2-016",
+  "level": "LEVEL TWO",
+  "source_id": "C2-016",
+  "wildcard": false,
+  "text_en": "Do you think I intimidate other people? Why?",
+  "text_pt": "Você acha que intimido outras pessoas? Por quê?"
+ },
+ {
+  "id": "C2-017",
+  "level": "LEVEL TWO",
+  "source_id": "C2-017",
+  "wildcard": false,
+  "text_en": "Music during sex: yes or no?",
+  "text_pt": "Música durante o sexo: sim ou não?"
+ },
+ {
+  "id": "C2-018",
+  "level": "LEVEL TWO",
+  "source_id": "C2-018",
+  "wildcard": false,
+  "text_en": "Do you find it harder to apologize or to accept an apology?",
+  "text_pt": "Você acha mais difícil pedir desculpas ou aceitar desculpas?"
+ },
+ {
+  "id": "C2-019",
+  "level": "LEVEL TWO",
+  "source_id": "C2-019",
+  "wildcard": false,
+  "text_en": "How do you like to be supported when you're going through a difficult time?",
+  "text_pt": "Como você gosta de receber apoio quando está passando por um momento difícil?"
+ },
+ {
+  "id": "C2-020",
+  "level": "LEVEL TWO",
+  "source_id": "C2-020",
+  "wildcard": false,
+  "text_en": "How do you feel about taking the initiative sexually?",
+  "text_pt": "Como você se sente em relação a tomar a iniciativa sexual?"
+ },
+ {
+  "id": "C2-021",
+  "level": "LEVEL TWO",
+  "source_id": "C2-021",
+  "wildcard": false,
+  "text_en": "What's something you're better at than most people you know? Brag a little!",
+  "text_pt": "Em que você é melhor do que a maioria das pessoas que conhece? Pode se gabar!"
+ },
+ {
+  "id": "C2-022",
+  "level": "LEVEL TWO",
+  "source_id": "C2-022",
+  "wildcard": false,
+  "text_en": "What's your favorite memory from your childhood?",
+  "text_pt": "Qual é a sua lembrança favorita da infância?"
+ },
+ {
+  "id": "C2-023",
+  "level": "LEVEL TWO",
+  "source_id": "C2-023",
+  "wildcard": false,
+  "text_en": "What's something you were passionate about but has faded with the years?",
+  "text_pt": "O que você já amou fazer, mas acabou deixando de lado com o passar dos anos?"
+ },
+ {
+  "id": "C2-024",
+  "level": "LEVEL TWO",
+  "source_id": "C2-024",
+  "wildcard": false,
+  "text_en": "If money were not an issue, what's one big dream or idea you would pursue this year?",
+  "text_pt": "Se dinheiro não fosse um problema, qual grande sonho ou projeto você tiraria do papel este ano?"
+ },
+ {
+  "id": "C2-025",
+  "level": "LEVEL TWO",
+  "source_id": "C2-025",
+  "wildcard": false,
+  "text_en": "Do you think the image you have of yourself matches the image other people have of you?",
+  "text_pt": "Você acha que a imagem que tem de si mesmo corresponde à imagem que as outras pessoas têm de você?"
+ },
+ {
+  "id": "C2-026",
+  "level": "LEVEL TWO",
+  "source_id": "C2-026",
+  "wildcard": false,
+  "text_en": "What stereotype or assumption do you think people make about you?",
+  "text_pt": "Que estereótipo ou julgamento você acha que as pessoas costumam fazer sobre você?"
+ },
+ {
+  "id": "C2-027",
+  "level": "LEVEL TWO",
+  "source_id": "C2-027",
+  "wildcard": false,
+  "text_en": "What's the most fun you've had during our relationship?",
+  "text_pt": "Qual foi o momento mais divertido que vivemos juntos até hoje?"
+ },
+ {
+  "id": "C2-028",
+  "level": "LEVEL TWO",
+  "source_id": "C2-028",
+  "wildcard": false,
+  "text_en": "What's your favorite part of my body? And what do you like most about me in general?",
+  "text_pt": "Qual é a parte do meu corpo de que você mais gosta? E o que você mais gosta em mim como pessoa?"
+ },
+ {
+  "id": "C2-029",
+  "level": "LEVEL TWO",
+  "source_id": "C2-029",
+  "wildcard": false,
+  "text_en": "What do you wish you could spend more time doing?",
+  "text_pt": "O que você gostaria de ter mais tempo para fazer?"
+ },
+ {
+  "id": "C2-030",
+  "level": "LEVEL TWO",
+  "source_id": "C2-030",
+  "wildcard": false,
+  "text_en": "Write down the three most important things to you in a relationship. You have 30 seconds. Then compare your answers.",
+  "text_pt": "Escreva as três coisas mais importantes para você em um relacionamento. Você tem 30 segundos. Depois, comparem as respostas."
+ },
+ {
+  "id": "C2-031",
+  "level": "LEVEL TWO",
+  "source_id": "C2-031",
+  "wildcard": false,
+  "text_en": "What was your happiest memory from the past year?",
+  "text_pt": "Qual foi sua lembrança mais feliz do último ano?"
+ },
+ {
+  "id": "C2-032",
+  "level": "LEVEL TWO",
+  "source_id": "C2-032",
+  "wildcard": false,
+  "text_en": "What did the people who raised you teach you about love?",
+  "text_pt": "O que as pessoas que te criaram ensinaram a você sobre o amor?"
+ },
+ {
+  "id": "C2-033",
+  "level": "LEVEL TWO",
+  "source_id": "C2-033",
+  "wildcard": false,
+  "text_en": "Do you think I fall in love easily? Why or why not?",
+  "text_pt": "Você acha que eu me apaixono facilmente? Por quê?"
+ },
+ {
+  "id": "C2-034",
+  "level": "LEVEL TWO",
+  "source_id": "C2-034",
+  "wildcard": false,
+  "text_en": "Something that brought a smile to my face this week was ______.",
+  "text_pt": "Uma coisa que me fez sorrir esta semana foi ______."
+ },
+ {
+  "id": "C2-035",
+  "level": "LEVEL TWO",
+  "source_id": "C2-035",
+  "wildcard": false,
+  "text_en": "Do you see a connection between emotional intimacy and sex? Is it necessary?",
+  "text_pt": "Você acha que existe uma ligação entre intimidade emocional e sexo? Essa conexão é necessária?"
+ },
+ {
+  "id": "C2-036",
+  "level": "LEVEL TWO",
+  "source_id": "C2-036",
+  "wildcard": false,
+  "text_en": "What's one habit you'd like to let go of?",
+  "text_pt": "Qual é um hábito que você gostaria de abandonar?"
+ },
+ {
+  "id": "C2-037",
+  "level": "LEVEL TWO",
+  "source_id": "C2-037",
+  "wildcard": false,
+  "text_en": "If you could change one thing about yourself, what would it be and why?",
+  "text_pt": "Se pudesse mudar uma coisa em si mesmo, o que seria e por quê?"
+ },
+ {
+  "id": "C2-038",
+  "level": "LEVEL TWO",
+  "source_id": "C2-038",
+  "wildcard": false,
+  "text_en": "How do you handle disagreements, conflicts, or receiving feedback in our relationship?",
+  "text_pt": "Como você lida com desentendimentos, conflitos ou críticas dentro da nossa relação?"
+ },
+ {
+  "id": "C2-039",
+  "level": "LEVEL TWO",
+  "source_id": "C2-039",
+  "wildcard": false,
+  "text_en": "What are you most proud of about our relationship?",
+  "text_pt": "Do que você mais se orgulha na nossa relação?"
+ },
+ {
+  "id": "C2-040",
+  "level": "LEVEL TWO",
+  "source_id": "C2-040",
+  "wildcard": false,
+  "text_en": "Write down your number one goal for the next five years.",
+  "text_pt": "Escreva qual é o seu principal objetivo para os próximos cinco anos."
+ },
+ {
+  "id": "C2-041",
+  "level": "LEVEL TWO",
+  "source_id": "C2-041",
+  "wildcard": false,
+  "text_en": "What's one positive and one negative thing about me?",
+  "text_pt": "Diga uma característica positiva e uma negativa minha."
+ },
+ {
+  "id": "C2-042",
+  "level": "LEVEL TWO",
+  "source_id": "C2-042",
+  "wildcard": false,
+  "text_en": "What are the top three best sexual experiences you've ever had? What made them stand out?",
+  "text_pt": "Quais foram suas três melhores experiências sexuais? O que fez cada uma delas ser tão marcante?"
+ },
+ {
+  "id": "C2-043",
+  "level": "LEVEL TWO",
+  "source_id": "C2-043",
+  "wildcard": false,
+  "text_en": "When was the last time you cried, and why?",
+  "text_pt": "Quando foi a última vez que você chorou? Por quê?"
+ },
+ {
+  "id": "C2-044",
+  "level": "LEVEL TWO",
+  "source_id": "C2-044",
+  "wildcard": false,
+  "text_en": "What's the most comforting thing I've ever done for you?",
+  "text_pt": "Qual foi a coisa mais reconfortante que já fiz por você?"
+ },
+ {
+  "id": "C3-001",
+  "level": "LEVEL THREE",
+  "source_id": "C3-001",
+  "wildcard": false,
+  "text_en": "What's your most toxic trait that you're willing to admit?",
+  "text_pt": "Qual é o seu traço mais tóxico que você consegue admitir para si mesmo?"
+ },
+ {
+  "id": "C3-002",
+  "level": "LEVEL THREE",
+  "source_id": "C3-002",
+  "wildcard": false,
+  "text_en": "What have I helped you learn about yourself?",
+  "text_pt": "O que eu te ajudei a aprender sobre você mesmo?"
+ },
+ {
+  "id": "C3-003",
+  "level": "LEVEL THREE",
+  "source_id": "C3-003",
+  "wildcard": false,
+  "text_en": "What's something about me that's hardest for you to understand?",
+  "text_pt": "O que existe em mim que é mais difícil para você compreender?"
+ },
+ {
+  "id": "C3-004",
+  "level": "LEVEL THREE",
+  "source_id": "C3-004",
+  "wildcard": false,
+  "text_en": "How would you describe me to a stranger?",
+  "text_pt": "Como você me descreveria para um desconhecido?"
+ },
+ {
+  "id": "C3-005",
+  "level": "LEVEL THREE",
+  "source_id": "C3-005",
+  "wildcard": false,
+  "text_en": "What do you think my biggest fear is?",
+  "text_pt": "Qual você acha que é o meu maior medo?"
+ },
+ {
+  "id": "C3-006",
+  "level": "LEVEL THREE",
+  "source_id": "C3-006",
+  "wildcard": false,
+  "text_en": "What's something you think I should know about myself but may not have realized yet?",
+  "text_pt": "O que você acha que eu deveria saber sobre mim mesmo, mas talvez ainda não tenha percebido?"
+ },
+ {
+  "id": "C3-007",
+  "level": "LEVEL THREE",
+  "source_id": "C3-007",
+  "wildcard": false,
+  "text_en": "What's something I've done that hurt you the most?",
+  "text_pt": "O que é uma coisa que fiz que mais te machucou?"
+ },
+ {
+  "id": "C3-008",
+  "level": "LEVEL THREE",
+  "source_id": "C3-008",
+  "wildcard": false,
+  "text_en": "What can I improve on?",
+  "text_pt": "Em que posso melhorar?"
+ },
+ {
+  "id": "C3-009",
+  "level": "LEVEL THREE",
+  "source_id": "C3-009",
+  "wildcard": false,
+  "text_en": "How has this relationship helped you grow or change?",
+  "text_pt": "De que maneiras esse relacionamento fez você crescer ou mudar?"
+ },
+ {
+  "id": "C3-010",
+  "level": "LEVEL THREE",
+  "source_id": "C3-010",
+  "wildcard": false,
+  "text_en": "When was the last time you really needed help but didn't ask for it? Explain.",
+  "text_pt": "Quando foi a última vez que você precisava muito de ajuda, mas não pediu? Explique."
+ },
+ {
+  "id": "C3-011",
+  "level": "LEVEL THREE",
+  "source_id": "C3-011",
+  "wildcard": false,
+  "text_en": "When was the last time I made you feel loved, even when you didn't feel enough?",
+  "text_pt": "Quando foi a última vez que fiz você se sentir amado, mesmo quando você não se sentia suficiente?"
+ },
+ {
+  "id": "C3-012",
+  "level": "LEVEL THREE",
+  "source_id": "C3-012",
+  "wildcard": false,
+  "text_en": "What are your needs and desires in our relationship, sexual or non-sexual?",
+  "text_pt": "Quais são suas necessidades e desejos dentro do nosso relacionamento, sejam eles sexuais ou não?"
+ },
+ {
+  "id": "C3-013",
+  "level": "LEVEL THREE",
+  "source_id": "C3-013",
+  "wildcard": false,
+  "text_en": "What's your biggest regret?",
+  "text_pt": "Qual é o seu maior arrependimento?"
+ },
+ {
+  "id": "C3-014",
+  "level": "LEVEL THREE",
+  "source_id": "C3-014",
+  "wildcard": false,
+  "text_en": "Have you ever had sexual experiences that made you feel uncomfortable or were non-consensual? Are there any triggers we should be aware of?",
+  "text_pt": "Você já teve experiências sexuais que fizeram você se sentir desconfortável ou que não foram consensuais? Existem gatilhos relacionados a essas experiências?"
+ },
+ {
+  "id": "C3-015",
+  "level": "LEVEL THREE",
+  "source_id": "C3-015",
+  "wildcard": false,
+  "text_en": "What's the most pain you've experienced that wasn't physical?",
+  "text_pt": "Qual foi a sua maior dor que não envolveu algo físico?"
+ },
+ {
+  "id": "C3-016",
+  "level": "LEVEL THREE",
+  "source_id": "C3-016",
+  "wildcard": false,
+  "text_en": "How do you envision our sexual relationship evolving and growing over time?",
+  "text_pt": "Como você imagina que nossa relação sexual pode evoluir e amadurecer com o tempo?"
+ },
+ {
+  "id": "C3-017",
+  "level": "LEVEL THREE",
+  "source_id": "C3-017",
+  "wildcard": false,
+  "text_en": "What are your biggest concerns or fears about our relationship?",
+  "text_pt": "Quais são suas maiores preocupações ou receios em relação ao nosso relacionamento?"
+ },
+ {
+  "id": "C3-018",
+  "level": "LEVEL THREE",
+  "source_id": "C3-018",
+  "wildcard": false,
+  "text_en": "What's your biggest trauma? Where does it come from, and how do you think it affects your life now?",
+  "text_pt": "Qual foi seu maior trauma? De onde ele veio e como você acha que ainda afeta sua vida hoje?"
+ },
+ {
+  "id": "C3-019",
+  "level": "LEVEL THREE",
+  "source_id": "C3-019",
+  "wildcard": false,
+  "text_en": "What's one part of your personality that you don't get to express very often?",
+  "text_pt": "Que lado da sua personalidade você sente que raramente consegue expressar?"
+ },
+ {
+  "id": "C3-020",
+  "level": "LEVEL THREE",
+  "source_id": "C3-020",
+  "wildcard": false,
+  "text_en": "What do you admire most about me?",
+  "text_pt": "O que você mais admira em mim?"
+ },
+ {
+  "id": "C3-021",
+  "level": "LEVEL THREE",
+  "source_id": "C3-021",
+  "wildcard": false,
+  "text_en": "What are you currently working through that others don't see?",
+  "text_pt": "O que você está enfrentando neste momento que as outras pessoas não conseguem enxergar?"
+ },
+ {
+  "id": "C3-022",
+  "level": "LEVEL THREE",
+  "source_id": "C3-022",
+  "wildcard": false,
+  "text_en": "What do you think our most important similarities are?",
+  "text_pt": "Quais você acha que são as nossas maiores semelhanças?"
+ },
+ {
+  "id": "C3-023",
+  "level": "LEVEL THREE",
+  "source_id": "C3-023",
+  "wildcard": false,
+  "text_en": "What insecurity of yours holds you back the most?",
+  "text_pt": "Qual das suas inseguranças mais te impede de seguir em frente?"
+ },
+ {
+  "id": "C3-024",
+  "level": "LEVEL THREE",
+  "source_id": "C3-024",
+  "wildcard": false,
+  "text_en": "Would you consider watching porn as cheating?",
+  "text_pt": "Você considera assistir a pornografia uma forma de traição?"
+ },
+ {
+  "id": "C3-025",
+  "level": "LEVEL THREE",
+  "source_id": "C3-025",
+  "wildcard": false,
+  "text_en": "In what moment did you think, \"I love him/her\"?",
+  "text_pt": "Em que momento você pensou: \"Eu amo essa pessoa\"?"
+ },
+ {
+  "id": "C3-026",
+  "level": "LEVEL THREE",
+  "source_id": "C3-026",
+  "wildcard": false,
+  "text_en": "What do you think makes you feel closer to me?",
+  "text_pt": "O que você acha que faz você se sentir mais próximo de mim?"
+ },
+ {
+  "id": "C3-027",
+  "level": "LEVEL THREE",
+  "source_id": "C3-027",
+  "wildcard": false,
+  "text_en": "What is something about our relationship that you don't get from anyone else?",
+  "text_pt": "O que existe na nossa relação que você não encontra em nenhuma outra pessoa?"
+ },
+ {
+  "id": "C3-028",
+  "level": "LEVEL THREE",
+  "source_id": "C3-028",
+  "wildcard": false,
+  "text_en": "What's the best lesson an ex has ever taught you?",
+  "text_pt": "Qual foi a maior lição que um ex-parceiro já te ensinou?"
+ },
+ {
+  "id": "C3-029",
+  "level": "LEVEL THREE",
+  "source_id": "C3-029",
+  "wildcard": false,
+  "text_en": "What do you think your greatest fear is?",
+  "text_pt": "Qual você acha que é o seu maior medo?"
+ },
+ {
+  "id": "C3-030",
+  "level": "LEVEL THREE",
+  "source_id": "C3-030",
+  "wildcard": false,
+  "text_en": "What do you think I know about myself that perhaps I'm unaware of?",
+  "text_pt": "O que você acha que eu sei sobre mim mesmo, mas talvez ainda não tenha percebido?"
+ },
+ {
+  "id": "C3-031",
+  "level": "LEVEL THREE",
+  "source_id": "C3-031",
+  "wildcard": false,
+  "text_en": "What can I improve on?",
+  "text_pt": "Em que você acha que eu poderia melhorar?"
+ },
+ {
+  "id": "C3-032",
+  "level": "LEVEL THREE",
+  "source_id": "C3-032",
+  "wildcard": false,
+  "text_en": "Is there something in our relationship that concerns you? Do you feel there's something we should address?",
+  "text_pt": "Existe alguma coisa na nossa relação que te preocupa? Você sente que há algo que precisamos resolver?"
+ },
+ {
+  "id": "C3-033",
+  "level": "LEVEL THREE",
+  "source_id": "C3-033",
+  "wildcard": false,
+  "text_en": "What is one thing you believe is the best thing about us?",
+  "text_pt": "Na sua opinião, qual é a melhor coisa que existe entre nós?"
+ },
+ {
+  "id": "C3-034",
+  "level": "LEVEL THREE",
+  "source_id": "C3-034",
+  "wildcard": false,
+  "text_en": "What is something about our relationship you never want to change?",
+  "text_pt": "O que existe na nossa relação que você nunca gostaria que mudasse?"
+ },
+ {
+  "id": "CW-01",
+  "level": "ANY",
+  "source_id": "CW-01",
+  "wildcard": true,
+  "title_en": "Staring Contest",
+  "title_pt": "Duelo de olhares",
+  "text_en": "Have a staring contest. First person to blink loses.",
+  "text_pt": "Disputem quem consegue ficar mais tempo sem piscar. Quem piscar primeiro perde."
+ },
+ {
+  "id": "CW-02",
+  "level": "ANY",
+  "source_id": "CW-02",
+  "wildcard": true,
+  "title_en": "Massage Break",
+  "title_pt": "Pausa para massagem",
+  "text_en": "Take a break and give each other a massage.",
+  "text_pt": "Façam uma pausa para uma massagem."
+ },
+ {
+  "id": "CW-03",
+  "level": "ANY",
+  "source_id": "CW-03",
+  "wildcard": true,
+  "title_en": "Snack & Drinks Break",
+  "title_pt": "Pausa para lanche e bebida",
+  "text_en": "Take a break, grab some snacks and drinks, and enjoy the moment.",
+  "text_pt": "Façam uma pausa para comer alguma coisa, pegar uma bebida e aproveitar o momento."
+ },
+ {
+  "id": "CW-04",
+  "level": "ANY",
+  "source_id": "CW-04",
+  "wildcard": true,
+  "title_en": "Rock, Paper, Scissors Massage",
+  "title_pt": "Massagem na pedra, papel e tesoura",
+  "text_en": "Rock, paper, scissors. Whoever loses gives the other person a massage.",
+  "text_pt": "Pedra, papel e tesoura. Quem perder faz uma massagem no outro."
+ }
+]
