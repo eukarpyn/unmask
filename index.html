@@ -128,7 +128,7 @@ svg{display:block}.ic{fill:none;stroke:currentColor;stroke-width:2;stroke-lineca
 :root{--sys:-apple-system,BlinkMacSystemFont,"SF Pro Text",system-ui,"Helvetica Neue",Arial,sans-serif;--tint:#6a0a0f;--line:#2a0508;--wob:16px 7px 14px 8px/8px 14px 7px 16px;--wob2:30px 10px 26px 12px/12px 28px 10px 30px}
 html[data-stage="1"]{--tint:#640a13}html[data-stage="2"]{--tint:#5b0a17}
 body{background:transparent}
-body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background-color:var(--tint);background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .3 -.08'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");background-size:160px 160px;transition:background-color 1.2s ease}
+
 .app{z-index:1}.mark{filter:none}
 /* respiro: o espaço cresce com a altura da tela */
 .welcome{gap:clamp(18px,3.2vh,34px);padding:clamp(10px,3vh,34px) 0}
@@ -212,6 +212,16 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;ba
 .tsw .trail{transition:transform .8s cubic-bezier(.22,1,.36,1)}
 .tsw.drag .thumb,.tsw.drag .tcopy{transition:none}.tsw.drag .trail{transition:transform .3s ease-out}
 .opthint.ik{min-height:calc(10px*2.3*2)}
+/* v18: tela inteira — o fundo vive no html e o app é fixo em toda a área */
+html{background-color:var(--tint);background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .3 -.08'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");background-size:160px 160px;transition:background-color 1.2s ease}
+html,body{height:100%;min-height:-webkit-fill-available;overflow:hidden}
+body{background:transparent;margin:0}
+.app{position:fixed;top:0;right:0;bottom:0;left:0;width:100%;height:auto;max-width:540px;margin:0 auto}
+/* v18b: só o miolo da home rola (se precisar); o painel escondido não gera rolagem */
+.app.home{overflow:hidden}
+.app.home .welcome{overflow-x:hidden;overflow-y:auto;min-height:0;max-height:100%;max-width:none;width:calc(100% + 36px);margin:auto -18px;padding-left:18px;padding-right:18px;scrollbar-width:none;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
+.app.home .welcome::-webkit-scrollbar{display:none}
+.menu{width:100%;max-width:340px}
 /* texto desenhado em linha corrida */
 .ik{--ch:12px;font-size:calc(var(--ch)*.9);line-height:calc(var(--ch)*2.1);word-spacing:calc(var(--ch)*.32);font-weight:400;letter-spacing:0}
 .iw{display:inline-block;height:calc(var(--ch)*1.58)!important;width:auto!important;margin:0!important;vertical-align:calc(var(--ch)*-.24);fill:currentColor;overflow:visible}
@@ -323,7 +333,7 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;ba
 </div>
 
 <script>
-const VERSION='v17 · 15 nov 2026';
+const VERSION='v18.1 · 15 nov 2026';
 const TOTAL=15,PER=5,LIMIT=60;
 const mem={};const store={get(k){try{return localStorage.getItem(k)}catch(e){return k in mem?mem[k]:null}},set(k,v){try{localStorage.setItem(k,v)}catch(e){mem[k]=v}}};
 const load=(k,d)=>{try{const v=JSON.parse(store.get(k));return v==null?d:v}catch(e){return d}};
