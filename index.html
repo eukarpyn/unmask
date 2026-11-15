@@ -222,6 +222,8 @@ body{background:transparent;margin:0}
 .app.home .welcome{overflow-x:hidden;overflow-y:auto;min-height:0;max-height:100%;max-width:none;width:calc(100% + 36px);margin:auto -18px;padding-left:18px;padding-right:18px;scrollbar-width:none;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
 .app.home .welcome::-webkit-scrollbar{display:none}
 .menu{width:100%;max-width:340px}
+.app.home .welcome{overflow:hidden!important;max-height:none!important;margin:0 auto!important;width:100%!important;padding-left:0!important;padding-right:0!important;justify-content:center}
+.app.home{justify-content:center}
 /* texto desenhado em linha corrida */
 .ik{--ch:12px;font-size:calc(var(--ch)*.9);line-height:calc(var(--ch)*2.1);word-spacing:calc(var(--ch)*.32);font-weight:400;letter-spacing:0}
 .iw{display:inline-block;height:calc(var(--ch)*1.58)!important;width:auto!important;margin:0!important;vertical-align:calc(var(--ch)*-.24);fill:currentColor;overflow:visible}
@@ -333,7 +335,7 @@ body{background:transparent;margin:0}
 </div>
 
 <script>
-const VERSION='v18.1 · 15 nov 2026';
+const VERSION='v18.2 · 15 nov 2026';
 const TOTAL=15,PER=5,LIMIT=60;
 const mem={};const store={get(k){try{return localStorage.getItem(k)}catch(e){return k in mem?mem[k]:null}},set(k,v){try{localStorage.setItem(k,v)}catch(e){mem[k]=v}}};
 const load=(k,d)=>{try{const v=JSON.parse(store.get(k));return v==null?d:v}catch(e){return d}};
@@ -709,4 +711,11 @@ if('serviceWorker'in navigator){const had=!!navigator.serviceWorker.controller;l
 navigator.serviceWorker.addEventListener('controllerchange',()=>{if(had&&!reloaded){reloaded=true;location.reload()}});
 window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').then(r=>r.update()).catch(()=>{}))}
 init();
-</script></body></html>
+</script><script>
+/* v18.2: a home sempre cabe na altura visível (sem rolar), encolhendo se preciso */
+(function(){var raf=0;function fit(){var app=document.getElementById('app'),w=document.getElementById('welcome');if(!app||!w||!app.classList.contains('home'))return;w.style.zoom='';var cs=getComputedStyle(app),avail=app.clientHeight-parseFloat(cs.paddingTop)-parseFloat(cs.paddingBottom),need=w.scrollHeight;if(need>avail&&avail>200){w.style.zoom=Math.max(.6,avail/need).toFixed(3)}}
+function q(){cancelAnimationFrame(raf);raf=requestAnimationFrame(fit)}
+addEventListener('resize',q);addEventListener('orientationchange',q);addEventListener('load',function(){q();setTimeout(q,400);setTimeout(q,1500)});
+new MutationObserver(q).observe(document.body,{subtree:true,childList:true,attributes:true,attributeFilter:['class']})})();
+</script>
+</body></html>
