@@ -1,6 +1,6 @@
 // unmask — service worker (v9 · 10 nov 2026)
 // Estratégia: rede primeiro (sempre pega a versão mais nova do site) e cache só como reserva offline.
-const CACHE = 'unmask-v19e';
+const CACHE = 'unmask-v19f';
 const CORE = ['./', 'index.html', 'cards.json', 'cards-casal.json', 'manifest.json', 'icon.svg', 'icon-192.png', 'icon-512.png', 'apple-touch-icon.png', 'apple-touch-icon-v2.png', 'icon-192-v2.png', 'icon-512-v2.png'];
 
 self.addEventListener('install', (e) => {
