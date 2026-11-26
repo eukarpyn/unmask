@@ -542,7 +542,7 @@ $('stHeart').addEventListener('click',e=>{e.stopPropagation();aimAt(e.currentTar
 $('stMask').addEventListener('click',e=>{e.stopPropagation();aimAt(e.currentTarget,'i-mask')});
 /* textos fixos (início + jogo) no idioma atual */
 function applyLang(){if(noteQ)paintNote();
-const w=t();$('ver').textContent='unmask '+VERSION;document.documentElement.lang=lang==='pt'?'pt-BR':'en';
+const w=t();$('ver').textContent='unmask '+VERSION+' · developed by Guka';document.documentElement.lang=lang==='pt'?'pt-BR':'en';
 setInkLines($('welcomeText'),w.welcome);applyMode();$('namesNext').textContent=w.next;$('pickLabel').textContent=w.pickGame;$('whoLabel').textContent=w.whoTitle;setInk($('tDateName'),w.gDate);$('tDateDesc').textContent=w.gDateDesc;setInk($('tCoupleName'),w.gCouple);$('tCoupleDesc').textContent=w.gCoupleDesc;
 $('lab1').textContent=w.player+' 1';$('lab2').textContent=w.player+' 2';$('name1').placeholder=w.nameField;$('name2').placeholder=w.nameField;
 setSw($('langSw'),lang==='en'?1:0);
